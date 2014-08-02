@@ -1,0 +1,35 @@
+Protocol libr@cat : 
+
+    Tous les messages sont en json
+
+    Client->Serveur
+        L'utilisateur envois un message
+            vers des destinataires choisis
+                {to:["toto","tata"],msg:"gi,eroig,ero"}
+            vers tous le monde (suppression de la clé "to")
+                {msg:"gi,eroig,ero"}
+        choix du login
+            {username:"toiger,rge"}
+        changement de status
+            {status:"*"}
+
+    Serveur->Client
+        envois du message au client
+            {from:"titi",msg:"or,greog,",private:false}
+        changement de status
+            {user:"tutu",status:"login"}
+            les status disponibles :
+                géré par le serveur :
+                    login
+                    logout
+                géré par le client (il peut envoyer ce qu'il veux)
+                    *
+        erreur
+            {error:42,desc:"ceci est une erreur"}
+
+    Code d'erreur : 
+        0 : problème pseudo
+        1 : problème d'envois de message
+        2 : problème changement de status
+        3 : problème décodage
+

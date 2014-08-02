@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ma carte</title>
+  <meta charset="utf-8">
+  
+  <!-- Leaflet -->
+<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+
+<style type="text/css">
+    .leaflet-marker-icon.tidu{
+      border: solid 2px green;
+      border-radius: 50px;
+    }
+    .leaflet-marker-icon.tidef{
+      border: solid 2px red;
+      border-radius: 50px;
+    }
+</style>
+
+<script type="text/javascript">
+var ws = new function(){
+	var that = this;
+    this.ws = null;
+	this.openSocket = function(url){
+		this.ws = new WebSocket(url, "protocolOne");
+		this.ws.onopen = function(e){
+			console.log("WebSocket opened, event :");
+			console.log(e);
+            that.login()
+		};
+        window.onbeforeunload = confirmExit;
+        function confirmExit()
+        {
+            that.close();
+            return "";
+        }
+		this.ws.onmessage = function(e){
+            var rep = JSON.parse(e.data);
+            console.log( rep );
+            
+            if( rep.hasOwnProperty('error') ){
+                switch(rep.error){
+                    case 0:
+                        alert("Pb de pseudo");
+                        break;
+                    case 1:
+                        alert("erreur 1");
+                    case 2:
+                    default:
+                        alert("Autre erreur");
+                }
+                that.close();
+                return;
+            }
+            
+            if( rep.status == "login"){
+                sendMessage();
+            }
+		};
+	};
+	this.login = function(){
+        var data = { username: "test"};
+        console.log(data);
+        this.ws.send( JSON.stringify(data) );
+    };
+    this.msg = function(data){
+        console.log(JSON.stringify(data));
+        this.ws.send( JSON.stringify(data) );
+    };
+    this.close = function(){
+        that.msg({logout:true});
+    };
+}();
+
+function sendMessage(){
+    var data = { latLng : markerTidef.getLatLng()};
+    ws.msg(data)
+    setTimeout(sendMessage,500);
+}
+
+</script>
+    
+</head>
+<body>
+
+<div id="map" class="map" style="height: 500px;">
+
+<script type="text/javascript">
+var tidu = L.icon({
+    iconUrl: 'http://wiki.mdl29.net/mdl29.png',
+    iconSize: [50,50],
+    iconAnchor:[25,0],
+    className: 'tidu'
+});
+
+var tidef = L.icon({
+    iconUrl: 'http://www.sirtin.fr/sirtin/wp-content/uploads/100219.jpg',
+    iconSize: [50,50],
+    iconAnchor:[25,0],
+    className: 'tidef'
+});
+
+// create a map in the "map" div, set the view to a given place and zoom
+var map = L.map('map').setView([48.40623, -4.46754], 18);
+
+// add an OpenStreetMap tile layer
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+
+// add a marker in the given location, attach some popup content to it and open the popup
+var markerTidu = L.marker([48.40635, -4.46750]).setIcon(tidu).addTo(map).bindPopup('MDL');
+var markerTidef = L.marker([48.40640, -4.46705]).setIcon(tidef).addTo(map).bindPopup('Les petits débrouillards');
+
+
+ws.openSocket("ws://localhost:9876/");
+</script>
+
+</body>
+</html>
