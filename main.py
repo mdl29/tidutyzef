@@ -1,8 +1,30 @@
+#!/usr/bin/env python
+#-*- coding:utf-8 -*-
+
 from pyWebSocket import WebSocketServer, WebSocketClient
-import json
+import threading, json
 
+class errorParentIsnotTTWebSocketServer (Exception):
+        def __init__(self):
+            BaseException.__init__(self)
 
-class ClientConnection(WebSocketClient):
+class TTWebSocketServer(WebSocketServer):
+    def __init__(self):
+        WebSocketServer.__init__(self,clientClass = TTClientConnection)
+        self.teams = {'tizef':[],'tidu':[]}
+    def delClient(self,client):
+        for index, aClient in enumerate(self.client) :
+            if aClient == client:
+                self.client.pop(index)    
+        print("del the client : "+client.username)  
+    def send2team(self,data,team):
+        for index, client in enumerate(self.teams[team]) :
+            try:
+                client.send(msg)
+            except socket.error :
+                self.client.pop(index)    
+
+class TTClientConnection(WebSocketClient):
     """
     manage client connections
     """
@@ -11,10 +33,14 @@ class ClientConnection(WebSocketClient):
         """
         init the connection
         """
-        self.username=""
+        if not isinstance(parent,TTWebSocketServer):
+            raise errorParentIsnotTTWebSocketServer
         WebSocketClient.__init__(self, parent, sock, addr)
-
-
+        self.pos = (0,0) # (latitude,longitude)
+        self.username=""
+        self.parent.teams['tizef'].append(self)
+        self.team="test"
+        
     def onReceive(self,msg):
         """
         receive handler
@@ -24,50 +50,62 @@ class ClientConnection(WebSocketClient):
         except ValueError as e:
             self.send(json.dumps({"error":3,"desc":str(e)}))
             return
-        print(msg);
-
-
+        if not self.username and not "username" in data:
+            self.send(json.dumps({"object" : "error", "errorCode":1,"desc":"you must have an username"}))
+            return
+        print(msg)
+        """
+        the case keyword doesn't exist in python, so, we use a dictionary of function to call the appropriated function
+        we use lambda to call 2 function or to modify the number of args to pass to the function
+        """
+        try:
+            {"login" : lambda : self.login(data),
+                    "updatePos" : lambda : self.updatePos(data),
+                    "msg" : lambda : self.msg(data),
+                    "logout" : lambda : self.onConnectionClose()
+            }[data["object"]]()
+        except KeyError:
+            self.send(json.dumps({"object" : "error", "errorCode":3,"desc":"object " + data["object"] + " is not set or it isn't recognized"}))
+            
+    def login (self,data):
         if "username" in data:          #username change
             for client in self.parent.client:
                 if client.username==data["username"]:
-                    self.send(json.dumps({"error":0,"desc":"username already in use"}))
+                    self.send(json.dumps({"object" : "error", "errorCode":0,"desc":"username already in use"}))
                     break
             else:
                 if self.username:
-                    self.parent.send2All(json.dumps({"user":self.username,"status":"logout"}))    
+                    self.parent.send2All(json.dumps({"object" : "connection", "user":self.username,"status":"logout"}))    
+                    self.send(json.dumps({"object" :"logout","user":self.username}))
                 self.username = data["username"]
-                self.parent.send2All(json.dumps({"user":self.username,"status":"login"}))
-
+                self.parent.send2All(json.dumps({"object" : "connection", "user":self.username,"status":"login"}))
+                self.send(json.dumps({"object" :"login","user":self.username}))
+    
+    def msg (self,data):
         if "msg" in data:  
             if "to" in data:
                 for dest in data["to"]:
                     for client in self.parent.client:
                         if client.username==dest:
-                            client.send(json.dumps({"from":self.username,"msg":data["msg"],"private":True}))
+                            client.send(json.dumps({"object" : "msg", "from":self.username,"msg":data["msg"],"private":True}))
             else:
-                self.parent.send2All(json.dumps({"from":self.username,"msg":data["msg"],"private":False}))
-        if "latLng" in data:  
-            self.parent.send2All(json.dumps({"from":self.username,"latLng":data["latLng"],"private":False}))
-
-        if "status" in data:
-            self.parent.send2All(json.dumps({"user":self.username,"status":data["status"]}))
-        if "logout" in data:
-            self.onConnectionClose();
-
+                self.parent.send2All(json.dumps({"object" : "msg", "from":self.username,"msg":data["msg"],"private":False}))
+    
+    def updatePos(self,data):
+        self.pos = (data["lat"],data["lng"])
+        self.parent.send2team(json.dumps({"object" : "updatePos", "from":self.username,"pos":self.pos}),self.team)
+    
     def onConnectionClose(self):
         """
         connection closing handler
         """
-        self.parent.send2All(json.dumps({"user":self.username,"status":"logout"}))
-        print(json.dumps({"user":self.username,"status":"logout"}))
+        self.send(json.dumps({"object" :"logout","user1 ":self.username}))
+        self.parent.send2All(json.dumps({"object" :"connection","user":self.username,"status":"logout"}))
         for client in self.parent.client:
             if client.username==self.username: 
-                del client
-    
-
-def factoryClient(conn, address):
-    return ClientConnection(conn, address);
-    
+                self.parent.delClient(self)
+                del client  #inutile car TTWebSocketServer pop de l'array le client et le supprime
+        
 if __name__=="__main__":
-    ws=WebSocketServer(clientClass=ClientConnection)
+    ws=TTWebSocketServer()
     ws.join()
