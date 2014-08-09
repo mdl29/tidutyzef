@@ -15,10 +15,10 @@ function wsLib(){
 		window.onbeforeunload = function(){
             that.close();
             return false;
-        };
+		};
         
-        this.ws.onmessage = onMessage;
-    };
+		this.ws.onmessage = onMessage;
+	};
 
     this.msg = function(data){
         var data = JSON.stringify(data);
@@ -30,7 +30,7 @@ function wsLib(){
         this.ws.close();
     };
     this.isClosed = function(){
-        if(this.ws.readyState == 3){
+        if(ws.readyState == 3){
             return true;
         }
         else{
@@ -38,3 +38,5 @@ function wsLib(){
         }
     };
 }
+	
+	

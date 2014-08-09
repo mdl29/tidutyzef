@@ -4,105 +4,7 @@
 	<title>WebSocket test</title>
     <meta charset="UTF-8"/>
 	<script src="./wsLib.js"></script>
-    <script>
-    var webSocket = null;
-    var username;
-    
-    function qs(s){
-        return document.querySelector(s);
-    }
-    function setStatut (s){
-        qs("#status").innerHTML=s;
-    }
-    
-    function addMessage(from, msg){
-        qs("#msg").innerHTML=qs("#msg").innerHTML+"<br/>"+from+" say : "+msg;
-    }
-    
-    function openConnection (){
-        if(!webSocket){
-            wsLib.openSocket(qs('#ws_url').value,
-                connectionOpened,
-                onClose,
-                onMessage,
-                onError );
-        }
-    }
-    
-    function connectionOpened (){
-        webSocket = true;
-        setStatut('Veuillez entrer votre pseudo');
-    }
-    
-    function sendToServ (data){
-        if(webSocket){
-            wsLib.msg(data);
-        } 
-    
-    }
-    
-    function onClose(){
-        var data = {object :"logout"};
-        sendToServ(data);
-    }
-    
-    function login (){
-        var data = {object: "login",
-                        username: qs('#pseudo').value}
-        sendToServ(data);
-    }
-
-    function sendMsg (){
-        var data = {object: "msg",
-                        msg: qs('#msg').value};
-        sendToServ(data);
-    }   
-    function setPos(){
-        var data = {object: "updatePos",
-                        lat: qs('#lat').value,
-                        lng: qs('#lng').value};
-        console.log(escape(JSON.stringify(data)));
-        sendToServ(data);
-
-    }
-    function onMessage (e){   
-        rep = JSON.parse(e.data);
-        console.log( rep );
-        switch (rep.object){
-            case "error":
-                onError(rep);
-                break;
-            case "msg":
-                if( rep.hasOwnProperty ("msg") && rep.hasOwnProperty("from")){
-                    addMessage(rep.from, rep.msg);
-                }
-                break;
-            case "login":
-                setStatut("Connecté");
-                username = rep.user;
-                break;
-            case "logout":
-                setStatut("Déconnecté");
-                break;
-        }
-
-    }
-    
-    function onError (e){
-        switch(e.errorCode){
-            case 0:
-                alert("Pb de pseudo");
-                break;
-            default:
-                if (e.desc != ""){
-                    alert(e.desc);
-                }
-                else{
-                    alert("Erreur indéfinie");
-                }
-        }
-    }
-</script>
+    <script src="./main.js"></script>
 </head>
 <body>
 
@@ -112,7 +14,7 @@
 <button onclick="login()">Définir le pseudo</button>
 
 <br><br>
-<label>Message : <input type="text" id="msg"></label>
+<label>Message : <input type="text" id="sendMsg"></label>
 <button onclick="sendMsg()">Message</button>
 
 <br><br>
