@@ -16,9 +16,12 @@
     }
     function getLocation(){
 	
-		if(navigator.geolocalisation){
-		navigator.geolocalisation.getCurrentPosition(showPosition);	
+		
+		if(navigator.geolocation){
+		navigator.geolocation.getCurrentPosition(showPosition);	
+		console.log("d");
 		}
+		
 		
 	}
 	
