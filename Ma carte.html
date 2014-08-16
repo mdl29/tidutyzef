@@ -7,8 +7,8 @@
     <script src="./main.js"></script>
 
   <!-- Leaflet -->
-    <link rel="stylesheet" href="./leaflet.css" />
-    <script src="./leaflet.js"></script>
+    <link rel="stylesheet" href="./lib/leaflet/leaflet.css" />
+    <script src="./lib/leaflet/leaflet.js"></script>
 
 <style type="text/css">
     .leaflet-marker-icon.tidu{
@@ -47,12 +47,6 @@ var map = L.map('map').setView([48.40623, -4.46754], 18);
 // add an OpenStreetMap tile layer
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
 
-// add a marker in the given location, attach some popup content to it and open the popup
-var markerTidu = L.marker([48.40635, -4.46750]).setIcon(tidu).addTo(map).bindPopup('MDL');
-var markerTidef = L.marker([48.40640, -4.46705]).setIcon(tidef).addTo(map).bindPopup('Les petits débrouillards');
-
-
-ws.openSocket("ws://localhost:9876/");
 </script>
 
 

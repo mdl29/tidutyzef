@@ -1,6 +1,7 @@
     var webSocket = false;
     var ws = new wsLib();
     var username;
+    var markers={};
     
     function qs(s){
         return document.querySelector(s);
@@ -21,12 +22,24 @@
 		
 	}
 	
+	
 	function showPosition(position){
 	
 		lat=position.coords.latitude;
 		lon=position.coords.longitude;
 		setPos(lat,lon);
 		
+	}
+	function moveMarker(pos,username){
+	
+		if(!markers.hasOwnProperty(username)){
+		 markers[username] = L.marker(pos).setIcon(tidu).addTo(map).bindPopup(username);
+		}
+		else{
+		
+			markers[username].setLatLng(pos);
+			
+		}
 	}
     function onMessage (e){   
         rep = JSON.parse(e.data);
@@ -45,6 +58,10 @@
                 username = rep.user;
                 getLocation();
                 break;
+            case "updatePos":
+                if( rep.hasOwnProperty ("pos") && rep.hasOwnProperty("from")){
+				moveMarker(rep.pos,rep.from);
+				}
             case "logout":
                 setStatut("Déconnecté");
                 break;
