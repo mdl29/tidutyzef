@@ -92,7 +92,7 @@ class TTClientConnection(WebSocketClient):
     
     def updatePos(self,data):
         self.pos = (data["lat"],data["lng"])
-        self.parent.send2All(json.dumps({"object" : "updatePos", "from":self.username,"pos":self.pos}),self.team)
+        self.parent.send2All(json.dumps({"object" : "updatePos", "from":self.username,"pos":self.pos}))
     
     def onConnectionClose(self):
         """
