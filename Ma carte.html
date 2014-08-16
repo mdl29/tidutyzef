@@ -10,16 +10,6 @@
     <link rel="stylesheet" href="./lib/leaflet/leaflet.css" />
     <script src="./lib/leaflet/leaflet-src.js"></script>
 
-<style type="text/css">
-    .leaflet-marker-icon.tidu{
-      border: solid 2px green;
-      border-radius: 50px;
-    }
-    .leaflet-marker-icon.tidef{
-      border: solid 2px red;
-      border-radius: 50px;
-    }
-</style>
     
 </head>
 <body>
@@ -30,15 +20,13 @@
 var tidu = L.icon({
     iconUrl: 'img/tidu.png',
     iconSize: [50,50],
-    iconAnchor:[25,0],
-    className: 'tidu'
+    iconAnchor:[25,0]
 });
 
 var tizef = L.icon({
     iconUrl: 'img/tizef.png',
     iconSize: [50,50],
-    iconAnchor:[25,0],
-    className: 'tizef'
+    iconAnchor:[25,0]
 });
 var icons= {"tidu":tidu,"tizef":tizef};
 // create a map in the "map" div, set the view to a given place and zoom
