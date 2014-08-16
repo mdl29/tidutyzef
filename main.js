@@ -33,7 +33,7 @@
 	function moveMarker(pos,username){
 	
 		if(!markers.hasOwnProperty(username)){
-		 markers[username] = L.marker(pos).setIcon(tidu).addTo(map).bindPopup(username);
+		 markers[username] = L.marker(pos).addTo(map).bindPopup(username);
 		}
 		else{
 		
