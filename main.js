@@ -36,7 +36,7 @@
 			markers[team]={};
 		}
 		if(!markers.hasOwnProperty(username)){
-		 markers[team][username] = L.marker(pos).setIcon(Icons[team]).addTo(map).bindPopup(username);
+		 markers[team][username] = L.marker(pos).setIcon(icons[team]).addTo(map).bindPopup(username);
 		}
 		else{
 		
