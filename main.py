@@ -69,7 +69,7 @@ class TTClientConnection(WebSocketClient):
     def login (self,data):
         if "username" in data and "team" in data:          #username change
             for client in self.parent.client:
-                if client.username==data["username"] && client.team==data["team"]:
+                if client.username==data["username"] and client.team==data["team"]:
                     self.send(json.dumps({"object" : "error", "errorCode":0,"desc":"username already in use in your team"}))
                     break
             else:
