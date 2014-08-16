@@ -75,6 +75,7 @@ class TTClientConnection(WebSocketClient):
             else:
                 if not self.username:
                     self.username = data["username"]
+                    self.team = data["team"]
                     self.parent.send2All(json.dumps({"object" : "connection", "user":self.username,"status":"login"}))
                     self.send(json.dumps({"object" :"login","user":self.username}))
                 else:
