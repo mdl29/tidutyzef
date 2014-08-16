@@ -13,7 +13,21 @@
     function addMessage(from, msg){
         qs("#msg").innerHTML=qs("#msg").innerHTML+"<br>"+from+" say : "+msg;
     }
-    
+    function getLocation(){
+	
+		if(navigator.geolocalisation){
+		navigator.geolocalisation.getCurrentPosition(showPosition);	
+		}
+		
+	}
+	
+	function showPosition(position){
+	
+		lat=position.coords.latitude;
+		lon=position.coords.longitude;
+		setPos(lat,lon);
+		
+	}
     function onMessage (e){   
         rep = JSON.parse(e.data);
         console.log( rep );
@@ -29,6 +43,7 @@
             case "login":
                 setStatut("Connecté");
                 username = rep.user;
+                getLocation();
                 break;
             case "logout":
                 setStatut("Déconnecté");
@@ -86,7 +101,8 @@
     
     function login (){
         var data = {object: "login",
-                        username: qs('#pseudo').value}
+                        username: qs('#pseudo').value,
+                        team:qs('#team').value}
         sendToServ(data);
     }
 
@@ -95,10 +111,10 @@
                         msg: qs('#sendMsg').value};
         sendToServ(data);
     }   
-    function setPos(){
+    function setPos(lat,lon){
         var data = {object: "updatePos",
-                        lat: qs('#lat').value,
-                        lng: qs('#lng').value};
+                        lat: lat,
+                        lng: lon};
         sendToServ(data);
 
     }
