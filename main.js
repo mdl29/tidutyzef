@@ -30,14 +30,17 @@
 		setPos(lat,lon);
 		
 	}
-	function moveMarker(pos,username){
+	function moveMarker(pos,username,team){
 	
+		if(!markers.hasOwnProperty(team)){
+			markers[team]={};
+		}
 		if(!markers.hasOwnProperty(username)){
-		 markers[username] = L.marker(pos).addTo(map).bindPopup(username);
+		 markers[team][username] = L.marker(pos).setIcon(team).addTo(map).bindPopup(username);
 		}
 		else{
 		
-			markers[username].setLatLng(pos);
+			markers[team][username].setLatLng(pos);
 			
 		}
 	}
@@ -60,7 +63,7 @@
                 break;
             case "updatePos":
                 if( rep.hasOwnProperty ("pos") && rep.hasOwnProperty("from")){
-				moveMarker(rep.pos,rep.from);
+				moveMarker(rep.pos,rep.from,rep.team);
 				}
             case "logout":
                 setStatut("Déconnecté");
