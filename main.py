@@ -38,8 +38,7 @@ class TTClientConnection(WebSocketClient):
         WebSocketClient.__init__(self, parent, sock, addr)
         self.pos = (0,0) # (latitude,longitude)
         self.username=""
-        self.parent.teams['tizef'].append(self)
-        self.team="test"
+        self.team=""
         
     def onReceive(self,msg):
         """
@@ -68,19 +67,18 @@ class TTClientConnection(WebSocketClient):
             self.send(json.dumps({"object" : "error", "errorCode":3,"desc":"object " + data["object"] + " is not set or it isn't recognized"}))
             
     def login (self,data):
-        if "username" in data:          #username change
+        if "username" in data and "team" in data:          #username change
             for client in self.parent.client:
-                if client.username==data["username"]:
-                    self.send(json.dumps({"object" : "error", "errorCode":0,"desc":"username already in use"}))
+                if client.username==data["username"] && client.team==data["team"]:
+                    self.send(json.dumps({"object" : "error", "errorCode":0,"desc":"username already in use in your team"}))
                     break
             else:
-                if self.username:
-                    self.parent.send2All(json.dumps({"object" : "connection", "user":self.username,"status":"logout"}))    
-                    self.send(json.dumps({"object" :"logout","user":self.username}))
-                    self.username = ""
-                self.username = data["username"]
-                self.parent.send2All(json.dumps({"object" : "connection", "user":self.username,"status":"login"}))
-                self.send(json.dumps({"object" :"login","user":self.username}))
+                if not self.username:
+                    self.username = data["username"]
+                    self.parent.send2All(json.dumps({"object" : "connection", "user":self.username,"status":"login"}))
+                    self.send(json.dumps({"object" :"login","user":self.username}))
+                else:
+                    self.send(json.dumps({"object" : "error", "errorCode":4,"desc":"You can't change your username"}))
     
     def msg (self,data):
         if "msg" in data:  
@@ -94,7 +92,7 @@ class TTClientConnection(WebSocketClient):
     
     def updatePos(self,data):
         self.pos = (data["lat"],data["lng"])
-        self.parent.send2team(json.dumps({"object" : "updatePos", "from":self.username,"pos":self.pos}),self.team)
+        self.parent.send2All(json.dumps({"object" : "updatePos", "from":self.username,"pos":self.pos}),self.team)
     
     def onConnectionClose(self):
         """
