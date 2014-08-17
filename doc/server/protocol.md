@@ -7,11 +7,11 @@ Les requêtes et réponses sont au format JSON.
 ---
 
 * Authentification :
-   * [ Connexion ](#-connexion) 
-   * [ Déconnexion ](#-déconnexion)
+   * [ Connexion ](#connexion) 
+   * [ Déconnexion ](#déconnexion)
 * Positionnement des joueurs :
-   * [Envoi de sa position](#-envoi-de-sa-position)
-   * [Réception des positions des autres joueurs](#-réception-des-positions-des-autres-joueurs)
+   * [Envoi de sa position](#envoi-de-sa-position)
+   * [Réception des positions des autres joueurs](#réception-des-positions-des-autres-joueurs)
 * Gestion des zones :
 
 TODO
