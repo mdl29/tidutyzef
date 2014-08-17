@@ -7,11 +7,11 @@ Les requêtes et réponses sont au format JSON.
 ---
 
 * Authentification :
-   * [ Connexion ](#connexion) 
-   * [ Déconnexion ](#deconnexion)
+   * [ Connexion ](#-connexion) 
+   * [ Déconnexion ](#-déconnexion)
 * Positionnement des joueurs :
-   * [Envoi de sa position](#envoi-de-sa-position)
-   * [Réception des positions des autres joueurs](#reception-des-positions-des-autres-joueurs)
+   * [Envoi de sa position](#-envoi-de-sa-position)
+   * [Réception des positions des autres joueurs](#-réception-des-positions-des-autres-joueurs)
 * Gestion des zones :
 
 TODO
@@ -24,7 +24,7 @@ TODO
 
 TODO
 
-# <a name="connexion"></a> Connexion
+# Connexion
 
 Pour se connecter en tant que toto avec l'équipe tidu, envoier le message suivant :
 
@@ -36,7 +36,7 @@ Pour se connecter en tant que toto avec l'équipe tidu, envoier le message suiva
 }
 ```
 
-# <a name="deconnexion"></a> Déconnexion
+# Déconnexion
 Pour se déconnecter, envoyer le message :
 
 ```json
@@ -45,7 +45,7 @@ Pour se déconnecter, envoyer le message :
 }
 ```
 
-# <a name="envoi-de-sa-position"></a> Envoi de sa position
+# Envoi de sa position
 Pour transmettre sa position GPS, par exemple [48.40618, -4.46730], envoyer le message :
 
 ```json
@@ -56,7 +56,7 @@ Pour transmettre sa position GPS, par exemple [48.40618, -4.46730], envoyer le m
 }
 ```
 
-# <a name="reception-des-positions-des-autres-joueurs"></a> Réception des positions des autres joueurs
+# Réception des positions des autres joueurs
 Le serveur va également transmettre la position des autres joueurs, par exemple si titi de l'équipe tidu est à le position [48.40618, -4.46730] ([lat, longitude]), le serveur va vous envoyer le message suivant :
 
 ```json
