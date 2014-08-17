@@ -30,7 +30,7 @@ var tizef = L.icon({
 });
 var icons= {"tidu":tidu,"tizef":tizef};
 // create a map in the "map" div, set the view to a given place and zoom
-var map = L.map('map').setView([48.40623, -4.46754], 18);
+var map = L.map('map').setView([48.405636,-4.448], 18);
 
 // add an OpenStreetMap tile layer
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
@@ -38,7 +38,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a 
 </script>
 
 
-	<label>URL du ws : <input type="text" id="ws_url" value="ws://192.168.0.15:9876/"></label>
+<label>URL du ws : <input type="text" id="ws_url" value="ws://192.168.0.15:9876/"></label>
 <button onclick="openConnection()">Open connexion</button><br>
 <label>Pseudo : <input type="text" id="pseudo"></label>
 <label>Equipe : <input type="text" id="team"></label>
