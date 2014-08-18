@@ -21,12 +21,12 @@ TODO
 TODO
 
 * Codes d'erreur :
-    * [ 0 ](#erreur 0)
-    * [ 1 ](#erreur 1)
-    * [ 2 ](#erreur 2)
-    * [ 3 ](#erreur 3)
-    * [ 4 ](#erreur 4)
-    * [ 5 ](#erreur 5)
+    * [ 0 ](#erreur-0)
+    * [ 1 ](#erreur-1)
+    * [ 2 ](#erreur-2)
+    * [ 3 ](#erreur-3)
+    * [ 4 ](#erreur-4)
+    * [ 5 ](#erreur-5)
 
 And more will come XD
 
