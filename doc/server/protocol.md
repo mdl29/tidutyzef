@@ -20,9 +20,17 @@ TODO
 
 TODO
 
-* Codes d'erreur :
+* [Envoi des données defini par l'administrateur](#envoi-des-données-defini-par-l-administrateur)
 
-TODO
+* Codes d'erreur :
+    * [ 0 ](#erreur-0)
+    * [ 1 ](#erreur-1)
+    * [ 2 ](#erreur-2)
+    * [ 3 ](#erreur-3)
+    * [ 4 ](#erreur-4)
+    * [ 5 ](#erreur-5)
+
+And more will come XD
 
 # Connexion
 
@@ -67,3 +75,34 @@ Le serveur va également transmettre la position des autres joueurs, par exemple
     "pos": [48.40618, -4.46730]
 }
 ```
+#Envoi des données defini par l'administrateur
+L'admin defini la localisation de la map ainsi que les zones sur cette map avec les positions latitudes et longitudes ainsi que le le rayon des zones en metres ensuite gerer par leaflet directement.
+
+```json
+{
+    "object": "setParams",
+    "map": [48.40618, -4.46730],
+    "zone1":  [48.40618, -4.4670],
+    "zone2": [48.4068, -4.46730],
+    "zone3":[48.4061, -4.4670],
+    "rayon" :10
+}
+```
+
+# Erreur 0
+*usernameNotSet* -> un username doit etre transmis ainsi que la team
+
+# Erreur 1
+*teamError* -> la team spécifié n'existe pas
+
+# Erreur 2
+*usernameAlreadyUse* -> l'username est déjà utilisé par un autre joueur dans la team demandée
+
+# Erreur 3 
+*JSONError* -> le Json n'a pas pu être correctement lu (il faut peut être renvoyer le dernier message
+
+# Erreur 4
+*unknowObject* -> l'objet spécifié dans je JSON ne correspond à aucun objet pouvant être traité
+
+#Erreur 5
+*usernameAlreadySet* -> le client ne peut pas demander à changer son username ou son équipe en cours de partie
