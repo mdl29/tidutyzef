@@ -2,6 +2,7 @@
     var ws = new wsLib();
     var username;
     var markers={};
+    var zone=["","",""];
     
     function qs(s){
         return document.querySelector(s);
@@ -14,24 +15,7 @@
     function addMessage(from, msg){
         qs("#msg").innerHTML=qs("#msg").innerHTML+"<br>"+from+" say : "+msg;
     }
-    function getLocation(){
-	
-		
-		if(navigator.geolocation){
-		navigator.geolocation.watchPosition(showPosition);
-		}
-		
-		
-	}
-	
-	
-	function showPosition(position){
-	
-		lat=position.coords.latitude;
-		lon=position.coords.longitude;
-		setPos(lat,lon);
-		
-	}
+    
 	function moveMarker(pos,username,team){
 	
 		if(!markers.hasOwnProperty(team)){
@@ -134,11 +118,18 @@
         sendToServ(data);
     }   
     
+    function defZone(){
+		
+	}
+    
     function selectParameters(){
 	
-		var data = {object:"parametreJeu",
+		var data = {object:"setParams",
 						map: L.map.getCenter,
-						zones:""};
-		console.log(data);
+						zone1:"",
+						zone2:"",
+						zone3:"",
+						rayon:qs('#zoneRayon').value};
+		sendToServ(data);
 	}
 

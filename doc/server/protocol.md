@@ -73,6 +73,19 @@ Le serveur va également transmettre la position des autres joueurs, par exemple
     "pos": [48.40618, -4.46730]
 }
 ```
+#Envoi des données defini par l'administrateur
+L'admin defini la localisation de la map ainsi que les zones sur cette map avec les positions latitudes et longitudes ainsi que le le rayon des zones en metres ensuite gerer par leaflet directement.
+
+``json
+{
+    "object": "setParams",
+    "map": [48.40618, -4.46730],
+    "zone1":  [48.40618, -4.4670],
+    "zone2": [48.4068, -4.46730],
+    "zone3":[48.4061, -4.4670],
+    "rayon" :10
+}
+```
 
 # Erreur 0
 *usernameNotSet* -> un username doit etre transmis ainsi que la team

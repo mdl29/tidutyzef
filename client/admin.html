@@ -31,7 +31,7 @@ var tizef = L.icon({
 var icons= {"tidu":tidu,"tizef":tizef};
 // create a map in the "map" div, set the view to a given place and zoom
 var map = L.map('map', {
-    center: [48.4052,-4.448],
+    center: [0,0],
     zoom: 13,
     //maxZoom :18,
     //minZoom : 18
@@ -45,6 +45,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a 
 
 <label>URL du ws : <input type="text" id="ws_url" value="ws://192.168.0.15:9876/"></label>
 <button onclick="openConnection()">Open connexion</button><br>
+<button onclick="defZone()">Selectionner les zones</button> <input type="text" id="zoneRayon"value="10"><br>
 <button onclick="selectParameters()">Send parameters</button><br>
 
 
