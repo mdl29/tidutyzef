@@ -20,6 +20,8 @@ TODO
 
 TODO
 
+* [Envoi des données defini par l'administrateur](#envoi-des-données-defini-par-l-administrateur)
+
 * Codes d'erreur :
     * [ 0 ](#erreur-0)
     * [ 1 ](#erreur-1)
@@ -76,7 +78,7 @@ Le serveur va également transmettre la position des autres joueurs, par exemple
 #Envoi des données defini par l'administrateur
 L'admin defini la localisation de la map ainsi que les zones sur cette map avec les positions latitudes et longitudes ainsi que le le rayon des zones en metres ensuite gerer par leaflet directement.
 
-``json
+```json
 {
     "object": "setParams",
     "map": [48.40618, -4.46730],
