@@ -1,4 +1,7 @@
+#-*- coding:utf-8 -*-
+
 from pyWebSocket import WebSocketServer, WebSocketClient
+from TTClientConnection import *
 import threading, json
 
 class TTWebSocketServer(WebSocketServer):
