@@ -1,28 +1,19 @@
 #!/usr/bin/env python
 #-*- coding:utf-8 -*-
 
-from pyWebSocket import WebSocketServer, WebSocketClient
-import threading, json
+import  json
+from TTWebSocketServeur import *
+
+usernameNotSet =  (0,"you should have an username and a team before any operation")
+teamError = (1,"this team doesn't exist")
+usernameAlreadyUse = (2,"username already in use in your team")
+JSONError = (3,"the JSON can't be load")
+unknowObject = (4,"the object is not set or isn't recognized")
+usernameAlreadySet = ( 5,"you can't change your username")
 
 class errorParentIsnotTTWebSocketServer (Exception):
         def __init__(self):
             BaseException.__init__(self)
-
-class TTWebSocketServer(WebSocketServer):
-    def __init__(self):
-        WebSocketServer.__init__(self,clientClass = TTClientConnection)
-        self.teams = {'tizef':[],'tidu':[]}
-    def delClient(self,client):
-        for index, aClient in enumerate(self.client) :
-            if aClient == client:
-                self.client.pop(index)    
-        print("del the client : "+client.username)  
-    def send2team(self,data,team):
-        for index, client in enumerate(self.teams[team]) :
-            try:
-                client.send(msg)
-            except socket.error :
-                self.client.pop(index)    
 
 class TTClientConnection(WebSocketClient):
     """
@@ -39,18 +30,20 @@ class TTClientConnection(WebSocketClient):
         self.pos = (0,0) # (latitude,longitude)
         self.username=""
         self.team=""
-        
+    def sendError(self,error): # errors codes are defined in the global scope
+        self.send(json.dumps({"object":"error","errorCode":error[0],"desc":error[1]}))
+
     def onReceive(self,msg):
         """
         receive handler
         """
         try:
             data = json.loads(msg)
-        except ValueError as e:
-            self.send(json.dumps({"error":3,"desc":str(e)}))
+        except ValueError:
+            self.sendError(JSONError)
             return
         if not self.username and not "username" in data:
-            self.send(json.dumps({"object" : "error", "errorCode":1,"desc":"you must have an username"}))
+            self.sendError(usernameNotSet)
             return
         print(msg)
         """
@@ -64,22 +57,24 @@ class TTClientConnection(WebSocketClient):
                     "logout" : lambda : self.onConnectionClose()
             }[data["object"]]()
         except KeyError:
-            self.send(json.dumps({"object" : "error", "errorCode":3,"desc":"object " + data["object"] + " is not set or it isn't recognized"}))
+            self.sendError(unknowObject)
             
     def login (self,data):
-        if "username" in data and "team" in data:          #username change
-            for client in self.parent.client:
-                if client.username==data["username"] and client.team==data["team"]:
-                    self.send(json.dumps({"object" : "error", "errorCode":0,"desc":"username already in use in your team"}))
-                    break
-            else:
-                if not self.username:
+        if "username" in data and "team" in data:          #set username                
+            if not self.username:
+                error = self.parent.addUser2Team(data["username"],data["team"],self)
+                if error:
+                    if error == 1:
+                        self.sendError(teamError)
+                    if error == 2:
+                        self.sendError(usernameAlreadyUse)
+                else:
                     self.username = data["username"]
                     self.team = data["team"]
                     self.parent.send2All(json.dumps({"object" : "connection", "user":self.username,"status":"login"}))
                     self.send(json.dumps({"object" :"login","user":self.username}))
-                else:
-                    self.send(json.dumps({"object" : "error", "errorCode":4,"desc":"You can't change your username"}))
+            else:
+                self.sendError(usernameAlreadySet)
     
     def msg (self,data):
         if "msg" in data:  
