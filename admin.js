@@ -24,6 +24,7 @@
 		
 	}
 	
+	
 	function showPosition(position){
 	
 		lat=position.coords.latitude;
@@ -39,27 +40,12 @@
 		if(!markers.hasOwnProperty(username)){
 		 markers[team][username] = L.marker(pos).setIcon(icons[team]).addTo(map).bindPopup(username);
 		}
-		else{	
+		else{
+		
 			markers[team][username].setLatLng(pos);
+			
 		}
 	}
-	/* INDEV
-	function findOther(pos,username,team){
-	
-		
-	
-	if(team=="tidu"){
-		console.log(markers[team][username].getLatLng().distanceTo(markers[tizef]));
-		console.log(team);
-	}
-	else if(team=="tizef"){
-		console.log(markers[team][username].getLatLng().distanceTo(markers[tidu]));
-		console.log(team);
-	}
-	
-		
-		
-	}*/
     function onMessage (e){   
         rep = JSON.parse(e.data);
         console.log( rep );
@@ -80,7 +66,6 @@
             case "updatePos":
                 if( rep.hasOwnProperty ("pos") && rep.hasOwnProperty("from")){
 				moveMarker(rep.pos,rep.from,rep.team);
-				//findOther(rep.pos,rep.from,rep.team);
 				}
             case "logout":
                 setStatut("Déconnecté");
@@ -148,11 +133,12 @@
                         msg: qs('#sendMsg').value};
         sendToServ(data);
     }   
-    function setPos(lat,lon){
-        var data = {object: "updatePos",
-                        lat: lat,
-                        lng: lon};
-        sendToServ(data);
-
-    }
+    
+    function selectParameters(){
+	
+		var data = {object:"parametreJeu",
+						map: L.map.getCenter,
+						zones:""};
+		console.log(data);
+	}
 

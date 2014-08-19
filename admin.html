@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Joueur</title>
+  <title>Administrateur</title>
     <meta charset="UTF-8"/>
     <script src="./wsLib.js"></script>
-    <script src="./main.js"></script>
+    <script src="./admin.js"></script>
 
   <!-- Leaflet -->
     <link rel="stylesheet" href="./lib/leaflet/leaflet.css" />
@@ -32,7 +32,7 @@ var icons= {"tidu":tidu,"tizef":tizef};
 // create a map in the "map" div, set the view to a given place and zoom
 var map = L.map('map', {
     center: [48.4052,-4.448],
-    zoom: 18,
+    zoom: 13,
     //maxZoom :18,
     //minZoom : 18
 });
@@ -45,9 +45,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a 
 
 <label>URL du ws : <input type="text" id="ws_url" value="ws://192.168.0.15:9876/"></label>
 <button onclick="openConnection()">Open connexion</button><br>
-<label>Pseudo : <input type="text" id="pseudo"></label>
-<label>Equipe : <select id="team"><option value="tidu">Tidu</option><option value="tizef">Tizef</option></select></label>
-<button onclick="login()">Login</button>
+<button onclick="selectParameters()">Send parameters</button><br>
 
 
 <br><br>
