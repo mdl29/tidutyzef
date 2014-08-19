@@ -7,7 +7,7 @@ import threading, json
 class TTWebSocketServer(WebSocketServer):
     def __init__(self):
         WebSocketServer.__init__(self,clientClass = TTClientConnection)
-        self.teams = {'tizef':[],'tidu':[]}
+        self.teams = {'tizef':[],'tidu':[],'admin':[]}
         self.zones = {'tizef':[],'tidu':[],'any':[]}
 
     def delClient(self,client):

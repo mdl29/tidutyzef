@@ -2,7 +2,9 @@
     var ws = new wsLib();
     var username;
     var markers={};
-    var zone=["","",""];
+    var zone;
+    var zone1;
+    var zone2;
     
     function qs(s){
         return document.querySelector(s);
@@ -45,7 +47,6 @@
             case "login":
                 setStatut("Connecté");
                 username = rep.user;
-                getLocation();
                 break;
             case "updatePos":
                 if( rep.hasOwnProperty ("pos") && rep.hasOwnProperty("from")){
@@ -93,6 +94,7 @@
     function connectionOpened (){
         webSocket = true;
         setStatut('Veuillez entrer votre pseudo');
+        login ();
     }
     
     function sendToServ (data){
@@ -107,8 +109,8 @@
     
     function login (){
         var data = {object: "login",
-                        username: qs('#pseudo').value,
-                        team:qs('#team').value}
+                        username: "admin",
+                        team:"admin"}
         sendToServ(data);
     }
 
@@ -118,18 +120,43 @@
         sendToServ(data);
     }   
     
-    function defZone(){
-		
+    //INDEV
+    function defZone1(){
+		var coord;
+		map.on('click', function(e) {
+			coord=[e.latlng.lat,e.latlng.lng];
+			zone=coord;
+		});
+	}
+	function defZone2(){
+		var coord;
+		map.on('click', function(e) {
+			coord=[e.latlng.lat,e.latlng.lng];
+			zone1=coord;
+		});
+	}
+    function defZone3(){
+		var coord;
+		map.on('click', function(e) {
+			coord=[e.latlng.lat,e.latlng.lng];
+			zone2=coord;
+		});
 	}
     
+    //^^^INDEV^^^
     function selectParameters(){
 	
+		var center= map.getCenter();
+		console.log(center);
+		var coord=[center.lat,center.lng];
+		console.log(coord)
 		var data = {object:"setParams",
-						map: L.map.getCenter,
-						zone1:"",
-						zone2:"",
-						zone3:"",
+						map: coord,
+						zone1:zone,
+						zone2:zone1,
+						zone3:zone2,
 						rayon:qs('#zoneRayon').value};
+		console.log(data);
 		sendToServ(data);
 	}
 
