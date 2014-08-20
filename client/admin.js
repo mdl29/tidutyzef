@@ -2,9 +2,7 @@
     var ws = new wsLib();
     var username;
     var markers={};
-    var zone="";
-    var zone1="";
-    var zone2="";
+    var zone=["","",""];
     
     function qs(s){
         return document.querySelector(s);
@@ -121,17 +119,17 @@
     }   
     
     //INDEV
-    function defZone1(){
-		var coord="";
+    function defZone(i){
+		var coord=["","",""];
 		
 			map.on('click', function(e) {
-				if(coord== ""&&zone==""){
-					coord=[[e.latlng.lat,e.latlng.lng],"tizef"];
-					zone=coord;
-					console.log("zone1 défini a "+coord +"ou"+zone);
+				if(coord[i]== ""&&zone[i]==""){
+					coord[i]=[[e.latlng.lat,e.latlng.lng],qs("#team").value];
+					zone[i]=coord[i];
+					console.log("zone1 défini a "+coord[i] +"ou"+zone[i]);
 				}
-				else if(coord!=""&&zone!=""){
-					console.log("zone1 already defined to" + coord);
+				else if(coord[i]!=""&&zone[i]!=""){
+					console.log("zone1 already defined to" + coord[i]);
 				}
 			});
 		
@@ -140,12 +138,12 @@
 	function defZone2(){
 		var coord1="";
 			map.on('click', function(e) {
-				if(coord1== ""&&zone1==""){
+				if(coord1== ""&&zone[1]==""){
 					coord1=[[e.latlng.lat,e.latlng.lng],"neutre"];
-					zone1=coord1;
-					console.log("zone défini a "+coord1 +"ou"+zone1);
+					zone[1]=coord1;
+					console.log("zone défini a "+coord1 +"ou"+zone[1]);
 				}
-				else if(coord1!=""&&zone1!=""){
+				else if(coord1!=""&&zone[1]!=""){
 					console.log("zone already defined to" + coord1);
 				}
 			});
@@ -153,12 +151,12 @@
     function defZone3(){
 		var coord2="";
 			map.on('click', function(e) {
-				if(coord2== ""&&zone2==""){
+				if(coord2== ""&&zone[2]==""){
 					coord2=[[e.latlng.lat,e.latlng.lng],"tidu"];
-					zone2=coord2;
-					console.log("zone défini a "+coord2 +"ou"+zone2);
+					zone[2]=coord2;
+					console.log("zone défini a "+coord2 +"ou"+zone[2]);
 				}
-				else if(coord2!=""&&zone2!=""){
+				else if(coord!=""&&zone[2]!=""){
 					console.log("zone already defined to" + coord2);
 				}
 			});
@@ -177,9 +175,9 @@
 		
 		var data = {object:"setParams",
 						map: coord,
-						zone1:zone,
-						zone2:zone1,
-						zone3:zone2,
+						zone1:zone[0],
+						zone2:zone[1],
+						zone3:zone[2],
 						rayon:rayon};
 		console.log(data);
 		sendToServ(data);
