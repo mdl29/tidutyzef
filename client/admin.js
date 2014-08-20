@@ -2,9 +2,9 @@
     var ws = new wsLib();
     var username;
     var markers={};
-    var zone;
-    var zone1;
-    var zone2;
+    var zone="";
+    var zone1="";
+    var zone2="";
     
     function qs(s){
         return document.querySelector(s);
@@ -122,40 +122,65 @@
     
     //INDEV
     function defZone1(){
-		var coord;
-		map.on('click', function(e) {
-			coord=[e.latlng.lat,e.latlng.lng];
-			zone=coord;
-		});
+		var coord="";
+		
+			map.on('click', function(e) {
+				if(coord== ""&&zone==""){
+					coord=[[e.latlng.lat,e.latlng.lng],"tizef"];
+					zone=coord;
+					console.log("zone1 défini a "+coord +"ou"+zone);
+				}
+				else if(coord!=""&&zone!=""){
+					console.log("zone1 already defined to" + coord);
+				}
+			});
+		
+		
 	}
 	function defZone2(){
-		var coord;
-		map.on('click', function(e) {
-			coord=[e.latlng.lat,e.latlng.lng];
-			zone1=coord;
-		});
+		var coord1="";
+			map.on('click', function(e) {
+				if(coord1== ""&&zone1==""){
+					coord1=[[e.latlng.lat,e.latlng.lng],"neutre"];
+					zone1=coord1;
+					console.log("zone défini a "+coord1 +"ou"+zone1);
+				}
+				else if(coord1!=""&&zone1!=""){
+					console.log("zone already defined to" + coord1);
+				}
+			});
 	}
     function defZone3(){
-		var coord;
-		map.on('click', function(e) {
-			coord=[e.latlng.lat,e.latlng.lng];
-			zone2=coord;
-		});
+		var coord2="";
+			map.on('click', function(e) {
+				if(coord2== ""&&zone2==""){
+					coord2=[[e.latlng.lat,e.latlng.lng],"tidu"];
+					zone2=coord2;
+					console.log("zone défini a "+coord2 +"ou"+zone2);
+				}
+				else if(coord2!=""&&zone2!=""){
+					console.log("zone already defined to" + coord2);
+				}
+			});
 	}
     
     //^^^INDEV^^^
     function selectParameters(){
 	
 		var center= map.getCenter();
-		console.log(center);
 		var coord=[center.lat,center.lng];
-		console.log(coord)
+		console.log(coord);
+		var rayon=qs('#zoneRayon').value;
+		/*L.circle(zone,rayon).addTo(map);
+		L.circle(zone1,rayon).addTo(map);
+		L.circle(zone2,rayon).addTo(map);*/
+		
 		var data = {object:"setParams",
 						map: coord,
 						zone1:zone,
 						zone2:zone1,
 						zone3:zone2,
-						rayon:qs('#zoneRayon').value};
+						rayon:rayon};
 		console.log(data);
 		sendToServ(data);
 	}
