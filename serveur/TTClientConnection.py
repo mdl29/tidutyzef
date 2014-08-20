@@ -10,6 +10,7 @@ usernameAlreadyUse = (2,"username already in use in your team")
 JSONError = (3,"the JSON can't be load")
 unknowObject = (4,"the object is not set or isn't recognized")
 usernameAlreadySet = ( 5,"you can't change your username")
+userChgParams = (6, "you can't change params if you're not admin")
 
 class errorParentIsnotTTWebSocketServer (Exception):
         def __init__(self):
@@ -52,11 +53,19 @@ class TTClientConnection(WebSocketClient):
             {"login" : lambda : self.login(data),
                     "updatePos" : lambda : self.updatePos(data),
                     "msg" : lambda : self.msg(data),
-                    "logout" : lambda : self.onConnectionClose()
+                    "logout" : lambda : self.onConnectionClose(),
+                    "setParams": lambda : self.setParams(data)
             }[data["object"]]()
         except KeyError:
             self.sendError(unknowObject)
-            
+
+    def setParams (self,data):
+        error = self.parent.setParams(data)
+        if error == 0:
+            return
+        if error == 1:
+            sendError(userChgParams)
+
     def login (self,data):
         if "username" in data and "team" in data:          #set username                
             if not self.username:
@@ -98,3 +107,4 @@ class TTClientConnection(WebSocketClient):
             if client.username==self.username: 
                 self.parent.delClient(self)
                 del client  #inutile car TTWebSocketServer pop de l'array le client et le supprime
+1

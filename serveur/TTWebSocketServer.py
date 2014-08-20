@@ -2,13 +2,15 @@
 
 from pyWebSocket import WebSocketServer, WebSocketClient
 from TTClientConnection import *
-import threading, json
+import threading, json, re
+from zone import *
 
 class TTWebSocketServer(WebSocketServer):
     def __init__(self):
         WebSocketServer.__init__(self,clientClass = TTClientConnection)
         self.teams = {'tizef':[],'tidu':[],'admin':[]}
         self.zones = {'tizef':[],'tidu':[],'any':[]}
+        self.params = {'map':[] , 'zone' :[] , 'radius':10}
 
     def delClient(self,client):
         for index, aClient in enumerate(self.client) :
@@ -34,3 +36,16 @@ class TTWebSocketServer(WebSocketServer):
                 return 2
         self.teams[team].append(client)
 
+    def setParams(self,data):
+        if "username" in data and not data["username"] in self.teams["admin"]:
+            return 1
+        if "rayon" in data:
+            self.params["radius"]=data["rayon"]
+        if "map" in data:
+            self.params["map"]=data["map"]
+        isZoneRegex = re.compile ("zone(\d+)")
+        for _,key in enumerate (data):
+            if isZoneRegex.match(key):
+                if len(data[key]) == 2:
+                    self.params["zone"].append(Zone(data[key][0],data[key][1]))
+                
