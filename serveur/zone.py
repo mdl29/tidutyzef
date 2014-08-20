@@ -29,7 +29,7 @@ class Zone (threading.Thread):
     def setTime2Kill(self,time):
         self.time2Kill = time
 
-    def getTime2Kill(self)
+    def getTime2Kill(self):
         return self.time
 
     def run(self):
