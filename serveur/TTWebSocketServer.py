@@ -10,7 +10,7 @@ class TTWebSocketServer(WebSocketServer):
         WebSocketServer.__init__(self,clientClass = TTClientConnection)
         self.teams = {'tizef':[],'tidu':[],'admin':[]}
         self.zones = {'tizef':[],'tidu':[],'any':[]}
-        self.params = {'map':[] , 'zone' :[] , 'radius':10}
+        self.params = {'map':[] , 'zones' :[] , 'radius':10}
 
     def delClient(self,client):
         for index, aClient in enumerate(self.client) :
@@ -47,5 +47,5 @@ class TTWebSocketServer(WebSocketServer):
         for _,key in enumerate (data):
             if isZoneRegex.match(key):
                 if len(data[key]) == 2:
-                    self.params["zone"].append(Zone(data[key][0],data[key][1]))
+                    self.params["zones"].append(Zone(data[key][0],data[key][1]))
                 

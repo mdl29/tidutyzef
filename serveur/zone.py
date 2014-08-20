@@ -7,12 +7,14 @@ class Zone (threading.Thread):
         self.daemon = True
         self.pos = pos
         self.team = team
-        self.countdown = 0
         self.isStarted = False
         self.time2Kill = 10
         self.maxTime2Kill = 10
         self.keepAlive = threading.Event()
         self.start()
+
+    def __str__(self):
+        return [self.pos,self.team,self.time2Kill]
 
     def setPosition(self,pos):
         self.pos = pos
@@ -35,14 +37,15 @@ class Zone (threading.Thread):
     def run(self):
         self.keepAlive.set()
         while self.keepAlive.isSet():
-            if time2Kill >= 0:
-              if isStarted:
-                    time2Kill = time2Kill - 0.1
+            if self.time2Kill >= 0:
+              if self.isStarted:
+                    self.time2Kill = self.time2Kill - 0.1
                     sleep (0.1)
 
               else:
-                    time2Kill = max (time2Kill + 0.1,maxTime2Kill)
+                    self.time2Kill = min(self.time2Kill + 0.1,self.maxTime2Kill)
                     sleep (0.1)
 
     def stop(self):
         self.keepAlive.clear()
+

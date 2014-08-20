@@ -11,6 +11,7 @@ JSONError = (3,"the JSON can't be load")
 unknowObject = (4,"the object is not set or isn't recognized")
 usernameAlreadySet = ( 5,"you can't change your username")
 userChgParams = (6, "you can't change params if you're not admin")
+unknowParameter = (7, "the parameter you're asking for doesn't exist")
 
 class errorParentIsnotTTWebSocketServer (Exception):
         def __init__(self):
@@ -54,10 +55,28 @@ class TTClientConnection(WebSocketClient):
                     "updatePos" : lambda : self.updatePos(data),
                     "msg" : lambda : self.msg(data),
                     "logout" : lambda : self.onConnectionClose(),
-                    "setParams": lambda : self.setParams(data)
+                    "setParams": lambda : self.setParams(data),
+                    "getParams": lambda : self.getParams(data)
             }[data["object"]]()
         except KeyError:
             self.sendError(unknowObject)
+
+    def getParams(self,data):
+        if "params" in data:
+            param2Send = {"object":"params"}
+            for _,key in enumerate(data["params"]):
+                if key in self.parent.params:
+                    if key == "zones":
+                        for index,_ in enumerate(data["params"]):
+                            print (index)
+                            param2Send[key + str(index + 1)]=self.parent.params[key][index].__str__()
+                    else:
+                        param2Send[key]=self.parent.params[key]
+                else:
+                    self.sendError(unknowParameter)
+                    return
+            self.send(json.dumps(param2Send))
+                    
 
     def setParams (self,data):
         error = self.parent.setParams(data)
@@ -107,4 +126,3 @@ class TTClientConnection(WebSocketClient):
             if client.username==self.username: 
                 self.parent.delClient(self)
                 del client  #inutile car TTWebSocketServer pop de l'array le client et le supprime
-1
