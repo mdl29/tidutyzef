@@ -82,9 +82,9 @@ L'admin defini la localisation de la map ainsi que les zones sur cette map avec 
 {
     "object": "setParams",
     "map": [48.40618, -4.46730],
-    "zone1":  [48.40618, -4.4670],
-    "zone2": [48.4068, -4.46730],
-    "zone3":[48.4061, -4.4670],
+    "zone1":  [48.40618, -4.4670],"tizef",
+    "zone2": [48.4068, -4.46730],"tidu",
+    "zone3":[48.4061, -4.4670],"neutre",
     "rayon" :10
 }
 ```
