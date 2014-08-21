@@ -85,11 +85,12 @@ L'admin defini la localisation de la map ainsi que les zones sur cette map avec 
     "zone1":  [48.40618, -4.4670],"tizef",
     "zone2": [48.4068, -4.46730],"tidu",
     "zone3":[48.4061, -4.4670],"neutre",
+    "zoneRegen":[48.406, -4.470],"regen",
     "rayon" :10
 }
 ```
 #Récupération des données defini par l'administrateur
-Les joueur pouvoir, normalement, récupérer les options que l'administrateur a envoyé.Pour cela, l'objet getParams est là. les paramètres à récupérer sont transmis dans un tableau par le champ params.
+Les joueurs doivent pouvoir, normalement, récupérer les options que l'administrateur a envoyé.Pour cela, l'objet getParams est là. les paramètres à récupérer sont transmis dans un tableau par le champ params.
 Les paramètres peuvent être map pour récupérer le centre de la carte, zones pour récupérer les zones ou rayon pour connaitre le rayon d'action des zones et des joueurs.
 
 ```json
