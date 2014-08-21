@@ -30,6 +30,11 @@ class TTClientConnection(WebSocketClient):
         self.pos = (0,0) # (latitude,longitude)
         self.username=""
         self.team=""
+        self.statuts=0  #0 = waiting for the begining of the party
+                        #1 = playing
+                        #2 = fighting
+                        #3 = kill, the player is looking for a regen zone
+                        #4 = not playing e.g admin
     def sendError(self,error): # errors codes are defined in the global scope
         self.send(json.dumps({"object":"error","errorCode":error[0],"desc":error[1]}))
 
@@ -40,12 +45,12 @@ class TTClientConnection(WebSocketClient):
         try:
             data = json.loads(msg)
         except ValueError:
+            print("data :",msg)
             self.sendError(JSONError)
             return
         if not self.username and not "username" in data:
             self.sendError(usernameNotSet)
             return
-        print(msg)
         """
         the case keyword doesn't exist in python, so, we use a dictionary of function to call the appropriated function
         we use lambda to call 2 function or to modify the number of args to pass to the function
@@ -56,10 +61,20 @@ class TTClientConnection(WebSocketClient):
                     "msg" : lambda : self.msg(data),
                     "logout" : lambda : self.onConnectionClose(),
                     "setParams": lambda : self.setParams(data),
-                    "getParams": lambda : self.getParams(data)
+                    "getParams": lambda : self.getParams(data),
+                    "startGame": lambda : self.startGame()
             }[data["object"]]()
         except KeyError:
             self.sendError(unknowObject)
+
+    def startGame(self):
+        if self.username != "admin":
+            self.sendError(userChgParams)
+            return
+        for _,val in enumerate(client):
+            if status == 4:
+                continue
+            val.status = 1 
 
     def getParams(self,data):
         if "params" in data:
@@ -67,9 +82,8 @@ class TTClientConnection(WebSocketClient):
             for _,key in enumerate(data["params"]):
                 if key in self.parent.params:
                     if key == "zones":
-                        for index,_ in enumerate(data["params"]):
-                            print (index)
-                            param2Send[key + str(index + 1)]=self.parent.params[key][index].__str__()
+                        for index,val in enumerate(self.parent.params["zones"]):
+                            param2Send[key + str(index)]=val.__str__()
                     else:
                         param2Send[key]=self.parent.params[key]
                 else:
@@ -95,6 +109,8 @@ class TTClientConnection(WebSocketClient):
                     if error == 2:
                         self.sendError(usernameAlreadyUse)
                 else:
+                    if data["username"] == "admin":
+                        self.status = 4
                     self.username = data["username"]
                     self.team = data["team"]
                     self.parent.send2All(json.dumps({"object" : "connection", "user":self.username,"status":"login"}))
