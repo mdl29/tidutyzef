@@ -68,10 +68,9 @@
 				}
 				break
 			case "params":
-				console.log("params");
 				map.setView(rep.map,18, {animation: true});
-				//addZone(rep.zones1,rep.zones2,rep.zones3,rep.zones4,rep.radius);
-				console.log("params recu"+rep.map);
+				var zones=[rep.zones1,rep.zones2,rep.zones3];
+				addZone(zones,rep.radius);
 				break;
             case "logout":
                 setStatut("Déconnecté");
@@ -146,5 +145,13 @@
         sendToServ(data);
 
     }
+    
+    function addZone(zone,radius){
+	
+	for(i=0;i<zones.length;i++){
+		L.circle(zones[i][1],radius).addTo(map);
+	}
+		
+	}
 
 
