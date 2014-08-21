@@ -43,23 +43,7 @@
 			markers[team][username].setLatLng(pos);
 		}
 	}
-	/* INDEV
-	function findOther(pos,username,team){
 	
-		
-	
-	if(team=="tidu"){
-		console.log(markers[team][username].getLatLng().distanceTo(markers[tizef]));
-		console.log(team);
-	}
-	else if(team=="tizef"){
-		console.log(markers[team][username].getLatLng().distanceTo(markers[tidu]));
-		console.log(team);
-	}
-	
-		
-		
-	}*/
     function onMessage (e){   
         rep = JSON.parse(e.data);
         console.log( rep );
@@ -76,12 +60,19 @@
                 setStatut("Connecté");
                 username = rep.user;
                 getLocation();
+                sendToServ({object: "getParams",params:["map","zones","radius"]});
                 break;
             case "updatePos":
                 if( rep.hasOwnProperty ("pos") && rep.hasOwnProperty("from")){
-				moveMarker(rep.pos,rep.from,rep.team);
-				//findOther(rep.pos,rep.from,rep.team);
+					moveMarker(rep.pos,rep.from,rep.team);
 				}
+				break
+			case "params":
+				console.log("params");
+				map.setView(rep.map,18, {animation: true});
+				//addZone(rep.zones1,rep.zones2,rep.zones3,rep.zones4,rep.radius);
+				console.log("params recu"+rep.map);
+				break;
             case "logout":
                 setStatut("Déconnecté");
                 break;
@@ -155,4 +146,5 @@
         sendToServ(data);
 
     }
+
 

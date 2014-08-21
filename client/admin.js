@@ -2,7 +2,7 @@
     var ws = new wsLib();
     var username;
     var markers={};
-    var zone=["","",""];
+    var zone=["","","",""];
     
     function qs(s){
         return document.querySelector(s);
