@@ -2,12 +2,13 @@ import threading
 from time import sleep
 
 class Zone (threading.Thread):
-    def __init__(self,pos,team):
+    def __init__(self,label,pos,team):
         threading.Thread.__init__(self)
         self.daemon = True
         self.pos = pos
         self.team = team
         self.isStarted = False
+        self.label = label
         self.time2Kill = 10
         self.maxTime2Kill = 10
         self.keepAlive = threading.Event()

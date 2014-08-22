@@ -87,7 +87,7 @@ class WebSocketClient(threading.Thread):
         """
         handshake the client
         """
-        data = self.__sock.recv(1024).decode("utf-8") #get the connection request
+        data = self.__sock.recv(1024).decode("ascii") #get the connection request
         
         data = data.split("\r\n")
         for i in data:

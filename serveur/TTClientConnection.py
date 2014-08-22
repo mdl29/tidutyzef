@@ -42,6 +42,8 @@ class TTClientConnection(WebSocketClient):
         """
         receive handler
         """
+        if not msg:
+            self.logout()
         try:
             data = json.loads(msg)
         except ValueError:
@@ -59,7 +61,6 @@ class TTClientConnection(WebSocketClient):
             {"login" : lambda : self.login(data),
                     "updatePos" : lambda : self.updatePos(data),
                     "msg" : lambda : self.msg(data),
-                    "logout" : lambda : self.onConnectionClose(),
                     "setParams": lambda : self.setParams(data),
                     "getParams": lambda : self.getParams(data),
                     "startGame": lambda : self.startGame()
@@ -83,7 +84,7 @@ class TTClientConnection(WebSocketClient):
                 if key in self.parent.params:
                     if key == "zones":
                         for index,val in enumerate(self.parent.params["zones"]):
-                            param2Send[key + str(index)]=val.__str__()
+                            param2Send[val.label]=val.__str__()
                     else:
                         param2Send[key]=self.parent.params[key]
                 else:

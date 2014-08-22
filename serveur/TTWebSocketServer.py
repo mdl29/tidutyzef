@@ -69,5 +69,4 @@ class TTWebSocketServer(WebSocketServer):
         for _,key in enumerate (data):
             if isZoneRegex.match(key):
                 if len(data[key]) == 2:
-                    self.params["zones"].append(Zone(data[key][0],data[key][1]))
-                
+                    self.params["zones"].append(Zone(key,data[key][0],data[key][1]))
