@@ -6,11 +6,9 @@
     function qs(s){
         return document.querySelector(s);
     }
-    
     function setStatut (s){ //function permettant de définir le status
         qs("#status").innerHTML=s;
     }
-    
     function addMessage(from, msg){ //function permettant d'envoyer un message
         qs("#msg").innerHTML=qs("#msg").innerHTML+"<br>"+from+" say : "+msg;
     }
@@ -23,7 +21,6 @@
 		
 		
 	}
-	
 	function showPosition(position){ //function permettant de montrer la position
 	
 		lat=position.coords.latitude;
@@ -43,7 +40,6 @@
 			markers[team][username].setLatLng(pos);
 		}
 	}
-	
     function onMessage (e){  //des qu'il y a un message
         rep = JSON.parse(e.data);
         console.log( rep );
@@ -65,6 +61,7 @@
             case "updatePos":
                 if( rep.hasOwnProperty ("pos") && rep.hasOwnProperty("from")){
 					moveMarker(rep.pos,rep.from,rep.team);
+					findOther(markers);
 				}
 				break
 			case "params":
@@ -72,9 +69,10 @@
 					alert("Veuillez vous reconnecter plus tard: jeu non configuré")
 					onClose();
 				}else if(rep.map!=0){
+					console.log("partie configurée");
 					map.setView(rep.map,18, {animation: true});
-					var zones=[rep.zones1,rep.zones2,rep.zones3];
-					addZone(zones,rep.radius);
+					var zones=[rep.zones0,rep.zones1,rep.zones2,rep.zones3];
+					modZone(zones,rep.radius);
 				}
 				break;
             case "logout":
@@ -83,7 +81,6 @@
         }
 
     }
-    
     function onError (e){ //des qu'il y'a une erreur 
         switch(e.errorCode){
             case 0:
@@ -98,14 +95,12 @@
                 }
         }
     }
-    
-    function onClose(){ 	//des que la page est quitté		
+    function onClose(){ 	//des que la page est quittée		
         var data = {object :"logout"}; //déconnecte le joueur
         ws.msg(data);
         webSocket = false;
         setStatut("Déconnecté");   //définit le status en déconnecté
     }
-    
     function openConnection (){ 
         if(!webSocket){
             ws.openSocket(qs('#ws_url').value,
@@ -115,12 +110,10 @@
                 onError );
         }
     }
-    
     function connectionOpened (){ //des que la connection est crée
         webSocket = true;
         setStatut('Veuillez entrer votre pseudo'); //demande de pseudo
     }
-    
     function sendToServ (data){ //function permettant d'envoyer des donnés au serveur
         if(webSocket && ! ws.isClosed()){
             ws.msg(data);
@@ -128,16 +121,13 @@
         else{
             ws.close();
         }
-    
     }
-    
     function login (){	//fonction qui permet de se connecté
         var data = {object: "login",
                         username: qs('#pseudo').value,
                         team:qs('#team').value}
         sendToServ(data);
     }
-
     function sendMsg (){ //fonction pour envoyer un message
         var data = {object: "msg",
                         msg: qs('#sendMsg').value};
@@ -148,15 +138,35 @@
                         lat: lat,
                         lng: lon};
         sendToServ(data);
-
     }
-    
-    function addZone(zones,radius){ //fonction qui permet ajouter des zones
-	
-	for(i=0;i<zones.length;i++){
-		L.circle(zones[i][1],radius).addTo(map);
+    function modZone(zones,radius){ //fonction qui permet ajouter des zones
+		for(i=0;i<zones.length;i++){
+			console.log(zones[i][1]);
+			switch(zones[i][1]){
+				case "tidu":
+					L.circle(zones[i][0],radius,{
+							color: 'red'
+					}).addTo(map);
+					break
+				case "tizef":
+					L.circle(zones[i][0],radius,{
+							color: 'blue'
+					}).addTo(map);
+					break
+				case "neutre":
+					L.circle(zones[i][0],radius,{
+							color: '#ffffff'
+					}).addTo(map);
+					break
+				case "regen":
+					L.circle(zones[i][0],radius,{
+							color: 'green'
+					}).addTo(map);
+					break
+			}		
+		}
 	}
-		
+	function findOther(marker){
+		console.log("function executeed");
+		console.log(marker);
 	}
-
-
