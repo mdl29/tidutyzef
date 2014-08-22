@@ -57,16 +57,18 @@ class TTClientConnection(WebSocketClient):
         the case keyword doesn't exist in python, so, we use a dictionary of function to call the appropriated function
         we use lambda to call 2 function or to modify the number of args to pass to the function
         """
+        print(data["object"])
         try:
-            {"login" : lambda : self.login(data),
+            fct = {"login" : lambda : self.login(data),
                     "updatePos" : lambda : self.updatePos(data),
                     "msg" : lambda : self.msg(data),
-                    "setParams": lambda : self.setParams(data),
-                    "getParams": lambda : self.getParams(data),
-                    "startGame": lambda : self.startGame()
-            }[data["object"]]()
+                    "setParams" : lambda : self.setParams(data),
+                    "getParams" : lambda : self.getParams(data),
+                    "startGame" : lambda : self.startGame()
+            }[data["object"]]
         except KeyError:
             self.sendError(unknowObject)
+        fct()
 
     def startGame(self):
         if self.username != "admin":
@@ -79,6 +81,11 @@ class TTClientConnection(WebSocketClient):
 
     def getParams(self,data):
         if "params" in data:
+            if isinstance(data["params"],str) and data["params"] == "all":
+                data["params"] = []
+                for _,key in enumerate(self.parent.params):
+                    data["params"].append(key)
+
             param2Send = {"object":"params"}
             for _,key in enumerate(data["params"]):
                 if key in self.parent.params:
@@ -89,8 +96,10 @@ class TTClientConnection(WebSocketClient):
                         param2Send[key]=self.parent.params[key]
                 else:
                     self.sendError(unknowParameter)
+                    print (key)
                     return
-            self.send(json.dumps(param2Send))
+        self.send(json.dumps(param2Send))
+
                     
 
     def setParams (self,data):
