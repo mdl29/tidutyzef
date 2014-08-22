@@ -2,7 +2,7 @@ import threading
 
 class BattleSupervisor(threading.Thread):
 
-    def __init__(self,client1,client2):
+    def __init__(self,client1,client2,s):
 
         threading.Thread.__init__(self)
         self.daemon = True
