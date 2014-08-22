@@ -8,15 +8,15 @@
         return document.querySelector(s);
     }
     
-    function setStatut (s){
+    function setStatut (s){ //défini le statut
         qs("#status").innerHTML=s;
     }
     
-    function addMessage(from, msg){
+    function addMessage(from, msg){ //ajoute un message (auteur, message)
         qs("#msg").innerHTML=qs("#msg").innerHTML+"<br>"+from+" say : "+msg;
     }
     
-	function moveMarker(pos,username,team){
+	function moveMarker(pos,username,team){ //déplace le marqueur
 	
 		if(!markers.hasOwnProperty(team)){
 			markers[team]={};
@@ -30,7 +30,7 @@
 			
 		}
 	}
-    function onMessage (e){   
+    function onMessage (e){   //des qu'il y a un message 
         rep = JSON.parse(e.data);
         console.log( rep );
         switch (rep.object){
@@ -43,7 +43,7 @@
                 }
                 break;
             case "login":
-                setStatut("Connecté");
+                setStatut("Connecté"); //définit le statut en Connecté
                 username = rep.user;
                 break;
             case "updatePos":
@@ -51,19 +51,19 @@
 				moveMarker(rep.pos,rep.from,rep.team);
 				}
             case "logout":
-                setStatut("Déconnecté");
+                setStatut("Déconnecté"); //définit le statut en Décconnecté
                 break;
         }
 
     }
     
-    function onError (e){
+    function onError (e){ //des qu'il y a une erreur
         switch(e.errorCode){
             case 0:
                 alert("Pb de pseudo");
                 break;
             default:
-                if (e.desc != ""){
+                if (e.desc != ""){ 
                     alert(e.desc);
                 }
                 else{
@@ -79,7 +79,7 @@
         setStatut("Déconnecté");
     }
     
-    function openConnection (){
+    function openConnection (){ //function pour ouvrir la connection
         if(!webSocket){
             ws.openSocket(qs('#ws_url').value,
                 connectionOpened,
@@ -89,13 +89,13 @@
         }
     }
     
-    function connectionOpened (){
+    function connectionOpened (){//function des que la connection est ouverte
         webSocket = true;
-        setStatut('Veuillez entrer votre pseudo');
+        setStatut('Veuillez entrer votre pseudo'); //demande de définir un pseudo
         login ();
     }
     
-    function sendToServ (data){
+    function sendToServ (data){ //fonction pour envoyer des donné au serveur 
         if(webSocket && ! ws.isClosed()){
             ws.msg(data);
         } 
@@ -105,7 +105,7 @@
     
     }
     
-    function login (){
+    function login (){ //fonction pour se connecté
         var data = {object: "login",
                         username: "admin",
                         team:"admin"}
@@ -119,7 +119,7 @@
     }   
     
     //INDEV
-    function defZone(i){
+    function defZone(i){ //definit la/les zones
 		var coord=["","","",""];
 		
 			map.on('click', function(e) {
@@ -137,7 +137,7 @@
 	}
     
     //^^^INDEV^^^
-    function selectParameters(){
+    function selectParameters(){ //fonction pour définir les parametres 
 	
 		var center= map.getCenter();
 		var coord=[center.lat,center.lng];

@@ -7,14 +7,14 @@
         return document.querySelector(s);
     }
     
-    function setStatut (s){
+    function setStatut (s){ //function permettant de définir le status
         qs("#status").innerHTML=s;
     }
     
-    function addMessage(from, msg){
+    function addMessage(from, msg){ //function permettant d'envoyer un message
         qs("#msg").innerHTML=qs("#msg").innerHTML+"<br>"+from+" say : "+msg;
     }
-    function getLocation(){
+    function getLocation(){ //function pour recupere la position
 	
 		
 		if(navigator.geolocation){
@@ -24,16 +24,16 @@
 		
 	}
 	
-	function showPosition(position){
+	function showPosition(position){ //function permettant de montrer la position
 	
 		lat=position.coords.latitude;
 		lon=position.coords.longitude;
 		setPos(lat,lon);
 		
 	}
-	function moveMarker(pos,username,team){
+	function moveMarker(pos,username,team){ //function permettant de deplacer le marqueur
 	
-		if(!markers.hasOwnProperty(team)){
+		if(!markers.hasOwnProperty(team)){  
 			markers[team]={};
 		}
 		if(!markers.hasOwnProperty(username)){
@@ -44,7 +44,7 @@
 		}
 	}
 	
-    function onMessage (e){   
+    function onMessage (e){  //des qu'il y a un message
         rep = JSON.parse(e.data);
         console.log( rep );
         switch (rep.object){
@@ -57,7 +57,7 @@
                 }
                 break;
             case "login":
-                setStatut("Connecté");
+                setStatut("Connecté"); //définir le status en connecté
                 username = rep.user;
                 getLocation();
                 sendToServ({object: "getParams",params:["map","zones","radius"]});
@@ -79,10 +79,10 @@
 
     }
     
-    function onError (e){
+    function onError (e){ //des qu'il y'a une erreur 
         switch(e.errorCode){
             case 0:
-                alert("Pb de pseudo");
+                alert("Pb de pseudo"); //crée un message 
                 break;
             default:
                 if (e.desc != ""){
@@ -94,14 +94,14 @@
         }
     }
     
-    function onClose(){
-        var data = {object :"logout"};
+    function onClose(){ 	//des que la page est quitté		
+        var data = {object :"logout"}; //déconnecte le joueur
         ws.msg(data);
         webSocket = false;
-        setStatut("Déconnecté");
+        setStatut("Déconnecté");   //définit le status en déconnecté
     }
     
-    function openConnection (){
+    function openConnection (){ 
         if(!webSocket){
             ws.openSocket(qs('#ws_url').value,
                 connectionOpened,
@@ -111,12 +111,12 @@
         }
     }
     
-    function connectionOpened (){
+    function connectionOpened (){ //des que la connection est crée
         webSocket = true;
-        setStatut('Veuillez entrer votre pseudo');
+        setStatut('Veuillez entrer votre pseudo'); //demande de pseudo
     }
     
-    function sendToServ (data){
+    function sendToServ (data){ //function permettant d'envoyer des donnés au serveur
         if(webSocket && ! ws.isClosed()){
             ws.msg(data);
         } 
@@ -126,19 +126,19 @@
     
     }
     
-    function login (){
+    function login (){	//fonction qui permet de se connecté
         var data = {object: "login",
                         username: qs('#pseudo').value,
                         team:qs('#team').value}
         sendToServ(data);
     }
 
-    function sendMsg (){
+    function sendMsg (){ //fonction pour envoyer un message
         var data = {object: "msg",
                         msg: qs('#sendMsg').value};
         sendToServ(data);
     }   
-    function setPos(lat,lon){
+    function setPos(lat,lon){ //function qui permet définir la position 
         var data = {object: "updatePos",
                         lat: lat,
                         lng: lon};
@@ -146,7 +146,7 @@
 
     }
     
-    function addZone(zone,radius){
+    function addZone(zone,radius){ //fonction qui permet ajouter des zones
 	
 	for(i=0;i<zones.length;i++){
 		L.circle(zones[i][1],radius).addTo(map);
