@@ -74,8 +74,8 @@ class TTClientConnection(WebSocketClient):
         if self.username != "admin":
             self.sendError(userChgParams)
             return
-        for _,val in enumerate(client):
-            if status == 4:
+        for _,val in enumerate(self.parent.client):
+            if val.statuts == 4:
                 continue
             val.status = 1 
 
@@ -152,3 +152,7 @@ class TTClientConnection(WebSocketClient):
             if client.username==self.username: 
                 self.parent.delClient(self)
                 del client  #inutile car TTWebSocketServer pop de l'array le client et le supprime
+    def startBattle(self,against,sup):
+        self.send(json.dumps({"object" :"battle", "against" : against.username}))
+        self.status = 2
+        self.battleSupervisor = sup
