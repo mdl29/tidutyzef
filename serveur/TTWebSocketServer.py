@@ -18,7 +18,7 @@ class TTWebSocketServer(WebSocketServer):
         self.keepAlive.set()
         while self.keepAlive.isSet(): # keepAlive is already set in pyWebSocket
             for index,value in enumerate(self.teams["tidu"]):
-                if value.status != 1:
+                if value.statuts != 1:
                     continue
                 a = len(self.client) - 1 - index
                 for index2,value2 in enumerate(self.teams["tizef"]):
