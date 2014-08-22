@@ -68,9 +68,14 @@
 				}
 				break
 			case "params":
-				map.setView(rep.map,18, {animation: true});
-				var zones=[rep.zones1,rep.zones2,rep.zones3];
-				addZone(zones,rep.radius);
+				if(rep.map==0){
+					alert("Veuillez vous reconnecter plus tard: jeu non configuré")
+					onClose();
+				}else if(rep.map!=0){
+					map.setView(rep.map,18, {animation: true});
+					var zones=[rep.zones1,rep.zones2,rep.zones3];
+					addZone(zones,rep.radius);
+				}
 				break;
             case "logout":
                 setStatut("Déconnecté");
@@ -146,7 +151,7 @@
 
     }
     
-    function addZone(zone,radius){ //fonction qui permet ajouter des zones
+    function addZone(zones,radius){ //fonction qui permet ajouter des zones
 	
 	for(i=0;i<zones.length;i++){
 		L.circle(zones[i][1],radius).addTo(map);
