@@ -28,7 +28,12 @@ var tizef = L.icon({
     iconSize: [50,50],
     iconAnchor:[25,0]
 });
-var icons= {"tidu":tidu,"tizef":tizef};
+var dead = L.icon({
+    iconUrl: 'img/tizef.png',
+    iconSize: [50,50],
+    iconAnchor:[25,0]
+});
+var icons= {"tidu":tidu,"tizef":tizef,"dead":dead};
 // create a map in the "map" div, set the view to a given place and zoom
 var map = L.map('map', {
     center: [48.4052,-4.448],
