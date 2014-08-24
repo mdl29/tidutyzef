@@ -1,0 +1,20 @@
+{
+  "name": "Tidu vs tizef, capture de zone",
+  "description": "Le jeu de capture de zones par geolocalisation Tidu contre Tizef",
+  "launch_path": "/Ma \carte.html",
+  "icons": {
+    "128": "/img/icone-128.png"
+  },
+  "orientation": ["landscape"],
+  "developer": {
+    "name": "LPH maison du libre",
+    "url": "http://mdl29.net"
+  },
+  "default_locale": "fr",
+  "permissions": {
+    "geolocation":{
+			"description":"Acces a a geolocalisation pour jouer"
+     }
+   }
+
+}
