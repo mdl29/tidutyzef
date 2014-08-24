@@ -2,7 +2,8 @@
     var ws = new wsLib();
     var username;
     var markers={};
-    var zone=["","","",""];
+	var iZone=0;
+	var zones=[];
     
     function qs(s){
         return document.querySelector(s);
@@ -117,40 +118,27 @@
                         msg: qs('#sendMsg').value};
         sendToServ(data);
     }   
-    
-    //INDEV
-    function defZone(i){ //definit la/les zones
-		var coord=["","","",""];
-		
+
+    function defZone(){ //definit la/les zones
+		var index=0;
 			map.on('click', function(e) {
-				if(coord[i]== ""&&zone[i]==""){
-					coord[i]=[[e.latlng.lat,e.latlng.lng],qs("#team").value];
-					zone[i]=coord[i];
-					console.log("zone "+i+" défini a "+coord[i] +"ou"+zone[i]);
-				}
-				else if(coord[i]!=""&&zone[i]!=""){
-					console.log("zone"+i+" already defined to" + coord[i]);
-				}
+				zones.push(new zone(index,[e.latlng.lat,e.latlng.lng],qs("#radius").value,qs('#team').value));
+				L.circle([e.latlng.lat,e.latlng.lng],qs("#radius").value).addTo(map);
+				console.log(zones);
+				index++;
 			});
-		
 		
 	}
     
-    //^^^INDEV^^^
     function selectParameters(){ //fonction pour définir les parametres 
 	
 		var center= map.getCenter();
 		var coord=[center.lat,center.lng];
-		console.log(coord);
-		var rayon=qs('#zoneRayon').value;
 		
 		var data = {object:"setParams",
 						map: coord,
-						zone1:zone[0],
-						zone2:zone[1],
-						zone3:zone[2],
-						zoneRegen:zone[3],
-						rayon:rayon};
+						zone:zones
+						};
 		console.log(data);
 		sendToServ(data);
 	}

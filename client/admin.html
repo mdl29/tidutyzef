@@ -4,6 +4,7 @@
   <title>Administrateur</title>
     <meta charset="UTF-8"/>
     <script src="./wsLib.js"></script>
+    <script src="./class.js"></script>
     <script src="./admin.js"></script>
 
   <!-- Leaflet -->
@@ -45,17 +46,14 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a 
 
 <label>URL du ws : <input type="text" id="ws_url" value="ws://192.168.0.15:9876/"></label>
 <button onclick="openConnection()">Open connexion</button><br>
-<button onclick="defZone(0)">Selectionner zone 1</button> 
-<button onclick="defZone(1)">Selectionner zone 2</button>
-<button onclick="defZone(2)">Selectionner zone 3</button>
-<button onclick="defZone(3)">Selectionner Zone de regeneration</button> 
+<button onclick="defZone()">Selectionner zone </button>  
 <select id="team">
 	<option value="tidu">Tidu</option>
 	<option value="tizef">Tizef</option>
 	<option value="neutre">Neutre</option>
 	<option value="regen">Regen</option>
 </select>
-<input type="text" id="zoneRayon"value="10"><br>
+<input type="text" id="radius"value="10"><br>
 <button onclick="selectParameters()">Send parameters</button><br>
 
 

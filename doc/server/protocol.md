@@ -82,11 +82,7 @@ L'admin defini la localisation de la map ainsi que les zones sur cette map avec 
 {
     "object": "setParams",
     "map": [48.40618, -4.46730],
-    "zone1":  [48.40618, -4.4670],"tizef",
-    "zone2": [48.4068, -4.46730],"tidu",
-    "zone3":[48.4061, -4.4670],"neutre",
-    "zoneRegen":[48.406, -4.470],"regen",
-    "rayon" :10
+    "zone":[zone { id=0, pos=[2], radius="20", type="tidu"},zone { id=1, pos=[2], radius="10", type="tizef"},zone { id=2, pos=[2], radius="10", type="neutre"}]
 }
 ```
 #Récupération des données defini par l'administrateur

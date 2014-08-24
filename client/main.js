@@ -72,7 +72,7 @@
 					console.log("partie configurée");
 					map.setView(rep.map,18, {animation: true});
 					var zones=[rep.zones0,rep.zones1,rep.zones2,rep.zones3];
-					modZone(zones,rep.radius);
+					modZone(zones);
 				}
 				break;
             case "logout":
@@ -141,25 +141,24 @@
     }
     function modZone(zones,radius){ //fonction qui permet ajouter des zones
 		for(i=0;i<zones.length;i++){
-			console.log(zones[i][1]);
-			switch(zones[i][1]){
+			switch(zones[i].type){
 				case "tidu":
-					L.circle(zones[i][0],radius,{
+					L.circle(zones[i].pos,zones[i].rad,{
 							color: 'red'
 					}).addTo(map);
 					break
 				case "tizef":
-					L.circle(zones[i][0],radius,{
+					L.circle(zones[i].pos,zones[i].rad,{
 							color: 'blue'
 					}).addTo(map);
 					break
 				case "neutre":
-					L.circle(zones[i][0],radius,{
+					L.circle(zones[i].pos,zones[i].rad,{
 							color: '#ffffff'
 					}).addTo(map);
 					break
 				case "regen":
-					L.circle(zones[i][0],radius,{
+					L.circle(zones[i].pos,zones[i].rad,{
 							color: 'green'
 					}).addTo(map);
 					break
@@ -168,5 +167,10 @@
 	}
 	function findOther(marker){
 		console.log("function executeed");
-		console.log(marker);
+		for(var row in marker){
+		console.log(marker[row].id);
+			for(var raw in marker[row]){
+			console.log(marker[row][raw].id);
+			}
+		}
 	}
