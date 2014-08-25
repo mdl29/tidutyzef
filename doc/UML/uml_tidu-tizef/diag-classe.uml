@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_75JCoSxgEeSSK8hzHlHnaA" name="model">
+  <packagedElement xmi:type="uml:Package" xmi:id="_BzfhMCxhEeSSK8hzHlHnaA" name="client">
+    <packageImport xmi:id="_jVIr4CxhEeSSK8hzHlHnaA" importedPackage="_BzfhMCxhEeSSK8hzHlHnaA"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_SnhfECxhEeSSK8hzHlHnaA" name="ClientJoueur">
+      <generalization xmi:id="_hrje8CxhEeSSK8hzHlHnaA" general="_VKGwkCxhEeSSK8hzHlHnaA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_VKGwkCxhEeSSK8hzHlHnaA" name="Client" clientDependency="_en1Z0CxiEeSSK8hzHlHnaA _C_V-YCxjEeSSK8hzHlHnaA">
+      <generalization xmi:id="__rGUgCxkEeSSK8hzHlHnaA" general="_8knrwCxkEeSSK8hzHlHnaA"/>
+      <substitution xmi:id="_C_V-YCxjEeSSK8hzHlHnaA" name="Substitution0" supplier="_YLEnMCxhEeSSK8hzHlHnaA" client="_VKGwkCxhEeSSK8hzHlHnaA" contract="_YLEnMCxhEeSSK8hzHlHnaA"/>
+      <ownedAttribute xmi:id="_EGBnsCxlEeSSK8hzHlHnaA" name="errorLog" type="_8knrwCxkEeSSK8hzHlHnaA" aggregation="shared" association="_EGGgMCxlEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EGBnsSxlEeSSK8hzHlHnaA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EGBnsixlEeSSK8hzHlHnaA"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_B-GccCxmEeSSK8hzHlHnaA" name="switchScreen" type="_8TXHMCxlEeSSK8hzHlHnaA" aggregation="shared" association="_B-HqkCxmEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_B-GccSxmEeSSK8hzHlHnaA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_B-GccixmEeSSK8hzHlHnaA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_YLEnMCxhEeSSK8hzHlHnaA" name="Zone" clientDependency="_Zgr50CxiEeSSK8hzHlHnaA"/>
+    <packagedElement xmi:type="uml:Dependency" xmi:id="_Zgr50CxiEeSSK8hzHlHnaA" name="Dependency0" supplier="_VKGwkCxhEeSSK8hzHlHnaA" client="_YLEnMCxhEeSSK8hzHlHnaA"/>
+    <packagedElement xmi:type="uml:Realization" xmi:id="_en1Z0CxiEeSSK8hzHlHnaA" name="Realization0" supplier="_YLEnMCxhEeSSK8hzHlHnaA" client="_VKGwkCxhEeSSK8hzHlHnaA"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_MEXCICxjEeSSK8hzHlHnaA" name="client_zone_0" memberEnd="_MEXCISxjEeSSK8hzHlHnaA _MEUl4CxjEeSSK8hzHlHnaA" navigableOwnedEnd="_MEUl4CxjEeSSK8hzHlHnaA">
+      <ownedEnd xmi:id="_MEXCISxjEeSSK8hzHlHnaA" name="client" type="_VKGwkCxhEeSSK8hzHlHnaA" association="_MEXCICxjEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MEXCIixjEeSSK8hzHlHnaA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MEXCIyxjEeSSK8hzHlHnaA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_MEUl4CxjEeSSK8hzHlHnaA" name="zone" type="_YLEnMCxhEeSSK8hzHlHnaA" aggregation="shared" association="_MEXCICxjEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MEUl4SxjEeSSK8hzHlHnaA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MEUl4ixjEeSSK8hzHlHnaA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_8knrwCxkEeSSK8hzHlHnaA" name="ErrorLog"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_EGGgMCxlEeSSK8hzHlHnaA" name="client_errorLog_0" memberEnd="_EGGgMSxlEeSSK8hzHlHnaA _EGBnsCxlEeSSK8hzHlHnaA">
+      <ownedEnd xmi:id="_EGGgMSxlEeSSK8hzHlHnaA" name="client" type="_VKGwkCxhEeSSK8hzHlHnaA" association="_EGGgMCxlEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_EGGgMixlEeSSK8hzHlHnaA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_EGGgMyxlEeSSK8hzHlHnaA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_LYRGQCxlEeSSK8hzHlHnaA" name="ZoneRegen">
+      <generalization xmi:id="_TphKwCxlEeSSK8hzHlHnaA" general="_YLEnMCxhEeSSK8hzHlHnaA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_NY0owCxlEeSSK8hzHlHnaA" name="ZoneTeam">
+      <generalization xmi:id="_TKtH0CxlEeSSK8hzHlHnaA" general="_YLEnMCxhEeSSK8hzHlHnaA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_VjHwsCxlEeSSK8hzHlHnaA" name="ClientAdmin">
+      <generalization xmi:id="_Y_XOECxlEeSSK8hzHlHnaA" general="_VKGwkCxhEeSSK8hzHlHnaA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_cvtTMCxlEeSSK8hzHlHnaA" name="Player"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_kEUwUCxlEeSSK8hzHlHnaA" name="client_player_0" memberEnd="_kEUwUSxlEeSSK8hzHlHnaA _kES7ICxlEeSSK8hzHlHnaA" navigableOwnedEnd="_kES7ICxlEeSSK8hzHlHnaA">
+      <ownedEnd xmi:id="_kEUwUSxlEeSSK8hzHlHnaA" name="client" type="_VKGwkCxhEeSSK8hzHlHnaA" association="_kEUwUCxlEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kEUwUixlEeSSK8hzHlHnaA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kEUwUyxlEeSSK8hzHlHnaA" value="1"/>
+      </ownedEnd>
+      <ownedEnd xmi:id="_kES7ICxlEeSSK8hzHlHnaA" name="player" type="_cvtTMCxlEeSSK8hzHlHnaA" aggregation="shared" association="_kEUwUCxlEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_kES7ISxlEeSSK8hzHlHnaA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_kES7IixlEeSSK8hzHlHnaA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_8TXHMCxlEeSSK8hzHlHnaA" name="SwitchScreen">
+      <ownedAttribute xmi:id="_cMYuQCxmEeSSK8hzHlHnaA" name="screen" type="_ZEfJMCxmEeSSK8hzHlHnaA" aggregation="shared" association="_cMajcCxmEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cMYuQSxmEeSSK8hzHlHnaA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cMYuQixmEeSSK8hzHlHnaA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_B-HqkCxmEeSSK8hzHlHnaA" name="client_switchScreen_0" memberEnd="_B-HqkSxmEeSSK8hzHlHnaA _B-GccCxmEeSSK8hzHlHnaA">
+      <ownedEnd xmi:id="_B-HqkSxmEeSSK8hzHlHnaA" name="client" type="_VKGwkCxhEeSSK8hzHlHnaA" association="_B-HqkCxmEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_B-HqkixmEeSSK8hzHlHnaA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_B-HqkyxmEeSSK8hzHlHnaA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_ZEfJMCxmEeSSK8hzHlHnaA" name="Screen"/>
+    <packagedElement xmi:type="uml:Association" xmi:id="_cMajcCxmEeSSK8hzHlHnaA" name="switchScreen_screen_0" memberEnd="_cMajcSxmEeSSK8hzHlHnaA _cMYuQCxmEeSSK8hzHlHnaA">
+      <ownedEnd xmi:id="_cMajcSxmEeSSK8hzHlHnaA" name="switchScreen" type="_8TXHMCxlEeSSK8hzHlHnaA" association="_cMajcCxmEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_cMajcixmEeSSK8hzHlHnaA" value="*"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_cMajcyxmEeSSK8hzHlHnaA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_let_0CxnEeSSK8hzHlHnaA" name="ScreenAdmin">
+      <generalization xmi:id="_o5_z4CxnEeSSK8hzHlHnaA" general="_ZEfJMCxmEeSSK8hzHlHnaA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rAMEUCxnEeSSK8hzHlHnaA" name="ScreenConnection">
+      <generalization xmi:id="_8A7ogCxnEeSSK8hzHlHnaA" general="_ZEfJMCxmEeSSK8hzHlHnaA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_81stUCxnEeSSK8hzHlHnaA" name="ScreenLog">
+      <generalization xmi:id="__UUr4CxnEeSSK8hzHlHnaA" general="_ZEfJMCxmEeSSK8hzHlHnaA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_AwoR0CxoEeSSK8hzHlHnaA" name="ScreenMap">
+      <generalization xmi:id="_ChqKkCxoEeSSK8hzHlHnaA" general="_ZEfJMCxmEeSSK8hzHlHnaA"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_adq3wCxoEeSSK8hzHlHnaA" name="Serveur">
+    <packagedElement xmi:type="uml:Class" xmi:id="_f_ceQCxoEeSSK8hzHlHnaA" name="Serveur">
+      <ownedAttribute xmi:id="_iL1n4CxpEeSSK8hzHlHnaA" name="parametre" type="_kuVPQCxoEeSSK8hzHlHnaA" aggregation="shared" association="_iL3dECxpEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iL1n4SxpEeSSK8hzHlHnaA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iL1n4ixpEeSSK8hzHlHnaA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_qGl38CxpEeSSK8hzHlHnaA" name="clientConnection" type="_h08nUCxoEeSSK8hzHlHnaA" aggregation="shared" association="_qGnGECxpEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qGl38SxpEeSSK8hzHlHnaA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qGl38ixpEeSSK8hzHlHnaA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_Ir7pkCxqEeSSK8hzHlHnaA" name="battleSupervisor" type="_n2wYwCxoEeSSK8hzHlHnaA" aggregation="shared" association="_Ir9ewCxqEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Ir7pkSxqEeSSK8hzHlHnaA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Ir7pkixqEeSSK8hzHlHnaA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_h08nUCxoEeSSK8hzHlHnaA" name="ClientConnection">
+      <ownedAttribute xmi:id="_9QVwACxpEeSSK8hzHlHnaA" name="play" type="_rLsUQCxoEeSSK8hzHlHnaA" aggregation="shared" association="_9QW-ICxpEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9QVwASxpEeSSK8hzHlHnaA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9QVwAixpEeSSK8hzHlHnaA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_-ddDYCxpEeSSK8hzHlHnaA" name="zone" type="_sCFwwCxoEeSSK8hzHlHnaA" aggregation="shared" association="_-de4kCxpEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-ddDYSxpEeSSK8hzHlHnaA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-ddDYixpEeSSK8hzHlHnaA" value="1"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_kuVPQCxoEeSSK8hzHlHnaA" name="Parametre"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_n2wYwCxoEeSSK8hzHlHnaA" name="BattleSupervisor"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_rLsUQCxoEeSSK8hzHlHnaA" name="Play"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_sCFwwCxoEeSSK8hzHlHnaA" name="Zone"/>
+    <packagedElement xmi:type="uml:Class" xmi:id="_tR0TQCxoEeSSK8hzHlHnaA" name="ZoneRegen">
+      <generalization xmi:id="_1nsZECxoEeSSK8hzHlHnaA" general="_sCFwwCxoEeSSK8hzHlHnaA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_u-dbQCxoEeSSK8hzHlHnaA" name="ZoneTeam">
+      <generalization xmi:id="_2ICtECxoEeSSK8hzHlHnaA" general="_sCFwwCxoEeSSK8hzHlHnaA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_iL3dECxpEeSSK8hzHlHnaA" name="serveur_parametre_0" memberEnd="_iL3dESxpEeSSK8hzHlHnaA _iL1n4CxpEeSSK8hzHlHnaA">
+      <ownedEnd xmi:id="_iL3dESxpEeSSK8hzHlHnaA" name="serveur" type="_f_ceQCxoEeSSK8hzHlHnaA" association="_iL3dECxpEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iL3dEixpEeSSK8hzHlHnaA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iL3dEyxpEeSSK8hzHlHnaA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_qGnGECxpEeSSK8hzHlHnaA" name="serveur_clientConnection_0" memberEnd="_qGnGESxpEeSSK8hzHlHnaA _qGl38CxpEeSSK8hzHlHnaA">
+      <ownedEnd xmi:id="_qGnGESxpEeSSK8hzHlHnaA" name="serveur" type="_f_ceQCxoEeSSK8hzHlHnaA" association="_qGnGECxpEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_qGnGEixpEeSSK8hzHlHnaA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_qGnGEyxpEeSSK8hzHlHnaA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_9QW-ICxpEeSSK8hzHlHnaA" name="clientConnection_play_0" memberEnd="_9QW-ISxpEeSSK8hzHlHnaA _9QVwACxpEeSSK8hzHlHnaA">
+      <ownedEnd xmi:id="_9QW-ISxpEeSSK8hzHlHnaA" name="clientConnection" type="_h08nUCxoEeSSK8hzHlHnaA" association="_9QW-ICxpEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9QW-IixpEeSSK8hzHlHnaA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9QW-IyxpEeSSK8hzHlHnaA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_-de4kCxpEeSSK8hzHlHnaA" name="clientConnection_zone_0" memberEnd="_-de4kSxpEeSSK8hzHlHnaA _-ddDYCxpEeSSK8hzHlHnaA">
+      <ownedEnd xmi:id="_-de4kSxpEeSSK8hzHlHnaA" name="clientConnection" type="_h08nUCxoEeSSK8hzHlHnaA" association="_-de4kCxpEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-de4kixpEeSSK8hzHlHnaA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-de4kyxpEeSSK8hzHlHnaA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Ir9ewCxqEeSSK8hzHlHnaA" name="serveur_battleSupervisor_0" memberEnd="_Ir9ewSxqEeSSK8hzHlHnaA _Ir7pkCxqEeSSK8hzHlHnaA">
+      <ownedEnd xmi:id="_Ir9ewSxqEeSSK8hzHlHnaA" name="serveur" type="_f_ceQCxoEeSSK8hzHlHnaA" association="_Ir9ewCxqEeSSK8hzHlHnaA">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Ir9ewixqEeSSK8hzHlHnaA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Ir9ewyxqEeSSK8hzHlHnaA" value="1"/>
+      </ownedEnd>
+    </packagedElement>
+  </packagedElement>
+</uml:Model>
