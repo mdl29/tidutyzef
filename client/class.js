@@ -5,9 +5,8 @@ function zone(id,pos,rad,type){
 	this.type=type;
 }
 
-function marker(user,team,pos,alive){
+function player(user,team,alive){
 	this.user=user;
 	this.team=team;
-	this.pos=pos;
 	this.alive=alive;
 }
