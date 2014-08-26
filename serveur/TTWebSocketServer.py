@@ -4,12 +4,14 @@ from pyWebSocket import WebSocketServer, WebSocketClient
 from TTClientConnection import *
 import threading, json, re, utils
 from zone import *
+from Params import *
+from Player import *
 
 class TTWebSocketServer(WebSocketServer):
     def __init__(self):
-        WebSocketServer.__init__(self,clientClass = TTClientConnection)
+        WebSocketServer.__init__(self,clientClass = Player)
         self.teams = {'tizef':[],'tidu':[],'admin':[]}
-        self.params = {'map':[] , 'zones' :[] , 'radius':10}
+        self.params = Params()
         self.threadCheckBattle = threading.Thread(target=self.checkBattle)
         self.threadCheckBattle.daemon = True
         self.threadCheckBattle.start()
@@ -24,7 +26,7 @@ class TTWebSocketServer(WebSocketServer):
                     #print("test :", value.username, "of the team tidu","and",value2.username, "of the team tizef")
                     if value2.status != 1:
                         continue
-                    if utils.distance(value.pos,value2.pos) <= self.params["radius"]:
+                    if utils.distance(value.pos,value2.pos) <= self.params.getParams("radius"):
                         print("beginning of a battle between :", value.username, "of the team tidu","and",value2.username, "of the team tizef")
                         tmpSup = BattleSupervisor(value2,value)
                         value.startBattle(value2,tmpSup)
@@ -32,12 +34,12 @@ class TTWebSocketServer(WebSocketServer):
             for index,client in enumerate(self.teams["tidu"]):
                 if client.status is not 1:
                     continue
-                for index,zone in enumerate(self.params["zones"]):
+                for index,zone in enumerate(self.params.getParams(zones)):
                     if zone.team == client.team:
                         continue
-                    if utils.distance(zone.team,client.team) <= self.params["radius"]:
+                    if utils.distance(zone.team,client.team) <= self.params.getParams("radius"):
                         zone.addEnnemyInRadius(client)
-            sleep(1)
+            sleep(0.5)
                     
     def delClient(self,client):
         for index, aClient in enumerate(self.teams[client.team]) :
@@ -67,14 +69,5 @@ class TTWebSocketServer(WebSocketServer):
         self.teams[team].append(client)
 
     def setParams(self,data):
-        if "username" in data and not data["username"] in self.teams["admin"]:
-            return 1
-        if "rayon" in data:
-            self.params["radius"]=data["rayon"]
-        if "map" in data:
-            self.params["map"]=data["map"]
-        isZoneRegex = re.compile ("zone(\w*)")
-        for _,key in enumerate (data):
-            if isZoneRegex.match(key):
-                if len(data[key]) == 2:
-                    self.params["zones"].append(Zone(key,data[key][0],data[key][1],self))
+        if username == "admin":
+            self.params.setParams(data)

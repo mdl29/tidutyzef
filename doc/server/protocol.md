@@ -44,6 +44,20 @@ Pour se connecter en tant que toto avec l'équipe tidu, envoier le message suiva
 }
 ```
 
+#Notification de connection d'un nouvel utilisateur
+
+Utiliser sur l'ecran d'attente pour voir la connection des joueurs
+
+```json
+{
+    "object": "newUser",
+    "user": "toto",
+    "team":"tidu"
+}
+```
+
+
+
 # Déconnexion
 Pour se déconnecter, envoyer le message :
 
