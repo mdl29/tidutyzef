@@ -17,6 +17,9 @@
         <children>
           <emfPageIdentifier href="diag-classe.notation#_zGGtMC0EEeS5_ovp_59tCQ"/>
         </children>
+        <children>
+          <emfPageIdentifier href="diag-classe.notation#_cQH4UC0iEeSVLJwXbu6Vcw"/>
+        </children>
       </children>
     </windows>
   </sashModel>
