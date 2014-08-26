@@ -110,6 +110,29 @@ Les paramètres peuvent être map pour récupérer le centre de la carte, zones 
 }
 ```
 
+#notification capture d'une zonne.
+
+```json
+{
+	"objet": "startCapture",
+	"team": "tidu",
+	"user": "toto",
+	"index": "5"
+}
+```
+
+#fin de capture de la zonne.
+
+```json
+{
+	"object":"enCapture"
+	"team":"tyzef"
+	"user":"tot"
+	"index":"3"
+}
+```
+
+
 # Erreur 0
 *usernameNotSet* -> un username doit etre transmis ainsi que la team
 
@@ -127,3 +150,4 @@ Les paramètres peuvent être map pour récupérer le centre de la carte, zones 
 
 #Erreur 5
 *usernameAlreadySet* -> le client ne peut pas demander à changer son username ou son équipe en cours de partie
+
