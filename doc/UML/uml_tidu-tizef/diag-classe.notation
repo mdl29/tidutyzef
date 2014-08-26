@@ -1749,7 +1749,7 @@
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_oq8IUS0kEeSVLJwXbu6Vcw" x="37" y="168" height="53"/>
           </children>
           <element xmi:type="uml:Lifeline" href="diag-classe.uml#_eciFgC0iEeSVLJwXbu6Vcw"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_efKiwC0iEeSVLJwXbu6Vcw" x="187" y="10" width="90" height="297"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_efKiwC0iEeSVLJwXbu6Vcw" x="245" y="10" width="90" height="297"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_50euEC0iEeSVLJwXbu6Vcw" type="3001">
           <children xmi:type="notation:DecorationNode" xmi:id="_50fVIC0iEeSVLJwXbu6Vcw" type="5002"/>
