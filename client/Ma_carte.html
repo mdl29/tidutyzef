@@ -18,18 +18,18 @@
 
 <script type="text/javascript">
 var tidu = L.icon({
-    iconUrl: 'img/tidu.png',
+    iconUrl: 'img/marqueur_tidu.png',
     iconSize: [50,50],
     iconAnchor:[25,0]
 });
 
 var tizef = L.icon({
-    iconUrl: 'img/tizef.png',
+    iconUrl: 'img/marqueur_tizef.png',
     iconSize: [50,50],
     iconAnchor:[25,0]
 });
 var dead = L.icon({
-    iconUrl: 'img/tizef.png',
+    iconUrl: 'img/marqueur_mort.png',
     iconSize: [50,50],
     iconAnchor:[25,0]
 });
@@ -39,7 +39,7 @@ var map = L.map('map', {
     center: [48.4052,-4.448],
     zoom: 18,
     maxZoom :18,
-    minZoom : 18
+    minZoom : 12
 });
 
 // add an OpenStreetMap tile layer
@@ -48,7 +48,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a 
 </script>
 
 
-<label>URL du ws : <input type="text" id="ws_url" value="ws://192.168.0.15:9876/"></label>
+<label>URL du ws : <input type="text" id="ws_url" value="ws://127.0.0.1:9876/"></label>
 <button onclick="openConnection()">Open connexion</button><br>
 <label>Pseudo : <input type="text" id="pseudo"></label>
 <label>Equipe : <select id="team"><option value="tidu">Tidu</option><option value="tizef">Tizef</option></select></label>
