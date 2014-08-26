@@ -96,6 +96,9 @@ se déplacer sur le terrain.</body>
     <packagedElement xmi:type="uml:Class" xmi:id="_AwoR0CxoEeSSK8hzHlHnaA" name="ScreenMap">
       <generalization xmi:type="uml:Generalization" xmi:id="_ChqKkCxoEeSSK8hzHlHnaA" general="_ZEfJMCxmEeSSK8hzHlHnaA"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_qoCKUC0oEeSs9_FC0qZbDw" name="screenWait">
+      <generalization xmi:type="uml:Generalization" xmi:id="_vsUjkC0oEeSs9_FC0qZbDw" general="_ZEfJMCxmEeSSK8hzHlHnaA"/>
+    </packagedElement>
   </packagedElement>
   <packagedElement xmi:type="uml:Package" xmi:id="_adq3wCxoEeSSK8hzHlHnaA" name="Serveur">
     <packagedElement xmi:type="uml:Class" xmi:id="_f_ceQCxoEeSSK8hzHlHnaA" name="Serveur">
