@@ -58,7 +58,6 @@ class WebSocketServer(threading.Thread):
         """
         send a message to all opened client webSocket
         """
-
         for index, client in enumerate(self.client) :
             try:
                 client.send(msg)
@@ -221,3 +220,4 @@ class WebSocketClient(threading.Thread):
 
 
         
+

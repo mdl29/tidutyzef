@@ -2,22 +2,26 @@ import threading, utils
 from time import sleep
 
 class Zone (threading.Thread):
-    def __init__(self,label,pos,team,parent):
+    id = 0
+    def __init__(self,pos,team,radius,parent) :
         threading.Thread.__init__(self)
         self.daemon = True
+
         self.pos = pos
         self.parent = parent
         self.team = team
         self.isStarted = False
-        self.label = label
         self.ennemyInRadius = []
         self.time2Kill = 10
         self.maxTime2Kill = 10
+        self.id = id
+        id = id + 1
+
         self.keepAlive = threading.Event()
         self.start()
 
     def __str__(self):
-        return [self.pos,self.team,self.time2Kill]
+        return {"id": self.id,"pos":self.pos, "team" : self.team,"time2chgTeam" : self.time2Kill}
 
     def addEnnemyInRadius(self,client):
         self.ennemyInRadius.append(client)
@@ -48,7 +52,7 @@ class Zone (threading.Thread):
                 if not val:
                     self.ennemyInRadius.pop(index)
                     continue
-                if utils.distance(self.pos,val.pos) > parent.params["radius"]:
+                if utils.distance(self.pos,val.pos) > self.radius:
                     self.ennemyInRadius.pop(index)
 
             if self.time2Kill > 0:
