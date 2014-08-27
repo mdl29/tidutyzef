@@ -121,6 +121,22 @@ Les paramètres peuvent être map pour récupérer le centre de la carte, zones 
     "params": ["map","zones","rayon"]
 }
 ```
+#notification Start Régéneration.
+
+Serveur --> Client  
+```json
+{
+	"objet": "StartRégéne"
+}
+```
+#notification End Régéneration.
+
+Serveur --> Client  
+```json
+{
+	"objet": "EndRégéne"
+}
+```
 
 #notification capture d'une zonne.
 
