@@ -34,6 +34,7 @@ And more will come XD
 
 # Connexion
 
+Client --> Serveur
 Pour se connecter en tant que toto avec l'équipe tidu, envoier le message suivant :
 
 ```json
@@ -46,6 +47,7 @@ Pour se connecter en tant que toto avec l'équipe tidu, envoier le message suiva
 
 #Notification de connection d'un nouvel utilisateur
 
+Serveur --> Client
 Utiliser sur l'ecran d'attente pour voir la connection des joueurs
 
 ```json
@@ -59,6 +61,8 @@ Utiliser sur l'ecran d'attente pour voir la connection des joueurs
 
 
 # Déconnexion
+
+Client --> Serveur 
 Pour se déconnecter, envoyer le message :
 
 ```json
@@ -68,6 +72,8 @@ Pour se déconnecter, envoyer le message :
 ```
 
 # Envoi de sa position
+
+Client --> Serveur
 Pour transmettre sa position GPS, par exemple [48.40618, -4.46730], envoyer le message :
 
 ```json
@@ -79,6 +85,8 @@ Pour transmettre sa position GPS, par exemple [48.40618, -4.46730], envoyer le m
 ```
 
 # Réception des positions des autres joueurs
+
+Serveur --> Client 
 Le serveur va également transmettre la position des autres joueurs, par exemple si titi de l'équipe tidu est à le position [48.40618, -4.46730] ([lat, longitude]), le serveur va vous envoyer le message suivant :
 
 ```json
@@ -90,6 +98,8 @@ Le serveur va également transmettre la position des autres joueurs, par exemple
 }
 ```
 #Envoi des données defini par l'administrateur
+
+Admin --> Serveur
 L'admin defini la localisation de la map ainsi que les zones sur cette map avec les positions latitudes et longitudes ainsi que le le rayon des zones en metres ensuite gerer par leaflet directement.
 
 ```json
@@ -100,6 +110,8 @@ L'admin defini la localisation de la map ainsi que les zones sur cette map avec 
 }
 ```
 #Récupération des données defini par l'administrateur
+
+Serveur --> client  
 Les joueurs doivent pouvoir, normalement, récupérer les options que l'administrateur a envoyé.Pour cela, l'objet getParams est là. les paramètres à récupérer sont transmis dans un tableau par le champ params.
 Les paramètres peuvent être map pour récupérer le centre de la carte, zones pour récupérer les zones ou rayon pour connaitre le rayon d'action des zones et des joueurs.
 
@@ -112,6 +124,7 @@ Les paramètres peuvent être map pour récupérer le centre de la carte, zones 
 
 #notification capture d'une zonne.
 
+Serveur --> Client  
 ```json
 {
 	"objet": "startCapture",
@@ -123,6 +136,7 @@ Les paramètres peuvent être map pour récupérer le centre de la carte, zones 
 
 #fin de capture de la zonne.
 
+Serveur --> Client
 ```json
 {
 	"object":"enCapture"
@@ -134,20 +148,32 @@ Les paramètres peuvent être map pour récupérer le centre de la carte, zones 
 
 
 # Erreur 0
+
+Serveur --> Client
 *usernameNotSet* -> un username doit etre transmis ainsi que la team
 
 # Erreur 1
+
+Serveur --> Client
 *teamError* -> la team spécifié n'existe pas
 
 # Erreur 2
+
+Serveur --> Client
 *usernameAlreadyUse* -> l'username est déjà utilisé par un autre joueur dans la team demandée
 
 # Erreur 3 
+
+Serveur --> Client
 *JSONError* -> le Json n'a pas pu être correctement lu (il faut peut être renvoyer le dernier message
 
 # Erreur 4
+
+Serveur --> Client
 *unknowObject* -> l'objet spécifié dans je JSON ne correspond à aucun objet pouvant être traité
 
 #Erreur 5
+
+Serveur --> Client
 *usernameAlreadySet* -> le client ne peut pas demander à changer son username ou son équipe en cours de partie
 
