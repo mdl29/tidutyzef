@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exemple screen</title>
+    <script type="text/javascript">
+function qs( s ){
+    return document.querySelector(s);
+}
+    
+function Screen( sec ){
+    this.section = sec;
+    this.open = function(){
+        this.section.style.display = "block";
+    };
+    this.close = function(){
+        this.section.style.display = "none";
+    };
+}
+
+function ScreenWait(){
+    this.section = qs("#screen_wait");
+}
+ScreenWait.prototype = new Screen;
+    </script>
+</head>
+<body>
+
+<section id="screen_connection">
+    ...
+</section>
+
+<section id="screen_wait">
+    loading ....
+</section>
+
+<section id="screen_map">
+    
+</section>
+
+<script type="text/javascript">
+    var screenWait = new ScreenWait(); 
+</script>
+
+</body>
+</html>
