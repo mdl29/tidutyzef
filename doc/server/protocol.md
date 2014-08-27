@@ -106,7 +106,7 @@ L'admin defini la localisation de la map ainsi que les zones sur cette map avec 
 {
     "object": "setParams",
     "map": [48.40618, -4.46730],
-    "zone":[zone { id=0, pos=[2], radius="20", type="tidu"},zone { id=1, pos=[2], radius="10", type="tizef"},zone { id=2, pos=[2], radius="10", type="neutre"}]
+    "zone":[ { id=0, pos=[2], radius="20", type="tidu"}, { id=1, pos=[2], radius="10", type="tizef"}, { id=2, pos=[2], radius="10", type="neutre"}]
 }
 ```
 #Récupération des données defini par l'administrateur
