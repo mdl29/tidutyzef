@@ -26,6 +26,9 @@
         <children>
           <emfPageIdentifier href="diag-classe.notation#_TDsREC06EeSVLJwXbu6Vcw"/>
         </children>
+        <children>
+          <emfPageIdentifier href="diag-classe.notation#_T3O1gC34EeSTa92z_rH39w"/>
+        </children>
       </children>
     </windows>
   </sashModel>

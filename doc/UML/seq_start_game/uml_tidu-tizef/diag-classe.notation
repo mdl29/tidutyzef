@@ -2554,7 +2554,7 @@
         <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5dfl1C3wEeS6GaMe5EXnvQ"/>
       </children>
       <element xmi:type="uml:Interaction" href="diag-classe.uml#_3WvUsC3wEeS6GaMe5EXnvQ"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5dfl1S3wEeS6GaMe5EXnvQ" width="1402"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5dfl1S3wEeS6GaMe5EXnvQ" width="1403"/>
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_5dfl1i3wEeS6GaMe5EXnvQ" name="diagram_compatibility_version" stringValue="1.0.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_5dfl1y3wEeS6GaMe5EXnvQ"/>
@@ -2574,8 +2574,8 @@
       <styles xmi:type="notation:LineStyle" xmi:id="_EfLVIS3yEeS6GaMe5EXnvQ"/>
       <element xmi:type="uml:Message" href="diag-classe.uml#_Ee198C3yEeS6GaMe5EXnvQ"/>
       <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_EfKHAy3yEeS6GaMe5EXnvQ" points="[1, 3, -354, -4]$[371, 7, 16, 0]"/>
-      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EftgoC3yEeS6GaMe5EXnvQ" id="(0.0,0.09090909090909091)"/>
-      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EftgoS3yEeS6GaMe5EXnvQ" id="(0.0,0.0){8}"/>
+      <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EftgoC3yEeS6GaMe5EXnvQ" id="(0.0,0.2009132420091324)"/>
+      <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_EftgoS3yEeS6GaMe5EXnvQ" id="(0.0,0.38)"/>
     </edges>
   </notation:Diagram>
 </xmi:XMI>

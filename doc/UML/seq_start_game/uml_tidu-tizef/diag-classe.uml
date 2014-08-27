@@ -498,15 +498,16 @@ Team:&quot;Tidu&quot;}</body>
     <lifeline xmi:type="uml:Lifeline" xmi:id="_BeiEEC3xEeS6GaMe5EXnvQ" name="" represents="_BeiEES3xEeS6GaMe5EXnvQ"/>
     <lifeline xmi:type="uml:Lifeline" xmi:id="_Ef148C3xEeS6GaMe5EXnvQ" name="ScreenWait"/>
     <lifeline xmi:type="uml:Lifeline" xmi:id="_I_sIYC3xEeS6GaMe5EXnvQ" name="SwitchScreen"/>
-    <lifeline xmi:type="uml:Lifeline" xmi:id="_alVwcC3xEeS6GaMe5EXnvQ" name="Client" coveredBy="_A7CgAS3yEeS6GaMe5EXnvQ _A7CgAC3yEeS6GaMe5EXnvQ _Ee3MEC3yEeS6GaMe5EXnvQ"/>
+    <lifeline xmi:type="uml:Lifeline" xmi:id="_alVwcC3xEeS6GaMe5EXnvQ" name="Client" coveredBy="_A7CgAS3yEeS6GaMe5EXnvQ _A7CgAC3yEeS6GaMe5EXnvQ _Ee3MEC3yEeS6GaMe5EXnvQ _j-sdwC33EeSTa92z_rH39w"/>
     <lifeline xmi:type="uml:Lifeline" xmi:id="_bZX1cC3xEeS6GaMe5EXnvQ" name="Serveur"/>
     <lifeline xmi:type="uml:Lifeline" xmi:id="_elOGYC3xEeS6GaMe5EXnvQ" name="Param"/>
     <lifeline xmi:type="uml:Lifeline" xmi:id="_nw-rUC3xEeS6GaMe5EXnvQ" name="Admin" coveredBy="_Ee2lAC3yEeS6GaMe5EXnvQ"/>
     <lifeline xmi:type="uml:Lifeline" xmi:id="_YP8J4C3yEeS6GaMe5EXnvQ" name="ScreenMap"/>
     <lifeline xmi:type="uml:Lifeline" xmi:id="_RoEBgC3zEeS6GaMe5EXnvQ" name="Player"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Ee2lAC3yEeS6GaMe5EXnvQ" name="MessageSend" covered="_nw-rUC3xEeS6GaMe5EXnvQ" message="_Ee198C3yEeS6GaMe5EXnvQ"/>
-    <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_A7CgAC3yEeS6GaMe5EXnvQ" name="ActionExecSpec" covered="_alVwcC3xEeS6GaMe5EXnvQ" finish="_A7CgAS3yEeS6GaMe5EXnvQ" start="_Ee3MEC3yEeS6GaMe5EXnvQ"/>
+    <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_j-sdwC33EeSTa92z_rH39w" name="ActionExecSpecStart" covered="_alVwcC3xEeS6GaMe5EXnvQ" execution="_A7CgAC3yEeS6GaMe5EXnvQ"/>
     <fragment xmi:type="uml:MessageOccurrenceSpecification" xmi:id="_Ee3MEC3yEeS6GaMe5EXnvQ" name="MessageRecv" covered="_alVwcC3xEeS6GaMe5EXnvQ" message="_Ee198C3yEeS6GaMe5EXnvQ"/>
+    <fragment xmi:type="uml:ActionExecutionSpecification" xmi:id="_A7CgAC3yEeS6GaMe5EXnvQ" name="ActionExecSpec" covered="_alVwcC3xEeS6GaMe5EXnvQ" finish="_A7CgAS3yEeS6GaMe5EXnvQ" start="_j-sdwC33EeSTa92z_rH39w"/>
     <fragment xmi:type="uml:ExecutionOccurrenceSpecification" xmi:id="_A7CgAS3yEeS6GaMe5EXnvQ" name="ActionExecSpecFinish" covered="_alVwcC3xEeS6GaMe5EXnvQ" execution="_A7CgAC3yEeS6GaMe5EXnvQ"/>
     <message xmi:type="uml:Message" xmi:id="_Ee198C3yEeS6GaMe5EXnvQ" name="send( { object: &quot;startGame&quot; }  )" messageSort="asynchCall" receiveEvent="_Ee3MEC3yEeS6GaMe5EXnvQ" sendEvent="_Ee2lAC3yEeS6GaMe5EXnvQ"/>
   </packagedElement>
