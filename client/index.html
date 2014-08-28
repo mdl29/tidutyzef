@@ -4,6 +4,35 @@
 <head>
 	<title>Jeu</title>
 	<meta charset=utf-8" />
+	<!--Import-->
+	<script src="qs.js" type="text/javascript"></script>
+	<!--Leaflet-->
+	<link rel="stylesheet" href="./lib/leaflet/leaflet.css" />
+    <script src="./lib/leaflet/leaflet-src.js"></script>
+    
+    <script type="text/javascript">
+    function Screen( sec ){
+		this.section = sec;
+		this.open = function(){
+			this.section.style.display = "block";
+		};
+		this.close = function(){
+			this.section.style.display = "none";
+		};
+	}
+	
+	function ScreenConnection(){
+		this.section = qs("#screen_connection");
+	}
+	
+	function ScreenWait(){
+		this.section = qs("#screen_wait");
+	}
+
+	ScreenWait.prototype = new Screen;
+	ScreenConnection.prototype = new Screen;
+	
+    </script>
 </head>
 
 <body>
@@ -28,11 +57,23 @@
 			<span>Tizef</span>
 		</div>
 		<img src="img/icon_flat.png"><br>
+		
 	</section>
 	<section id='screen_map'>
+		<div id='map' class='map' style="height: 500px;"></div>
+		<div id='notif'></div>
 	</section>
 	<section id='screen_combat'>
+		<p>Combat contre <span id='pseudo'>qqn</span> en cours</p>
+		<h4>Faites votre choix:</h4>
+		<img src='img/pierre.png'>
+		<img src='img/sciseaux.png'>
+		<img src='img/feuille.png'>
 	</section>
 </body>
-
+<script type="text/javascript" src='miseEnPLaceLeaflet.js'></script>
+<script type="text/javascript">
+	var screen_wait=new ScreenWait;
+	var screen_connection=new ScreenConnection;
+</script>
 </html>
