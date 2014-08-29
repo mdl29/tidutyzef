@@ -23,14 +23,25 @@
 	
 	function ScreenConnection(){
 		this.section = qs("#screen_connection");
+		qs('#modifIP').style.display = "none";
+		this.modifIP=function(){
+			qs('#modifIP').style.display = "block";
+		}
 	}
 	
 	function ScreenWait(){
 		this.section = qs("#screen_wait");
 	}
-
+	function ScreenMap(){
+		this.section = qs("#screen_map");
+	}
+	function ScreenCombat(){
+		this.section = qs("#screen_combat");
+	}
 	ScreenWait.prototype = new Screen;
 	ScreenConnection.prototype = new Screen;
+	ScreenMap.prototype = new Screen;
+	ScreenCombat.prototype= new Screen;
 	
     </script>
 </head>
@@ -46,9 +57,12 @@
 		<input type="text" id="Username" value="Username"><br>
 		<p>Team :<br><input type='radio' name="team" value="Tidu">Tidu
 		<input type='radio' name="team" value="Tizef">Tizef</p> 
-		<input type='button' value='Connection'>
+		<input type='button' value='Connection' onclick='screen_wait.open(),screen_connection.close()'>
 		<hr><br>
-		<input type='button' value="Modification de l'IP"><input type='button' value="Règles">
+		<input type='button' value="Modification de l'IP" onclick="screen_connection.modifIP()"><input type='button' value="Règles">
+		<div id="modifIP">
+			<input type='text' id="IP" value="ws://localhost:9876">
+		</div>
 	</section>
 	<section id='screen_wait'>
 		<div id="title">
@@ -57,6 +71,7 @@
 			<span>Tizef</span>
 		</div>
 		<img src="img/icon_flat.png"><br>
+		<img src="img/chargement.gif" height='2%' width='2%'>
 		
 	</section>
 	<section id='screen_map'>
@@ -75,5 +90,11 @@
 <script type="text/javascript">
 	var screen_wait=new ScreenWait;
 	var screen_connection=new ScreenConnection;
+	var screen_map=new ScreenMap;
+	var screen_combat=new ScreenCombat;
+	
+	screen_combat.close();
+	screen_map.close();
+	screen_wait.close();
 </script>
 </html>
