@@ -13,23 +13,20 @@ body, html, section
 }
 .title
 {
-	position:relative;
-	left:45%;
-	top:5px;
+	margin: 0 auto;
+	text-align: center;
+	width: 128px;
+	top: 5px;
 }
 
 .one
 {
 	color:#0000ff;
-	position:relative;
-	left:3px;
 }
 
 .two
 {
 	color:#000000;
-	position:relative;
-	left:13px;
 }
 
 .three
@@ -37,7 +34,15 @@ body, html, section
 	color:#ff0000
 }
 
-#logo
+.logo
 {
-	position:
+	display: block;
+	margin: 0 auto;
 }
+
+.tableau
+{
+	width:100%;
+}
+
+
