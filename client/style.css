@@ -43,7 +43,7 @@ body, html, section
 	top:20px;
 }
 
-#logo
+.logo
 {
 	position:relative;
 	left:50%;
@@ -70,8 +70,7 @@ body, html, section
 	margin-left:-5px;
 }
 
-#formulaire_tizef
+.tableau
 {
-	position:relative;
-	margin-left:55px;
+	width:100%;
 }
