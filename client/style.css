@@ -1,0 +1,43 @@
+body, html, section
+{
+	width: 100%;
+	height: 100%;
+	margin-left: 0px;
+	margin-top: 0px;
+}
+
+#screen_connection
+{
+	background:#d2d2d2;
+	
+}
+.title
+{
+	position:relative;
+	left:45%;
+	top:5px;
+}
+
+.one
+{
+	color:#0000ff;
+	position:relative;
+	left:3px;
+}
+
+.two
+{
+	color:#000000;
+	position:relative;
+	left:13px;
+}
+
+.three
+{
+	color:#ff0000
+}
+
+#logo
+{
+	position:
+}
