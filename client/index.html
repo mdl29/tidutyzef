@@ -42,10 +42,13 @@
 		<label id="formulaire_tidu"><input type='radio' name="team" value="Tidu" />Tidu</label>
 		<label id="formulaire_tizef"><input type='radio' name="team" value="Tizef" />Tizef</label>
 		</p> 
-		<input type='button' value='Connection' onclick='screen_connection.startCo()'>
+		<input type='button' value='Connection' onclick='screen_connection.startCo()' id="formulaire_connexion">
 		</div>
 		<hr id="hr"><br>
-		<input type='button' value="Modification de l'IP" onclick="screen_connection.modifIP()"><input type='button' value="Règles">
+		<div id="formulaire_others">
+		<input type='button' value="Modification de l'IP" onclick="screen_connection.modifIP()" id="formulaire_modIP">
+		<input type='button' value="Règles" id="formulaire_regle">
+		</div>
 		<div id="modifIP">
 			<input type='text' id="IP" value="ws://localhost:9876">
 		</div>
