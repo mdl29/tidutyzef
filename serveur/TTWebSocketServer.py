@@ -37,7 +37,7 @@ class TTWebSocketServer(WebSocketServer):
                         value2.startBattle(value,tmpSup)
 
             for index,client in enumerate(self.client):
-                if client.status is not "playing" or client.status is not "kill":
+                if client.statuts is not "playing" or client.statuts is not "kill":
                     continue
                 for index,zone in enumerate(self.params.getParams(zones)):
                     if utils.distance(zone.team,client.team) <= self.params.getParams("radius"):

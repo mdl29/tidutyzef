@@ -44,10 +44,10 @@ class Player (TTClientConnection):
             self.sendError(userChgParams)
             return
 
-        for _,val in enumerate(self.parent.client):
+        for val in self.parent.client:
             if val.statuts == 4:
                 continue
-            val.status = 1
+            val.statuts = 1
 
     def getParams(self,data):
         if params in data:
