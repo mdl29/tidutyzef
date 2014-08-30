@@ -15,6 +15,10 @@ class TTWebSocketServer(WebSocketServer):
         self.threadCheckBattle = threading.Thread(target=self.checkBattle)
         self.threadCheckBattle.daemon = True
         self.threadCheckBattle.start()
+
+    """
+    this is util for checking for battles entering in zone
+    """
     def checkBattle(self):
         self.keepAlive.set()
         while self.keepAlive.isSet(): # keepAlive is already set in pyWebSocket
@@ -31,14 +35,13 @@ class TTWebSocketServer(WebSocketServer):
                         tmpSup = BattleSupervisor(value2,value)
                         value.startBattle(value2,tmpSup)
                         value2.startBattle(value,tmpSup)
-            for index,client in enumerate(self.teams["tidu"]):
-                if client.status is not 1:
+
+            for index,client in enumerate(self.client):
+                if client.status is not "playing" or client.status is not "kill":
                     continue
                 for index,zone in enumerate(self.params.getParams(zones)):
-                    if zone.team == client.team:
-                        continue
                     if utils.distance(zone.team,client.team) <= self.params.getParams("radius"):
-                        zone.addEnnemyInRadius(client)
+                        zone.addPlayerInRadius(client)
             sleep(0.5)
                     
     def delClient(self,client):
