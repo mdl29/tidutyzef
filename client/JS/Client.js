@@ -1,4 +1,4 @@
-function Client()
+client = new function ()
 {
     var webSocket = false;
     var ws = new wsLib();
