@@ -29,11 +29,15 @@
 		<img src="img/icon_flat.png" id="logo"><br>
 		<div id="formulaire">
 		<input type="text" id="username" value="Username"><br>
-		<p>Team :<br><input type='radio' name="team" value="Tidu">Tidu
-		<input type='radio' name="team" value="Tizef">Tizef</p> 
+		<p>
+			<span id="formulaire_team">Team :</span>
+		<br>
+		<input type='radio' name="team" value="Tidu" id="formulaire_tidu">Tidu
+		<input type='radio' name="team" value="Tizef" id="formulaire_tizef">Tizef
+		</p> 
 		<input type='button' value='Connection' onclick='screen_wait.open(),screen_connection.close()'>
 		</div>
-		<hr><br>
+		<hr id="hr"><br>
 		<input type='button' value="Modification de l'IP" onclick="screen_connection.modifIP()"><input type='button' value="Règles">
 		<div id="modifIP">
 			<input type='text' id="IP" value="ws://localhost:9876">
