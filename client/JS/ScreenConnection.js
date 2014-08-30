@@ -3,17 +3,16 @@ function ScreenConnection(){
 		qs('#modifIP').style.display = "none";
 		this.modifIP=function(){
 			qs('#modifIP').style.display = "block";
-		}
+		};
 		this.connectSuccess=function(){
 			
-			var user = qs("#username").value;
+			var user = $("#username").value;
 			var team = $("input[type='radio'][name='team']:checked").val();
 			
 			var player = new ClientJoueur();
 			player.user = user;
 			player.team = team;
 			
-			var client = new Client();
 			
 			var data ={
 						"object": "login",
@@ -21,6 +20,11 @@ function ScreenConnection(){
 						"team": team
 						};
 			client.send(data);
-		}
+			
+			switch_screen.show( screen_wait );
+		};
+		this.startCo=function(){
+			client.openConnection(qs("#IP").value);
+		};
 }
 ScreenConnection.prototype = new Screen();
