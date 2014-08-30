@@ -19,7 +19,7 @@ function Client()
         var data = {object :"logout"};
         this.send(data);
         webSocket = false;
-    }functionfunction
+    }
     
     this.openConnection = function (ip){
         if(!webSocket){
