@@ -9,6 +9,7 @@
 	<script src='./JS/qs.js' type="text/javascript"></script>
 	<script src='./JS/wsLib.js' type="text/javascript"></script>
 	<script src='./JS/Screen.js' type="text/javascript"></script>
+    <script src='./JS/SwitchScreen.js' type="text/javascript"></script>
     <script src='./JS/ScreenCombat.js' type="text/javascript"></script>
     <script src='./JS/ScreenMap.js' type="text/javascript"></script>
     <script src='./JS/ScreenWait.js' type="text/javascript"></script>
@@ -35,11 +36,15 @@
 		<img src="img/icon_flat.png" id="logo"><br>
 		<div id="formulaire">
 		<input type="text" id="username" value="Username"><br>
-		<p>Team :<br><input type='radio' name="team" value="Tidu">Tidu
-		<input type='radio' name="team" value="Tizef">Tizef</p> 
+		<p>
+			<span id="formulaire_team">Team :</span>
+		<br>
+		<input type='radio' name="team" value="Tidu" id="formulaire_tidu">Tidu
+		<input type='radio' name="team" value="Tizef" id="formulaire_tizef">Tizef
+		</p> 
 		<input type='button' value='Connection' onclick='screen_wait.open(),screen_connection.close()'>
 		</div>
-		<hr><br>
+		<hr id="hr"><br>
 		<input type='button' value="Modification de l'IP" onclick="screen_connection.modifIP()"><input type='button' value="Règles">
 		<div id="modifIP">
 			<input type='text' id="IP" value="ws://localhost:9876">
@@ -69,6 +74,7 @@
 </body>
 <script type="text/javascript" src='miseEnPLaceLeaflet.js'></script>
 <script type="text/javascript">
+        var switch_screen = new SwitchScreen();
 	var screen_wait= new ScreenWait();
 	var screen_connection= new ScreenConnection();
 	var screen_map= new ScreenMap();
@@ -77,5 +83,8 @@
 	screen_combat.close();
 	screen_map.close();
 	screen_wait.close();
+	screen_connection.close();
+	
+	switch_screen.show( screen_connection );
 </script>
 </html>

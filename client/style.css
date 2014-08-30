@@ -53,7 +53,25 @@ body, html, section
 #formulaire
 {
 	width:185px;
-	position:inherite;
+	position:relative;
 	left:50%;
-	/*margin-left:-92,5px;*/
+	margin-left:-92px;
+}
+
+#formulaire_team
+{
+	position:realtive;
+	margin-left:65px;
+}
+
+#formulaire_tidu
+{
+	position:relative;
+	margin-left:-25px;
+}
+
+#formulaire_tizef
+{
+	position:relative;
+	margin-right:25px;
 }
