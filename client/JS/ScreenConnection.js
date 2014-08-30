@@ -7,19 +7,20 @@ function ScreenConnection(){
 		this.connectSuccess=function(){
 			
 			var user = qs("#username").value;
-			var team = $(‘input[type=radio][name=team]:checked’).val();
+			var team = $("input[type='radio'][name='team']:checked").val();
 			
-			var client = new ClientJoueur();
-			client.user = user;
-			client.team = team;
+			var player = new ClientJoueur();
+			player.user = user;
+			player.team = team;
+			
+			var client = new Client();
 			
 			var data ={
 						"object": "login",
 						"username": user,
 						"team": team
 						};
-
-			Client.send(data);
+			client.send(data);
 		}
 }
 ScreenConnection.prototype = new Screen();
