@@ -36,7 +36,7 @@ class Player (TTClientConnection):
             }[data["object"]]
         except KeyError:
             self.sendError(unknowObject)
-            break
+            return
         fct()# this execute the fonction which correspond whith the dict
 
     def startGame(self):

@@ -5,12 +5,20 @@
 	<title>Jeu</title>
 	<meta charset="utf-8" />
 	<!--Import-->
-	<script src="qs.js" type="text/javascript"></script>
-	<script src='./JS/Screen.js'></script>
-    <script src='./JS/ScreenCombat.js'></script>
-    <script src='./JS/ScreenMap.js'></script>
-    <script src='./JS/ScreenWait.js'></script>
-    <script src='./JS/ScreenConnection.js'></script>
+	<script src='./JS/jquery-1.11.1.min.js' type="text/javascript"></script>
+	<script src='./JS/qs.js' type="text/javascript"></script>
+	<script src='./JS/wsLib.js' type="text/javascript"></script>
+	<script src='./JS/Screen.js' type="text/javascript"></script>
+    <script src='./JS/SwitchScreen.js' type="text/javascript"></script>
+    <script src='./JS/ScreenCombat.js' type="text/javascript"></script>
+    <script src='./JS/ScreenMap.js' type="text/javascript"></script>
+    <script src='./JS/ScreenWait.js' type="text/javascript"></script>
+    <script src='./JS/ScreenConnection.js' type="text/javascript"></script>
+    <script src='./JS/Client.js' type="text/javascript"></script>
+    <script src='./JS/clientJoueur.js' type="text/javascript"></script>
+
+    
+    
     <!--Leaflet-->
 	<link rel="stylesheet" href="./lib/leaflet/leaflet.css" />
 	<link rel="stylesheet" href="style.css" />
@@ -27,13 +35,17 @@
 		</div>
 		<img class="logo" src="img/icon_flat.png" id="logo"><br>
 		<div id="formulaire">
-		<input type="text" id="Username" value="Username"><br>
-		<p>Team :<br><input type='radio' name="team" value="Tidu">Tidu
-		<input type='radio' name="team" value="Tizef">Tizef</p> 
+		<input type="text" id="username" value="Username"><br>
+		<p>
+			<span id="formulaire_team">Team :</span>
+		<br>
+		<label id="formulaire_tidu"><input type='radio' name="team" value="Tidu" />Tidu</label>
+		<label id="formulaire_tizef"><input type='radio' name="team" value="Tizef" />Tizef</label>
+		</p> 
 		<input type='button' value='Connection' onclick='screen_wait.open(),screen_connection.close()'>
-		<hr><br>
-		<input type='button' value="Modification de l'IP" onclick="screen_connection.modifIP()"><input type='button' value="Règles">
 		</div>
+		<hr id="hr"><br>
+		<input type='button' value="Modification de l'IP" onclick="screen_connection.modifIP()"><input type='button' value="Règles">
 		<div id="modifIP">
 			<input type='text' id="IP" value="ws://localhost:9876">
 		</div>
@@ -70,13 +82,17 @@
 </body>
 <script type="text/javascript" src='miseEnPLaceLeaflet.js'></script>
 <script type="text/javascript">
-	var screen_wait=new ScreenWait;
-	var screen_connection=new ScreenConnection;
-	var screen_map=new ScreenMap;
-	var screen_combat=new ScreenCombat;
+        var switch_screen = new SwitchScreen();
+	var screen_wait= new ScreenWait();
+	var screen_connection= new ScreenConnection();
+	var screen_map= new ScreenMap();
+	var screen_combat= new ScreenCombat();
 	
 	screen_combat.close();
 	screen_map.close();
 	screen_wait.close();
+	screen_connection.close();
+	
+	switch_screen.show( screen_connection );
 </script>
 </html>
