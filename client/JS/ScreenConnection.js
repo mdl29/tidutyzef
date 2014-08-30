@@ -6,13 +6,12 @@ function ScreenConnection(){
 		};
 		this.connectSuccess=function(){
 			
-			var user = $("#username").value;
+			var user = $("#username").val();
 			var team = $("input[type='radio'][name='team']:checked").val();
 			
 			var player = new ClientJoueur();
 			player.user = user;
 			player.team = team;
-			
 			
 			var data ={
 						"object": "login",
