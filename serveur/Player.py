@@ -27,6 +27,7 @@ class Player (TTClientConnection):
         print(data["object"])
         try:
             fct = {"login" : lambda : self.login(data),
+                    "logout" : lambda : self.onConnectionClose(),
                     "updatePos" : lambda : self.updatePos(data),
                     "msg" : lambda : self.msg(data),
                     "setParams" : lambda : self.setParams(data),
@@ -35,6 +36,7 @@ class Player (TTClientConnection):
             }[data["object"]]
         except KeyError:
             self.sendError(unknowObject)
+            break
         fct()# this execute the fonction which correspond whith the dict
 
     def startGame(self):

@@ -1,5 +1,6 @@
 import threading, utils
 from time import sleep
+import time
 
 class Zone (threading.Thread):
     id = 0
@@ -7,11 +8,13 @@ class Zone (threading.Thread):
         threading.Thread.__init__(self)
         self.daemon = True
 
+        self._time = time.time()
         self.pos = pos
         self.parent = parent
         self.team = team
         self.isStarted = False
-        self.ennemyInRadius = []
+        self.ennemyInRadius = {}
+        self.killedInRadius = {}
         self.time2Kill = 10
         self.maxTime2Kill = 10
         self.id = id
@@ -23,8 +26,12 @@ class Zone (threading.Thread):
     def __str__(self):
         return {"id": self.id,"pos":self.pos, "team" : self.team,"time2chgTeam" : self.time2Kill}
 
-    def addEnnemyInRadius(self,client):
-        self.ennemyInRadius.append(client)
+    def addPlayerInRadius(self,client):
+        if client.team is not self.team:
+            self.ennemyInRadius.add(client)
+        elif client.status == "kill" and not client in self.playerInRadius:
+            self.killedInRadius[client] = 10
+            client.send({"object":"startRegen"})
 
     def setPosition(self,pos):
         self.pos = pos
@@ -48,21 +55,48 @@ class Zone (threading.Thread):
         self.keepAlive.set()
 
         while self.keepAlive.isSet():
-            for index,val in enumerate (self.ennemyInRadius):
-                if not val:
-                    self.ennemyInRadius.pop(index)
-                    continue
+            elapsedTime =  time.time() - self._time 
+
+            """
+            this part is use for the regen
+            """
+            for client,time in enumerate(self.playerInRadius):
+
                 if utils.distance(self.pos,val.pos) > self.radius:
-                    self.ennemyInRadius.pop(index)
+                    self.playerInRadius.pop(val)
+                    # client.send({"object":"endRegen","regen":"false"})
+
+                if client.status is not "kill":
+                    self.playerInRadius.pop(val)
+                    continue
+
+                time -= elapsedTime 
+
+                if time >= 0:
+                    client.send({"object":"endRegen"}) 
+                    
+            """
+            this part is use for ennemis
+            """
+            for val in self.ennemyInRadius:
+                if not val:
+                    self.ennemyInRadius.remove(val) #normally in python I don't need that but we aren't too much careful
+                    continue
+
+                if val.status is not "playing":
+                    continue
+
+                if utils.distance(self.pos,val.pos) > self.radius:
+                    self.ennemyInRadius.remove(val)
 
             if self.time2Kill > 0:
               if len(self.ennemyInRadius) > 0:
-                    self.time2Kill = self.time2Kill - 0.1
-                    sleep (0.1)
+                    self.time2Kill = self.time2Kill - elapsedTime
 
               else:
-                    self.time2Kill = min(self.time2Kill + 0.1,self.maxTime2Kill)
-                    sleep (0.1)
+                    self.time2Kill = min(self.time2Kill + elapsedTime ,self.maxTime2Kill)
+
+            self._time = time.time()
 
     def stop(self):
         self.keepAlive.clear()
