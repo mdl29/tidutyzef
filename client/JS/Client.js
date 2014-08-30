@@ -33,8 +33,8 @@ client = new function ()
     
     this.onConnection = function(){
         webSocket = true;
-        ScreenConnection.connectSucess();
-    };
+        screen_connection.connectSuccess();
+    }
 
     this.send = function (data){
         if(webSocket && ! ws.isClosed()){
