@@ -13,33 +13,36 @@
     <script src='./JS/ScreenConnection.js'></script>
     <!--Leaflet-->
 	<link rel="stylesheet" href="./lib/leaflet/leaflet.css" />
+	<link rel="stylesheet" href="style.css" />
     <script src="./lib/leaflet/leaflet-src.js"></script>
     
 </head>
 
 <body>
 	<section id='screen_connection'>
-		<div id="title">
-			<span>Tidu</span><br>
-		    <span>VS</span><br>
-			<span>Tizef</span>
+		<div class="title">
+			<span class='one'>TIDU</span><br>
+		    <span class='two'>VS</span><br>
+			<span class='three'>TIZEF</span>
 		</div>
-		<img src="img/icon_flat.png"><br>
+		<img src="img/icon_flat.png" id="logo"><br>
+		<div id="formulaire">
 		<input type="text" id="Username" value="Username"><br>
 		<p>Team :<br><input type='radio' name="team" value="Tidu">Tidu
 		<input type='radio' name="team" value="Tizef">Tizef</p> 
 		<input type='button' value='Connection' onclick='screen_wait.open(),screen_connection.close()'>
 		<hr><br>
 		<input type='button' value="Modification de l'IP" onclick="screen_connection.modifIP()"><input type='button' value="Règles">
+		</div>
 		<div id="modifIP">
 			<input type='text' id="IP" value="ws://localhost:9876">
 		</div>
 	</section>
 	<section id='screen_wait'>
-		<div id="title">
-			<span>Tidu</span><br>
-		    <span>VS</span><br>
-			<span>Tizef</span>
+		<div class="title">
+			<span class='one'>TIDU</span><br>
+		    <span class='two'>VS</span><br>
+			<span class='three'>TIZEF</span>
 		</div>
 		<img src="img/icon_flat.png"><br>
 		<img src="img/chargement.gif" height='2%' width='2%'>
