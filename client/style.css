@@ -52,7 +52,7 @@ body, html, section
 
 #formulaire
 {
-	width:185px;
+	width:280px;
 	position:relative;
 	left:50%;
 	margin-left:-92px;
@@ -67,11 +67,11 @@ body, html, section
 #formulaire_tidu
 {
 	position:relative;
-	margin-left:-25px;
+	margin-left:-5px;
 }
 
 #formulaire_tizef
 {
 	position:relative;
-	margin-right:25px;
+	margin-left:55px;
 }
