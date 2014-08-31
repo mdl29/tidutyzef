@@ -12,13 +12,12 @@ client = new function ()
     this.onMessage = function(rep){
 		console.log(rep);
         switch (rep.object){
-			
             case "error":
                 onError(rep);
                 break;
             case "login":
-            
                 screen_wait.newUser(data.username,data.team);
+				break;
 		}
     };
 
