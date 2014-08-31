@@ -39,8 +39,13 @@
 		<p>
 			<span id="formulaire_team">Team :</span>
 		<br>
+<<<<<<< HEAD
+		<label id="formulaire_tidu"><input type='radio' name="team" value="tidu" />Tidu</label>
+		<label id="formulaire_tizef"><input type='radio' name="team" value="tizef" />Tizef</label>
+=======
 		<label id="formulaire_tidu"><input type='radio' name="team" value="Tidu" checked=true />Tidu</label>
 		<label id="formulaire_tizef"><input type='radio' name="team" value="Tizef" />Tizef</label>
+>>>>>>> 0516def2cc226658a3d23a6ce73bfff881863734
 		</p> 
 		<input type='button' value='Connection' onclick='screen_connection.startCo()' id="formulaire_connexion">
 		</div>
@@ -61,12 +66,12 @@
 			<span class='three'>TIZEF</span>
 		</div>
 		<img class="logo" src="img/icon_flat.png"><br>
-		<img src="img/chargement.gif" height='2%' width='2%'>
+		<img src="img/chargement.gif" height='5%' width='scr'>
 		<table width=100%  id="tableau"> 
 		 
 		    <tr id="tableau"> 
-		        <th> Tidu </th> 
-		        <th> Tizef </th>    
+		        <th id ="tiduUser"> Tidu </th> 
+		        <th id='tizefUser'> Tizef </th>    
 		    </tr>
 		</table>
 	</section>
