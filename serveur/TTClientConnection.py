@@ -53,5 +53,5 @@ class TTClientConnection(WebSocketClient):
         self.send({"object" :"logout","user1 ":self.username})
         self.parent.send2All({"object" :"connection","user":self.username,"status":"logout"})
         for client in self.parent.client:
-            if client===self: 
+            if client==self: 
                 self.parent.delClient(self)
