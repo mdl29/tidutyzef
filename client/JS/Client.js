@@ -1,4 +1,4 @@
-client = new function ()
+ function Client()
 {
     var webSocket = false;
     var ws = new wsLib();
@@ -54,3 +54,5 @@ client = new function ()
         }
     };
 }
+
+client = new Client();
