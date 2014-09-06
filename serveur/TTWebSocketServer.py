@@ -37,20 +37,20 @@ class TTWebSocketServer(WebSocketServer):
                         value2.startBattle(value,tmpSup)
 
             for index,client in enumerate(self.client):
-                if client.status is not "playing" or client.status is not "kill":
+                if client.statuts is not "playing" or client.statuts is not "kill":
                     continue
                 for index,zone in enumerate(self.params.getParams(zones)):
                     if utils.distance(zone.team,client.team) <= self.params.getParams("radius"):
                         zone.addPlayerInRadius(client)
             sleep(0.5)
-                    
+
     def delClient(self,client):
         for index, aClient in enumerate(self.teams[client.team]) :
             if aClient == client:
                 self.teams[client.team].pop(index)
         for index, aClient in enumerate(self.client) :
             if aClient == client:
-                self.client.pop(index)    
+                self.client.pop(index)
         print("del the client : " + client.username)
 
     def send2team(self,data,team):
@@ -58,7 +58,7 @@ class TTWebSocketServer(WebSocketServer):
             try:
                 client.send(msg)
             except socket.error :
-                self.client.pop(index)    
+                self.client.pop(index)
     """
     check if any user in your team have your pseudo and if your team exist
     return 0 if there isn't any error, 1 if team doesn't exist and 2 if the username already exist in your team

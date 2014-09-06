@@ -44,10 +44,10 @@ class Player (TTClientConnection):
             self.sendError(userChgParams)
             return
 
-        for _,val in enumerate(self.parent.client):
+        for val in self.parent.client:
             if val.statuts == 4:
                 continue
-            val.status = 1
+            val.statuts = 1
 
     def getParams(self,data):
         if params in data:
@@ -75,7 +75,7 @@ class Player (TTClientConnection):
                         self.status = "other"
                     self.username = data["username"]
                     self.team = data["team"]
-                    self.parent.send2All({"object" : "connection", "user":self.username,"status":"login"})
+                    self.parent.send2All({"object" : "newUser","username":self.username,"status":self.team})
                     self.send({"object" :"loged"})
             else:
                 self.sendError(usernameAlreadySet)

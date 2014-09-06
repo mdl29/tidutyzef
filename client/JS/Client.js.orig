@@ -9,17 +9,8 @@ client = new function ()
         this.onMessage(data)
     };
 
-    this.onMessage = function(rep){
-		console.log(rep);
-        switch (rep.object){
-            case "error":
-                onError(rep);
-                break;
-            case "login":
-                screen_wait.newUser(data.username,data.team);
-				break;
-		}
-    };
+    this.onMessage = function(data){
+    } ;
 
     this.onError = function(e){
     };
@@ -42,8 +33,13 @@ client = new function ()
     
     this.onConnection = function(){
         webSocket = true;
+<<<<<<< HEAD
+        ScreenConnection.connectSucess();
+    };
+=======
         screen_connection.connectSuccess();
     }
+>>>>>>> a21f0fe1e87ddeac44cc05f420210b5779c00960
 
     this.send = function (data){
         if(webSocket && ! ws.isClosed()){

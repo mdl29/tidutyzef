@@ -43,7 +43,7 @@ body, html, section
 	top:20px;
 }
 
-#logo
+.logo
 {
 	position:relative;
 	left:50%;
@@ -60,7 +60,7 @@ body, html, section
 
 #formulaire_team
 {
-	position:realtive;
+	position:relative;
 	margin-left:65px;
 }
 
@@ -74,4 +74,41 @@ body, html, section
 {
 	position:relative;
 	margin-left:55px;
+}
+
+#formulaire_connexion
+{
+	position:relative;
+	margin-left:45px;
+}
+
+#formulaire_others
+{
+	width:300px;
+	position:relative;
+	left:50%;
+	margin-left:-150px;
+}
+#formulaire_modIP
+{
+	position:relative;
+	margin-left:10px;
+}
+
+#formulaire_regle
+{
+	position:relative;
+	margin-left:70px;
+}
+
+#modifIP
+{
+	position:relative;
+	margin-left:60px;
+}
+
+
+.tableau
+{
+	width:100%;
 }
