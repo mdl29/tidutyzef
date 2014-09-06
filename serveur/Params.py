@@ -10,25 +10,25 @@ class Params:
                         self.params[val] = Zone()
             elif self.params[val]:
 
-                out["val"] = self.params[val]
+                out[val] = self.params[val]
 
     def getParams (self,params):
         out = {}
 
-        if isinstance(params,str):
-            if params == "all":
+        if isinstance(params,str) or not params:
+            if params == "all" or params == "" or not params:
                 params = []
                 for _,val in enumerate(self.params.keys()):
                     params.append(val)
             elif params == "zones":
-                getAllZones
+                out ["zones"] = self.getAllZones()
             elif self.params[params]:
-                out = self.params[params]
+                out [params] = self.params[params]
 
         for _,val in enumerate(params):
             if val == "zones":
-                out ["zones"] = getAllZones()
-            elif self.params[val]:
+                out ["zones"] = self.getAllZones()
+            elif val in self.params:
                 out[val] = self.params[val]
         return out
 
