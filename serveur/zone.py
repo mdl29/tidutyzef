@@ -60,11 +60,12 @@ class Zone (threading.Thread):
             """
             this part is use for the regen
             """
-            for client,time in enumerate(self.playerInRadius):
-
-                if utils.distance(self.pos,val.pos) > self.radius:
-                    self.playerInRadius.pop(val)
-                    # client.send({"object":"endRegen","regen":"false"})
+            for time,client in enumerate(self.playerInRadius):
+                if not client.isAlive:
+                    self.playerInRadius.pop(client)
+                if utils.distance(self.pos,client.pos) > self.radius:
+                    self.playerInRadius.pop(client)
+                    client.send({"object":"endRegen","regen":"false"})
 
                 if client.status is not "kill":
                     self.playerInRadius.pop(val)
@@ -79,8 +80,8 @@ class Zone (threading.Thread):
             this part is use for ennemis
             """
             for val in self.ennemyInRadius:
-                if not val:
-                    self.ennemyInRadius.remove(val) #normally in python I don't need that but we aren't too much careful
+                if val.isAlive:
+                    self.ennemyInRadius.remove(val)
                     continue
 
                 if val.status is not "playing":

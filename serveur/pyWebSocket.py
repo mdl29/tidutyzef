@@ -118,6 +118,7 @@ class WebSocketClient(threading.Thread):
             if not data: break
             self.__onreceive(data)
         self.onConnectionClose()
+        del self
 
     def send(self, msg):
         """

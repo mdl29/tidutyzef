@@ -24,9 +24,7 @@ class TTClientConnection(WebSocketClient):
 
     def __init__(self, parent, sock, addr):
         """
-        init the connection
-        return data
-        return data
+        init the connectiion
         """
         WebSocketClient.__init__(self, parent, sock, addr)
 
@@ -55,6 +53,5 @@ class TTClientConnection(WebSocketClient):
         self.send({"object" :"logout","user1 ":self.username})
         self.parent.send2All({"object" :"connection","user":self.username,"status":"logout"})
         for client in self.parent.client:
-            if client.username==self.username: 
+            if client===self: 
                 self.parent.delClient(self)
-                del client  #inutile car TTWebSocketServer pop de l'array le client et le supprime
