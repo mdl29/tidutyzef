@@ -60,21 +60,23 @@
 		    <span class='two'>VS</span><br>
 			<span class='three'>TIZEF</span>
 		</div>
-<<<<<<< HEAD
-		<img src="img/icon_flat.png"><br>
-		<img src="img/chargement.gif" width='5%'>
-		
-=======
 		<img class="logo" src="img/icon_flat.png"><br>
-		<img src="img/chargement.gif" height='2%' width='2%'>
+<<<<<<< HEAD
+		<img id="loading_pict" src="img/chargement.gif">
+		<table id="tableau">
+		    <tr id="tableau_titres">
+		        <th> Tidu </th>
+		        <th> Tizef </th>
+=======
+		<img src="img/chargement.gif" width='5%'>
 		<table width=100%  id="tableau"> 
 		 
 		    <tr id="tableau"> 
 		        <th> Tidu </th> 
 		        <th> Tizef </th>    
+>>>>>>> 7e32be84cd9b7fa25e84eef86fa88f5177cf9cd7
 		    </tr>
 		</table>
->>>>>>> 66990833b765908e630e057780b8be060e054f44
 	</section>
 	
 	<section id='screen_map'>

@@ -14,7 +14,7 @@ class Player (TTClientConnection):
                         #other =  not playing e.g admin
     def setStatus(self,status,whoDoIt):
         self.status = status
-        
+
     def onReceive(self,msg):
         data = TTClientConnection.onReceive(self,msg)
         if not self.username and not "username" in data:
@@ -40,14 +40,14 @@ class Player (TTClientConnection):
         fct()# this execute the fonction which correspond whith the dict
 
     def startGame(self):
-        if self.username != "admin":
-            self.sendError(userChgParams)
+        if self.team != "admin":
             return
-
+        params = self.parent.getParams("all")
         for val in self.parent.client:
-            if val.statuts == 4:
+            val.send(params)
+            if val.statuts == "other":
                 continue
-            val.statuts = 1
+            val.statuts = "playing"
 
     def getParams(self,data):
         if params in data:
@@ -75,7 +75,7 @@ class Player (TTClientConnection):
                         self.status = "other"
                     self.username = data["username"]
                     self.team = data["team"]
-                    self.parent.send2All({"object" : "newUser","username":self.username,"status":self.team})
+                    self.parent.send2All({"object" : "newUser","username":self.username,"team":self.team})
                     self.send({"object" :"loged"})
             else:
                 self.sendError(usernameAlreadySet)
