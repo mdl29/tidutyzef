@@ -42,7 +42,7 @@ class Player (TTClientConnection):
     def startGame(self):
         if self.team != "admin":
             return
-        params = self.parent.getParams({"params":"all"})
+        params = self.parent.getParams("all")
         object = {"object":"startGame"}
         out = dict( list( object.items() ) + list( params.items() ) )
         self.parent.send2All(out)
