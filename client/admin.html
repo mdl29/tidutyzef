@@ -35,7 +35,7 @@ zoom: 13,
 // add an OpenStreetMap tile layer
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
 </script>
-<label>URL du ws : <input type="text" id="ip" value="ws://192.168.0.15:9876/"></label>
+<label>URL du ws : <input type="text" id="ip" value="ws://localhost:9876/"></label>
 <button onclick="admin.open()">Open connexion</button>Cliquez 2 fois<br>
 <button onclick="admin.defZone()">Selectionner zone </button>
 <select id="team">
@@ -45,7 +45,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a 
 <option value="regen">Regen</option>
 </select>
 <input type="text" id="radius"value="10"><br>
-<button onclick="selectParameters()">Send parameters</button><br>
+<button onclick="admin.sendMap()">Send parameters</button><br>
 <button onclick="admin.startGame()">Start game</button><br>
 <br><br>
 <span id="status"></span>

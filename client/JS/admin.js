@@ -21,6 +21,13 @@ function Admin (){
 		this.openConnection(qs('#ip').value);
 		this.send(data);
 	};
+	this.sendMap=function(){
+		var data={
+			 "object": "setParams",
+			"map": map.getCenter()
+		};
+		this.send(data);
+	}
 }
 Admin.prototype = new Client();
 

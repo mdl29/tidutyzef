@@ -48,6 +48,11 @@
 	margin-left:10px;
 }
 
+#link_form_regle
+{
+	text-decoration : none;
+}
+
 #formulaire_regle
 {
 	position:relative;
