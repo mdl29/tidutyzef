@@ -2,45 +2,6 @@
 {
 	background:#d2d2d2;
 }
-.title
-{
-	width:128px;
-	height:96px;
-	position:relative;
-	left:50%;
-	margin-left:-64px
-}
-
-.one
-{
-	color:#0000ff;
-	position:relative;
-	left:44px;
-	top:20px;
-}
-
-.two
-{
-	color:#000000;
-	position:relative;
-	left:54px;
-	top:20px;
-}
-
-.three
-{
-	color:#ff0000;
-	position:relative;
-	left:40px;
-	top:20px;
-}
-
-.logo
-{
-	position:relative;
-	left:50%;
-	margin-left:-64px;
-}
 
 #formulaire
 {
@@ -99,16 +60,12 @@
 	margin-left:60px;
 }
 
-#loading_pict
-{
+#separator {
+    margin-left: 10%;
+    margin-right: 10%;
+    box-shadow: 0px 1px 1px #808080 inset, 0px 2px 2px 0px #FFF inset;
+    border-radius: 10px;
+    border: medium none;
+    height: 4px;
+}
 
-}
-#tableau
-{
-	
-}
-
-#tableau_titres
-{
-	
-}
