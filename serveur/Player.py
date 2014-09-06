@@ -43,14 +43,16 @@ class Player (TTClientConnection):
         if self.team != "admin":
             return
         params = self.parent.getParams("all")
+        object = {"object":"startGame"}
+        out = dict( list( object.items() ) + list( params.items() ) )
+        self.parent.send2All(out)
         for val in self.parent.client:
-            val.send(params)
             if val.statuts == "other":
                 continue
             val.statuts = "playing"
 
     def getParams(self,data):
-        if params in data:
+        if "params" in data:
             params = self.parent.getParams(data["params"])
             object = {"object":"params"}
             out = dict( list( object.items() ) + list( params.items() ) )
