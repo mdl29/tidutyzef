@@ -40,7 +40,7 @@
 		</div>
 		<img class="logo" src="img/icon_flat.png" id="logo"><br>
 		<div id="formulaire">
-		<input type="text" id="username" value="Username"><br>
+		<input type="text" id="username" placeholder="Username"><br>
 		<p>
 			<span id="formulaire_team">Team :</span>
 		<br>
@@ -52,7 +52,9 @@
 		<hr id="separator"><br>
 		<div id="formulaire_others">
 		<input type='button' value="Modification de l'IP" onclick="screen_connection.modifIP()" id="formulaire_modIP">
-		<input type='button' value="Règles" id="formulaire_regle">
+		<a id ="link_form_regle" href ="http://wiki.mdl29.net/doku.php?id=lespetitshackers:jeux:capturezone">
+			<input type='button' value="Règles" id="formulaire_regle">
+		</a>
 		<div id="modifIP">
 			<input type='text' id="IP" value="ws://localhost:9876">
 		</div>
@@ -72,6 +74,10 @@
 		    <tr id="tableau_titres">
 		        <th>Tidu</th>
 		        <th>Tizef</th>
+		    </tr>
+		    <tr id="players-list">
+				<td id="players-tidu"></td>
+				<td id="players-tizef"></td>
 		    </tr>
 		</table>
 	</section>
