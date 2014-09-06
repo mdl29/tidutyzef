@@ -40,7 +40,7 @@
 		</div>
 		<img class="logo" src="img/icon_flat.png" id="logo"><br>
 		<div id="formulaire">
-		<input type="text" id="username" value="Username"><br>
+		<input type="text" id="username" placeholder="Username"><br>
 		<p>
 			<span id="formulaire_team">Team :</span>
 		<br>
@@ -52,7 +52,9 @@
 		<hr id="separator"><br>
 		<div id="formulaire_others">
 		<input type='button' value="Modification de l'IP" onclick="screen_connection.modifIP()" id="formulaire_modIP">
-		<input type='button' value="Règles" id="formulaire_regle">
+		<a id ="link_form_regle" href ="http://wiki.mdl29.net/doku.php?id=lespetitshackers:jeux:capturezone">
+			<input type='button' value="Règles" id="formulaire_regle">
+		</a>
 		<div id="modifIP">
 			<input type='text' id="IP" value="ws://localhost:9876">
 		</div>
@@ -65,6 +67,7 @@
 		    <span class='two'>VS</span><br>
 			<span class='three'>TIZEF</span>
 		</div>
+		
 		<img class="logo" src="img/icon_flat.png"><br>
 		<img id="loading_pict" src="img/chargement.gif">
 		<table id="tableau">
@@ -80,8 +83,9 @@
 	</section>
 	
 	<section id='screen_map'>
-		<div id='map' class='map' style="height: 500px;"></div>
+		<div id='map' class='map';"></div>
 		<div id='notif'></div>
+		<div id='time' style="width" ></div>
 	</section>
 	<section id='screen_combat'>
 		<p>Combat contre <span id='pseudo'>qqn</span> en cours</p>
