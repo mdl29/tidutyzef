@@ -75,7 +75,7 @@ class Player (TTClientConnection):
                         self.status = "other"
                     self.username = data["username"]
                     self.team = data["team"]
-                    self.parent.send2All({"object" : "connection", "user":self.username,"status":"login"})
+                    self.parent.send2All({"object" : "newUser","username":self.username,"status":self.team})
                     self.send({"object" :"loged"})
             else:
                 self.sendError(usernameAlreadySet)
