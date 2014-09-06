@@ -69,8 +69,8 @@
 		<img id="loading_pict" src="img/chargement.gif">
 		<table id="tableau">
 		    <tr id="tableau_titres">
-		        <th>Tidu</th>
-		        <th>Tizef</th>
+		        <th id='tiduUser'>Tidu</th>
+		        <th id='tizefUser'>Tizef</th>
 		    </tr>
 		</table>
 	</section>
@@ -101,5 +101,10 @@
 	screen_connection.close();
 	
 	switch_screen.show( screen_connection );
+	
+	window.onbeforeunload = function (){
+		client.close();
+		return "machin";
+		};
 </script>
 </html>

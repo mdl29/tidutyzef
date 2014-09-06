@@ -2,23 +2,28 @@
 {
     var webSocket = false;
     var ws = new wsLib();
+	var that=this;
     
-    this._onmessage = function(e){ 
-        rep = JSON.parse(e.data);
-        console.log(rep);
-        this.onMessage(data)
-    };
-
     this.onMessage = function(rep){
-		console.log(rep);
+		console.log(rep.object);
         switch (rep.object){
             case "error":
-                onError(rep);
+                that.onError(rep);
                 break;
             case "login":
+				console.log('newUSer');
                 screen_wait.newUser(data.username,data.team);
 				break;
+			case "startGame":
+				console.log('startGame');
+				switch_screen.show( screen_map );
+				break;
 		}
+    };
+    this._onmessage = function(e){ 
+        var rep = JSON.parse(e.data);
+        console.log(rep);
+        that.onMessage(rep);
     };
 
     this.onError = function(e){
@@ -35,7 +40,7 @@
             ws.openSocket(ip,
                 this.onConnection,
                 this.onClose,
-                this.onMessage,
+                this._onmessage,
                 this.onError );
         }
     };
