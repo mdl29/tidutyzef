@@ -39,13 +39,8 @@
 		<p>
 			<span id="formulaire_team">Team :</span>
 		<br>
-<<<<<<< HEAD
-		<label id="formulaire_tidu"><input type='radio' name="team" value="tidu" />Tidu</label>
+		<label id="formulaire_tidu"><input type='radio' name="team" value="tidu" checked=true />Tidu</label>
 		<label id="formulaire_tizef"><input type='radio' name="team" value="tizef" />Tizef</label>
-=======
-		<label id="formulaire_tidu"><input type='radio' name="team" value="Tidu" checked=true />Tidu</label>
-		<label id="formulaire_tizef"><input type='radio' name="team" value="Tizef" />Tizef</label>
->>>>>>> 0516def2cc226658a3d23a6ce73bfff881863734
 		</p> 
 		<input type='button' value='Connection' onclick='screen_connection.startCo()' id="formulaire_connexion">
 		</div>
@@ -53,9 +48,9 @@
 		<div id="formulaire_others">
 		<input type='button' value="Modification de l'IP" onclick="screen_connection.modifIP()" id="formulaire_modIP">
 		<input type='button' value="Règles" id="formulaire_regle">
-		</div>
 		<div id="modifIP">
 			<input type='text' id="IP" value="ws://localhost:9876">
+		</div>
 		</div>
 	</section>
 	
@@ -65,15 +60,21 @@
 		    <span class='two'>VS</span><br>
 			<span class='three'>TIZEF</span>
 		</div>
+<<<<<<< HEAD
+		<img src="img/icon_flat.png"><br>
+		<img src="img/chargement.gif" width='5%'>
+		
+=======
 		<img class="logo" src="img/icon_flat.png"><br>
-		<img src="img/chargement.gif" height='5%' width='scr'>
+		<img src="img/chargement.gif" height='2%' width='2%'>
 		<table width=100%  id="tableau"> 
 		 
 		    <tr id="tableau"> 
-		        <th id ="tiduUser"> Tidu </th> 
-		        <th id='tizefUser'> Tizef </th>    
+		        <th> Tidu </th> 
+		        <th> Tizef </th>    
 		    </tr>
 		</table>
+>>>>>>> 66990833b765908e630e057780b8be060e054f44
 	</section>
 	
 	<section id='screen_map'>
