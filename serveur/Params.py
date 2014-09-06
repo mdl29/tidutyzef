@@ -16,7 +16,7 @@ class Params:
         out = {}
 
         if isinstance(params,str):
-            if params == "all":
+            if params == "all" or params == "":
                 params = []
                 for _,val in enumerate(self.params.keys()):
                     params.append(val)
@@ -27,7 +27,7 @@ class Params:
 
         for _,val in enumerate(params):
             if val == "zones":
-                out ["zones"] = getAllZones()
+                out ["zones"] = self.getAllZones()
             elif self.params[val]:
                 out[val] = self.params[val]
         return out

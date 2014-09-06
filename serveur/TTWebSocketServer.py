@@ -74,3 +74,7 @@ class TTWebSocketServer(WebSocketServer):
     def setParams(self,data):
         if username == "admin":
             self.params.setParams(data)
+
+    def getParams(self,params):
+        return self.params.getParams(params)
+
