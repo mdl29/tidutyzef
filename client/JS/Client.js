@@ -9,15 +9,17 @@ client = new function ()
         this.onMessage(data)
     };
 
-    this.onMessage = function(data){
+    this.onMessage = function(rep){
+		console.log(rep);
         switch (rep.object){
             case "error":
                 onError(rep);
                 break;
             case "login":
                 screen_wait.newUser(data.username,data.team);
-
-    } ;
+				break;
+		}
+    };
 
     this.onError = function(e){
     };
