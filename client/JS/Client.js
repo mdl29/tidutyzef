@@ -10,13 +10,14 @@
             case "error":
                 that.onError(rep);
                 break;
-            case "login":
+            case "newUser":
 				console.log('newUSer');
                 screen_wait.newUser(data.username,data.team);
 				break;
 			case "startGame":
 				console.log('startGame');
 				switch_screen.show( screen_map );
+				screen_map.showMap(rep.mapCenter);
 				break;
 		}
     };
