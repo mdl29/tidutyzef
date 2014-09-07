@@ -20,7 +20,7 @@
 				screen_map.showMap(rep.mapCenter);
 				break;
 			case "updatePos":
-				screen_map.moveMarkers(rep.pos,rep.username,rep.pos);
+				screen_map.moveMarkers(rep.pos,rep.from,rep.team);
 				break;
 		}
     };

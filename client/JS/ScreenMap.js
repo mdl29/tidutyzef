@@ -55,15 +55,15 @@ function ScreenMap(){
 		};
 		
 		this.moveMarkers=function(pos,user,team){
-			
+			console.log(pos+"  "+user+"   "+team);
 			if(!this.markers.hasOwnProperty(team)){
 				this.markers[team]={};
 			}
-			if(!this.markers.hasOwnProperty(username)){
+			if(!this.markers.hasOwnProperty(user)){
 				this.markers[team][username] = L.marker(pos).setIcon(icons[team]).addTo(map).bindPopup(username);
 			}
 			else{	
-				this.markers[team][username].setLatLng(pos);
+				this.markers[team][user].setLatLng(pos);
 			}
 			
 		}

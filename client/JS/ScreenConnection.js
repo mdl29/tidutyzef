@@ -9,18 +9,24 @@ function ScreenConnection(){
 			var user = $("#username").val();
 			var team = $("input[type='radio'][name='team']:checked").val();
 			
-			var player = new ClientJoueur();
-			player.user = user;
-			player.team = team;
-			
-			var data ={
-						"object": "login",
-						"username": user,
-						"team": team
-						};
-			client.send(data);
-			
-			switch_screen.show( screen_wait );
+			if(user != null){
+				var player = new ClientJoueur();
+				player.user = user;
+				player.team = team;
+				
+				
+				var data ={
+							"object": "login",
+							"username": user,
+							"team": team
+							};
+				client.send(data);
+				
+				switch_screen.show( screen_wait );
+			}
+			else{
+				alert("Pseudo invalid")
+			}
 		};
 		this.startCo=function(){
 			client.openConnection(qs("#IP").value);
