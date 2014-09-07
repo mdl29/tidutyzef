@@ -9,15 +9,18 @@
         switch (rep.object){
             case "error":
                 that.onError(rep);
+                
                 break;
             case "newUser":
-				console.log('newUSer');
-                screen_wait.newUser(data.username,data.team);
+                screen_wait.newUser(rep.username,rep.team);
 				break;
 			case "startGame":
 				console.log('startGame');
 				switch_screen.show( screen_map );
 				screen_map.showMap(rep.mapCenter);
+				break;
+			case "updatePos":
+				screen_map.moveMarkers(rep.pos,rep.username,rep.pos);
 				break;
 		}
     };
@@ -28,6 +31,10 @@
     };
 
     this.onError = function(e){
+		if(e.errorCode==2){
+			switch_screen.show( screen_connection );
+			alert(e.desc);
+		}
     };
     
     this.onClose = function(){

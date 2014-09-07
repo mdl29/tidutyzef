@@ -1,13 +1,15 @@
 function ScreenWait(){
 		this.section = qs("#screen_wait");
 		this.newUser = function (username,team){
-			console.log(username+"  "+team);
 			if(team=="tidu"){
-				$('#tiduUser').append(username+"<br>");
+				$('#players-tidu').append(username+"<br>");
 				console.log(username);
 			}
 			else if(team=="tizef"){
-				$('#tizefUser').append(username+'<br>');
+				$('#players-tizef').append(username+'<br>');
+			}
+			else if(team=='admin'){
+				console.log('admin connected');
 			}
 		};
 }
