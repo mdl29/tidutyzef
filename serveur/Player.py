@@ -32,12 +32,22 @@ class Player (TTClientConnection):
                     "msg" : lambda : self.msg(data),
                     "setParams" : lambda : self.setParams(data),
                     "getParams" : lambda : self.getParams(data),
-                    "startGame" : lambda : self.startGame()
+                    "startGame" : lambda : self.startGame(),
+                    "getAllUsers" : lambda : self.getAllUsers()
             }[data["object"]]
         except KeyError:
             self.sendError(unknowObject)
             return
         fct()# this execute the fonction which correspond whith the dict
+
+    def getAllUsers(self):
+        out = {"object":"usersConnected"}
+        for player in self.parent.client:
+            if player.team and player.username:
+                if not player.team in out:
+                    out[player.team] = []
+                out[player.team].append(player.username)
+        self.send(out)
 
     def startGame(self):
         if self.team != "admin":
