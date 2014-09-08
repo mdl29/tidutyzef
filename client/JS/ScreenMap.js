@@ -2,21 +2,22 @@ function ScreenMap(){
 		this.section = qs("#screen_map");
 		
 		var that =this;
+		this.map;
 		
 		this.markers={};
 		
-		var tidu = L.icon({
+		this.tidu = L.icon({
 			iconUrl: 'img/marqueur_tidu.png',
-			iconSize: [50,50],
+			iconSize: [34,64],
 			iconAnchor:[25,0]
 		});
-		var tizef = L.icon({
+		this.tizef = L.icon({
 			iconUrl: 'img/marqueur_tizef.png',
-			iconSize: [50,50],
+			iconSize: [34,64],
 			iconAnchor:[25,0]
 		});
 		
-		var icons=[tidu,tizef];
+		this.icons={"tidu":this.tidu,"tizef":this.tizef};
 		
 		this.open = function(){
 				Screen.prototype.open.call(this);
@@ -24,12 +25,12 @@ function ScreenMap(){
 					
 			}
 		this.showMap=function(center){
-				var map = L.map('map').setView(center, 13);
+				this.map = L.map('map').setView(center, 13);
 
 				// add an OpenStreetMap tile layer
 				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 					attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-				}).addTo(map);
+				}).addTo(this.map);
 			};
 			
 		this.getLocation =function (){ 
@@ -55,12 +56,13 @@ function ScreenMap(){
 		};
 		
 		this.moveMarkers=function(pos,user,team){
-			console.log(pos+"  "+user+"   "+team);
+			
+
 			if(!this.markers.hasOwnProperty(team)){
 				this.markers[team]={};
 			}
 			if(!this.markers.hasOwnProperty(user)){
-				this.markers[team][username] = L.marker(pos).setIcon(icons[team]).addTo(map).bindPopup(username);
+				this.markers[team][username] = L.marker(pos,{icon: this.icons[team]}).addTo(this.map).bindPopup(user +" de la team " + team);
 			}
 			else{	
 				this.markers[team][user].setLatLng(pos);

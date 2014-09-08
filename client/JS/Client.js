@@ -35,6 +35,7 @@
 			switch_screen.show( screen_connection );
 			alert(e.desc);
 		}
+		this.close();
     };
     
     this.onClose = function(){
