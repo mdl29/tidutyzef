@@ -6,9 +6,14 @@ import threading, json, re, utils
 from zone import *
 from Params import *
 from Player import *
+from battle import *
 
 class TTWebSocketServer(WebSocketServer):
-    def __init__(self):
+    def __init__(self,debug = False):
+        if debug:
+            self.debug = True
+        else:
+            self.debug = False
         WebSocketServer.__init__(self,clientClass = Player)
         self.teams = {'tizef':[],'tidu':[],'admin':[]}
         self.params = Params()
@@ -16,28 +21,25 @@ class TTWebSocketServer(WebSocketServer):
         self.threadCheckBattle.daemon = True
         self.threadCheckBattle.start()
 
-    """
-    this is util for checking for battles entering in zone
-    """
     def checkBattle(self):
         self.keepAlive.set()
         while self.keepAlive.isSet(): # keepAlive is already set in pyWebSocket
             for index,value in enumerate(self.teams["tidu"]):
-                if value.statuts != 1:
+                if value.status != "playing":
                     continue
                 a = len(self.client) - 1 - index
                 for index2,value2 in enumerate(self.teams["tizef"]):
-                    #print("test :", value.username, "of the team tidu","and",value2.username, "of the team tizef")
-                    if value2.status != 1:
+                    d(self.debug,"test :", value.username, "of the team tidu","and",value2.username, "of the team tizef")
+                    if value2.status != "playing":
                         continue
                     if utils.distance(value.pos,value2.pos) <= self.params.getParams("radius"):
-                        print("beginning of a battle between :", value.username, "of the team tidu","and",value2.username, "of the team tizef")
-                        tmpSup = BattleSupervisor(value2,value)
-                        value.startBattle(value2,tmpSup)
-                        value2.startBattle(value,tmpSup)
+                        d(self.debug,"beginning of a battle between :", value.username, "of the team tidu","and",value2.username, "of the team tizef")
+                        tmpBattle = Battle(value2,value)
+                        value.startBattle(value2,tmpBattle)
+                        value2.startBattle(value,tmpBattle)
 
             for index,client in enumerate(self.client):
-                if client.statuts is not "playing" or client.statuts is not "kill":
+                if client.status is not "playing" or client.status is not "kill":
                     continue
                 for index,zone in enumerate(self.params.getParams(zones)):
                     if utils.distance(zone.team,client.team) <= self.params.getParams("radius"):

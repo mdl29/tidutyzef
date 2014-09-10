@@ -1,4 +1,6 @@
 from TTClientConnection import *
+from utils import *
+import json
 
 class Player (TTClientConnection):
     def __init__(self, parent, sock, addr):
@@ -7,14 +9,16 @@ class Player (TTClientConnection):
         self.pos = [0,0] # (latitude,longitude)
         self.username=""
         self.team=""
-        self.statuts="none"  #none = waiting for the begining of the party
+        self.status="none"  #none = waiting for the begining of the party
                         #playing
                         #fighting
                         #kill =  the player is kill and it's looking for a regen zone
                         #other =  not playing e.g admin
-    def setStatus(self,status,whoDoIt):
+    def setStatus(self,status):
         self.status = status
-
+    
+    def __str__(self):
+        return "username :" + self.username +" team :" + self.team
     def onReceive(self,msg):
         data = TTClientConnection.onReceive(self,msg)
         if not self.username and not "username" in data:
@@ -24,7 +28,6 @@ class Player (TTClientConnection):
         the case keyword doesn't exist in python, so, we use a dictionary of function to call the appropriated function
         we use lambda to call 2 function or to modify the number of args to pass to the function
         """
-        print(data["object"])
         try:
             fct = {"login" : lambda : self.login(data),
                     "logout" : lambda : self.onConnectionClose(),
@@ -57,9 +60,9 @@ class Player (TTClientConnection):
         out = dict( list( object.items() ) + list( params.items() ) )
         self.parent.send2All(out)
         for val in self.parent.client:
-            if val.statuts == "other":
+            if val.status == "other":
                 continue
-            val.statuts = "playing"
+            val.status = "playing"
 
     def getParams(self,data):
         if "params" in data:
@@ -107,6 +110,6 @@ class Player (TTClientConnection):
         self.parent.send2All({"object" : "updatePos", "from":self.username,"pos":self.pos,"team":self.team})
 
     def startBattle(self,against,sup):
-        self.send({"object" :"battle", "against" : against.username})
+        self.send({"object" :"startBattle", "against" : against.username})
         self.status = 2
         self.battleSupervisor = sup

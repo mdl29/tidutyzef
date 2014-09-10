@@ -2,7 +2,8 @@
 
 from pyWebSocket import WebSocketServer, WebSocketClient
 from TTWebSocketServer import *
-import  json
+import json
+from utils import *
 
 usernameNotSet =  (0,"you should have an username and a team before any operation")
 teamError = (1,"this team doesn't exist")
@@ -26,6 +27,7 @@ class TTClientConnection(WebSocketClient):
         """
         init the connectiion
         """
+        self.debug = parent.debug
         WebSocketClient.__init__(self, parent, sock, addr)
 
     def sendError(self,error): # errors codes are defined in the global scope
@@ -33,17 +35,17 @@ class TTClientConnection(WebSocketClient):
 
     def send(self,msg):
         WebSocketClient.send(self,json.dumps(msg))
-
+        d(self.debug,"send :",msg)
+      
     def onReceive(self,msg):
         """
         unparse the JSON
         """
-        print(msg)
+        d(self.debug,"receive :",msg)
         try:
             data = json.loads(msg)
             return data
         except ValueError:
-            print("data :",msg)
             self.sendError(JSONError)
 
     def onConnectionClose(self):

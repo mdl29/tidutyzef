@@ -3,7 +3,13 @@
 
 from TTWebSocketServer import *
 from TTClientConnection import *
+import sys
 
 if __name__=="__main__":
-    ws=TTWebSocketServer()
+    if len(sys.argv)>1 and sys.argv[1] == "debug":
+        debug = True
+    else:
+        debug = False
+    print("debug :",debug)
+    ws=TTWebSocketServer(debug)
     ws.join()

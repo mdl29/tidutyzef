@@ -13,3 +13,10 @@ def distance(origin, destination):
     d = radius * c
     e = d *1000 # meters
     return e
+
+debug = False
+
+def d(debug,*args):
+    if debug == True and isinstance(debug,bool):
+        print(*args)
+
