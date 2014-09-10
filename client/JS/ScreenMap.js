@@ -21,7 +21,7 @@ function ScreenMap(){
 		
 		this.open = function(){
 				Screen.prototype.open.call(this);
-				this.getLocation();
+				//this.getLocation();
 					
 			}
 		this.showMap=function(center){
@@ -35,7 +35,7 @@ function ScreenMap(){
 			
 		this.getLocation =function (){ 
 			if(navigator.geolocation){
-				navigator.geolocation.watchPosition(this.showPosition);
+				navigator.geolocation.watchPosition(that.showPosition);
 			}
 		};
 		

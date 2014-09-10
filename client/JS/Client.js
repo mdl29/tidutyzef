@@ -9,7 +9,6 @@
         switch (rep.object){
             case "error":
                 that.onError(rep);
-                
                 break;
             case "newUser":
                 screen_wait.newUser(rep.username,rep.team);
@@ -21,6 +20,11 @@
 				break;
 			case "updatePos":
 				screen_map.moveMarkers(rep.pos,rep.from,rep.team);
+				break;
+			case "startBattle":
+				switch_screen.show( screen_combat);
+				console.log(rep.against);
+				screen_combat.battle(rep.against);
 				break;
 		}
     };

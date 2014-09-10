@@ -22,7 +22,9 @@ function ScreenConnection(){
 							};
 				client.send(data);
 				
+				screen_map.getLocation();
 				switch_screen.show( screen_wait );
+				
 			}
 			else{
 				alert("Pseudo invalid")
