@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Install webApp</title>
+    <meta charset="UTF-8"/>
+    <meta content="width=device-width; initial-scale=1; maximum-scale=1; user-scalable=no;" name="viewport" />
+    <script type="text/javascript">
+    
+    function getURLDirectory(){
+        var loc = window.location.href;
+        return loc.substring(0, loc.lastIndexOf('/') + 1);
+    }
+    
+    var urlManifest = getURLDirectory()+"manifest.webapp";
+    
+    function installMe(){
+        if( "mozApps" in navigator ){
+            var install = navigator.mozApps.install(urlManifest);
+            install.onsuccess = function(){
+                alert("Appli bien installée");
+            };
+            install.onerror = function(){
+                alert("Erreur pendant l'install : "+install.error.name);
+            };
+            
+        }
+    }
+    
+    function checkInstall(){
+        if( "mozApps" in navigator ){
+            var installCheck = navigator.mozApps.checkInstalled(urlManifest);
+            installCheck.onsuccess = function() {
+
+                if(installCheck.result) {
+                    alert("app already installed");
+                } else {
+                    alert("app NOT installed");
+                }
+            };
+        }
+    }
+    
+    </script>
+</head>
+<body>
+
+Ceci est une applie bidon. <br>
+
+<button onclick="installMe()">Installez moi !</button>
+<button onclick="checkInstall()">Vérifier que je suis installé !</button>
+
+</body>
+
+</html>
