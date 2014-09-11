@@ -8,13 +8,15 @@
     
     function getURLDirectory(){
         var loc = window.location.href;
-        return loc.substring(0, loc.lastIndexOf('/') + 1);
+        var man= loc.substring(0, loc.lastIndexOf('/') + 1);
+		return man;
     }
     
     var urlManifest = getURLDirectory()+"manifest.webapp";
     
     function installMe(){
         if( "mozApps" in navigator ){
+			console.log(urlManifest);
             var install = navigator.mozApps.install(urlManifest);
             install.onsuccess = function(){
                 alert("Appli bien installée");
@@ -24,6 +26,9 @@
             };
             
         }
+        else{
+			console.log('mozApps non pris en compte');
+		}
     }
     
     function checkInstall(){
