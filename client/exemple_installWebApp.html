@@ -8,15 +8,14 @@
     
     function getURLDirectory(){
         var loc = window.location.href;
-        var man= loc.substring(0, loc.lastIndexOf('/') + 1);
-		return man;
+        return loc.substring(0, loc.lastIndexOf('/') + 1);
+		
     }
     
     var urlManifest = getURLDirectory()+"manifest.webapp";
     
     function installMe(){
         if( "mozApps" in navigator ){
-			console.log(urlManifest);
             var install = navigator.mozApps.install(urlManifest);
             install.onsuccess = function(){
                 alert("Appli bien installée");
