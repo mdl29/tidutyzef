@@ -43,6 +43,7 @@ function ScreenMap(){
 			lat=position.coords.latitude;
 			lon=position.coords.longitude;
 			that.updatePos(lat,lon);
+			player.pos=[lat,lon];
 		};
 		
 		this.updatePos=function(lat,lon){
@@ -57,7 +58,6 @@ function ScreenMap(){
 		
 		this.moveMarkers=function(pos,user,team){
 			
-
 			if(!this.markers.hasOwnProperty(team)){
 				this.markers[team]={};
 			}
@@ -67,6 +67,27 @@ function ScreenMap(){
 			else{	
 				this.markers[team][user].setLatLng(pos);
 			}
+			
+		};
+		
+		this.gpsCenter =function(){
+			
+			this.map.setView(player.pos);
+			
+		};
+		
+		this.startCountDown=function(){
+		
+			var min=9,sec=60;
+			
+			setInterval(function(){
+				sec--;
+				if(sec==0){
+					min--;
+					sec=60;
+				}
+				qs('#time').innerHTML=min+":"+sec;
+				},1000);
 			
 		}
 }

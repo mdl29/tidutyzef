@@ -17,6 +17,7 @@
 				console.log('startGame');
 				switch_screen.show( screen_map );
 				screen_map.showMap(rep.mapCenter);
+				screen_map.startCountDown();
 				break;
 			case "updatePos":
 				screen_map.moveMarkers(rep.pos,rep.from,rep.team);

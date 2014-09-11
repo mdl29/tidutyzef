@@ -10,7 +10,7 @@ function ScreenConnection(){
 			var team = $("input[type='radio'][name='team']:checked").val();
 			
 			if(user != null){
-				var player = new ClientJoueur();
+
 				player.user = user;
 				player.team = team;
 				

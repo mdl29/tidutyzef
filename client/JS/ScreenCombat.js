@@ -5,5 +5,12 @@ function ScreenCombat(){
 			qs('#pseudo').innerHTML=against;
 			
 		}
+		
+		this.choice =function(choice){
+			var data ={"object":"choice",
+						'choice':choice
+			};
+			client.send(data);
+		}
 }
 ScreenCombat.prototype= new Screen;
