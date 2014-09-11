@@ -22,7 +22,7 @@ class Params:
                     params.append(val)
             elif params == "zones":
                 out ["zones"] = self.getAllZones()
-            elif parais in self.params:
+            elif params in self.params:
                 out = self.params[params]
 
         for _,val in enumerate(params):
