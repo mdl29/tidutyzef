@@ -1,7 +1,10 @@
 {
   "name": "Tidu vs tizef, capture de zone",
   "description": "Le jeu de capture de zones par geolocalisation Tidu contre Tizef",
-  "launch_path": "/Ma_carte.html",
+  "launch_path": "./index.html",
+  "icons": {
+    "128": "./img/icon-flat.png"
+  },
   "orientation": ["portrait"],
   "developer": {
     "name": "LPH maison du libre",
