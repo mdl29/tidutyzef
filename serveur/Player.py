@@ -16,9 +16,10 @@ class Player (TTClientConnection):
                         #other =  not playing e.g admin
     def setStatus(self,status):
         self.status = status
-    
+
     def __str__(self):
         return "username :" + self.username +" team :" + self.team
+
     def onReceive(self,msg):
         data = TTClientConnection.onReceive(self,msg)
         if not self.username and not "username" in data:
@@ -36,12 +37,17 @@ class Player (TTClientConnection):
                     "setParams" : lambda : self.setParams(data),
                     "getParams" : lambda : self.getParams(data),
                     "startGame" : lambda : self.startGame(),
-                    "getAllUsers" : lambda : self.getAllUsers()
+                    "getAllUsers" : lambda : self.getAllUsers(),
+                    "choice" : lambda : self.setBattleChoice(data)
             }[data["object"]]
         except KeyError:
             self.sendError(unknowObject)
             return
         fct()# this execute the fonction which correspond whith the dict
+
+    def setBattleChoice(self,data):
+        if "choice" in  data and self.battleSupervisor:
+           self.battleSupervisor.play(self,data)
 
     def getAllUsers(self):
         out = {"object":"usersConnected"}
@@ -113,3 +119,8 @@ class Player (TTClientConnection):
         self.send({"object" :"startBattle", "against" : against.username})
         self.status = 2
         self.battleSupervisor = sup
+
+    def endBattle(self,msg):
+        self.send(msg)
+        self.send({"object":"endBattle"})
+        del self.battleSupervisor

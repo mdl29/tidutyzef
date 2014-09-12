@@ -1,3 +1,5 @@
+from utils import *
+
 class Battle:
     def __init__(self,client1,client2):
         self.clients = [client1, client2]
@@ -9,11 +11,25 @@ class Battle:
         if "choice" in data:
             if client is self.clients[0]:
                 self.choice[0] = data["choice"]
-            elif client["client"] == "client2":
+            elif client is self.clients[1]:
                 self.choice[1] = data["choice"]
-            if choice[0] and choice[1]:
-                sortie = analyse(self, clients[1], clients[2])
-                return sortie
+            if self.choice[0] and self.choice[1]:
+                sortie = self.analyse(self.choice[0], self.choice[1])
+                if sortie == 1:
+                    winner = self.clients[0].username
+
+                elif sortie == 2:
+                    winner = self.clients[1].username
+                if winner:
+                    out = {"object":"battle","winner":winner}
+                    self.clients[0].endBattle(out)
+                    self.clients[1].endBattle(out)
+                else:
+                    winner = "any"
+                    out = {"object":"battle","winner":winner}
+                    self.clients[0].send(out)
+                    self.clients[1].send(out)
+
     def analyse(self,choix1, choix2):
         if "papier" in choix1:
             if "papier" in choix2:
