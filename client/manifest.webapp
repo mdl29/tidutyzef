@@ -1,5 +1,5 @@
 {
-  "name": "Tidu vs tizef capture de zone",
+  "name": "Tidu vs tizef",
   "description": "Le jeu de capture de zones par geolocalisation Tidu contre Tizef",
   "launch_path": "/client/index.html",
   "icons": {
