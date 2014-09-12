@@ -1,9 +1,11 @@
+Content-Type: application/x-web-app-manifest+json
+
 {
   "name": "Tidu vs tizef, capture de zone",
   "description": "Le jeu de capture de zones par geolocalisation Tidu contre Tizef",
   "launch_path": "/Ma_carte.html",
   "icons": {
-    "128": "/img/icon-128.png"
+    "128": "./img/icon-flat.png"
   },
   "orientation": ["portrait"],
   "developer": {
