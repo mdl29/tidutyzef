@@ -1,15 +1,17 @@
 function ScreenWait(){
 		this.section = qs("#screen_wait");
-		this.newUser = function (username,team){
-			if(team=="tidu"){
-				$('#players-tidu').append(username+"<br>");
-				console.log(username);
-			}
-			else if(team=="tizef"){
-				$('#players-tizef').append(username+'<br>');
-			}
-			else if(team=='admin'){
-				console.log('admin connected');
+		this.newTidu = function (tidu){
+			qs('#players-tidu').innerHTML="";
+			console.log(tidu);
+			for(var i=0;i<tidu.length;i++){
+				$( "#players-tidu" ).append(tidu[i]+"<br>");
+			}			
+		};
+		this.newTizef = function(tizef){
+			qs('#players-tizef').innerHTML="";
+			console.log(tizef);
+			for(var i=0;i<tizef.length;i++){
+				$( "#players-tizef" ).append(tizef[i]+"<br>");
 			}
 		};
 }

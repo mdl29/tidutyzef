@@ -11,14 +11,23 @@
                 that.onError(rep);
                 break;
             case "newUser":
-                screen_wait.newUser(rep.username,rep.team);
+                this.send({"object":"getAllUsers"});
 				break;
 			case "startGame":
-				console.log('startGame');
 				switch_screen.show( screen_map );
 				screen_map.showMap(rep.mapCenter);
-				screen_map.startCountDown(rep.time);
+				screen_map.startCountDown([9,60]);
 				screen_map.setZone(rep.zones);
+				break;
+			case "usersConnected":
+				if(rep.hasOwnProperty("tidu")){
+					console.log("tidu"+rep.tidu);
+					screen_wait.newTidu(rep.tidu);
+				}
+				if(rep.hasOwnProperty("tizef")){
+					console.log("tizef"+rep.tizef);
+					screen_wait.newTizef(rep.tizef);
+				}
 				break;
 			case "updatePos":
 				screen_map.moveMarkers(rep.pos,rep.from,rep.team,rep.status);
