@@ -30,7 +30,7 @@ function ScreenMap(){
 					
 			}
 		this.showMap=function(center){
-				this.map = L.map('map').setView([48.370738, -4.596074], 18);
+				this.map = L.map('map').setView([48.3941056, -4.4994163], 18);
 
 				// add an OpenStreetMap tile layer
 				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -84,7 +84,6 @@ function ScreenMap(){
 		this.startCountDown=function(time){
 		
 			var min=time[0],sec=time[1];
-			
 			setInterval(function(){
 				sec--;
 				if(sec==0){
