@@ -101,13 +101,13 @@ function ScreenMap(){
 			
 				switch(zones[i].team){
 					case 'tidu':
-						L.circle(zones[i].pos,zones[i].radius).setStyle('color':'red').addTo(map);
+						L.circle(zones[i].pos,zones[i].radius).setStyle({'color':'red'}).addTo(map);
 						break;
 					case 'tizef':
-						L.circle(zones[i].pos,zones[i].radius).setStyle('color':'blue').addTo(map);
+						L.circle(zones[i].pos,zones[i].radius).setStyle({'color':'blue'}).addTo(map);
 						break;
 					case 'neutre':
-						L.circle(zones[i].pos,zones[i].radius).setStyle('color':'grey').addTo(map);
+						L.circle(zones[i].pos,zones[i].radius).setStyle({'color':'grey'}).addTo(map);
 						break
 					
 				}
