@@ -83,8 +83,13 @@
 	</section>
 	
 	<section id='screen_map'>
+		<!--Hide/Show notif system-->
+		<input type='radio' id='show' name='HiSh_group'>
+		<input type='radio' id='hide' name='HiSh_group' checked>
+		<label id='label-hide' for="hide" class="hide"></label>
+		<label id='label-show' for="show" class="show"></label>
 		<div id='map' class='map'></div>
-		<div id='notif'></div>
+		<div id='notif' width='100%'></div>
 		<img id='gps' src="img/gps.svg" onclick="screen_map.gpsCenter()">
 		<div id='time' style="width" ></div>
 	</section>
