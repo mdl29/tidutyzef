@@ -17,8 +17,10 @@ Les requêtes et réponses sont au format JSON.
 TODO
 
 * Gestion des combats :
+   *[Debut d'un combat](#Debut-d'une-battle)
+   *[Choix lors d'un combat](#Choix-lors-d'une-battle)
+   
 
-TODO
 * Administration
     * [Envoi des données defini par l'administrateur](#envoi-des-données-defini-par-ladministrateur)
     * [Récupération des données defini par l'administrateur](#récupération-des-données-defini-par-ladministrateur)
@@ -92,7 +94,7 @@ Le serveur va également transmettre la position des autres joueurs, par exemple
 {
     "object": "updatePos",
     "from": "titi",
-    "team":  tidu,
+    "team":  "tidu",
     "pos": [48.40618, -4.46730]
 }
 ```
