@@ -13,22 +13,27 @@ class Zone (threading.Thread):
         self.parent = parent
         self.team = team
         self.isStarted = False
-        self.ennemyInRadius = {}
+        self.ennemyInRadius = {"tidu":[], "tizef":[]}
         self.killedInRadius = {}
-        self.time2Kill = 10
+        self.time2Kill = {'tidu':10,'tizef':10}
         self.maxTime2Kill = 10
-        self.id = id
-        id = id + 1
+        try:
+            self.id
+        except NameError:
+            return
+        else:
+            self.id = id
+            id = id + 1
 
-        self.keepAlive = threading.Event()
-        self.start()
+            self.keepAlive = threading.Event()
+            self.start()
 
     def __str__(self):
         return {"id": self.id,"pos":self.pos, "team" : self.team,"time2chgTeam" : self.time2Kill}
 
     def addPlayerInRadius(self,client):
         if client.team is not self.team:
-            self.ennemyInRadius.add(client)
+            self.ennemyInRadius[client.team].add(client)
         elif client.status == "kill" and not client in self.playerInRadius:
             self.killedInRadius[client] = 10
             client.send({"object":"startRegen"})
@@ -56,19 +61,16 @@ class Zone (threading.Thread):
 
         while self.keepAlive.isSet():
             elapsedTime =  time.time() - self._time
-
             """
             this part is use for the regen
             """
-            for time,client in enumerate(self.playerInRadius):
-                if not client.isAlive:
-                    self.playerInRadius.pop(client)
+            for time,client in enumerate(self.killedInRadius):
                 if utils.distance(self.pos,client.pos) > self.radius:
-                    self.playerInRadius.pop(client)
+                    self.killedInRadius.pop(client)
                     client.send({"object":"endRegen","regen":"false"})
 
                 if client.status is not "kill":
-                    self.playerInRadius.pop(val)
+                    self.killedInRadius.pop(val)
                     continue
 
                 time -= elapsedTime
@@ -79,25 +81,29 @@ class Zone (threading.Thread):
             """
             this part is use for ennemis
             """
-            for val in self.ennemyInRadius:
-                if val.isAlive:
-                    self.ennemyInRadius.remove(val)
+            for _,team in enumerate(self.ennemyInRadius):
+                if self.time2Kill[team] > 0:
+                    if len(self.ennemyInRadius[team]) > 0:
+                        self.time2Kill[team] = max(0,self.time2Kill[team]- elapsedTime)
+
+                    else:
+                        self.time2Kill [team]= min(self.time2Kill [team]+ elapsedTime ,self.maxTime2Kill)
+                else:
+                    self.__init__(self.pos,team,self.radius,self.parent)
+
+                if key == self.team:
                     continue
+                for val in self.ennemyInRadius[team]:
+                    if val.isAlive:
+                        self.ennemyInRadius[team].remove(val)
+                        continue
 
-                if val.status is not "playing":
-                    continue
+                    if val.status is not "playing":
+                        continue
 
-                if utils.distance(self.pos,val.pos) > self.radius:
-                    self.ennemyInRadius.remove(val)
+                    if utils.distance(self.pos,val.pos) > self.radius:
+                        self.ennemyInRadius[team].remove(val)
 
-            if self.time2Kill > 0:
-              if len(self.ennemyInRadius) > 0:
-                    self.time2Kill = self.time2Kill - elapsedTime
-
-              else:
-                    self.time2Kill = min(self.time2Kill + elapsedTime ,self.maxTime2Kill)
-
-            self._time = time.time()
 
     def stop(self):
         self.keepAlive.clear()
