@@ -28,6 +28,7 @@
 	<link rel="stylesheet" href="css/screen-connection.css" />
 	<link rel="stylesheet" href="css/screen-map.css" />
 	<link rel="stylesheet" href="css/screen-wait.css" />
+	<link rel="stylesheet" href="css/screen-combat.css" />
     
 </head>
 
@@ -97,9 +98,13 @@
 	<section id='screen_combat'>
 		<p>Combat contre <span id='pseudo'>qqn</span> en cours</p>
 		<h4>Faites votre choix:</h4>
-		<img src='img/pierre.png' onclick="screen_combat.choice('pierre')">
-		<img src='img/sciseaux.png' onclick="screen_combat.choice('ciseaux')">
-		<img src='img/feuille.png' onclick="screen_combat.choice('papier')">
+		
+		<div id='pour-centrage' width='100%'>
+		<img src='img/pierre.png' onclick="screen_combat.choice('pierre')" id='pierre'>
+		<img src='img/feuille.png' onclick="screen_combat.choice('papier')" id='papier'>
+		<img src='img/sciseaux.png' onclick="screen_combat.choice('ciseaux')" id='ciseaux'>
+		
+		</div>
 	</section>
 </body>
 <script type="text/javascript" src='miseEnPLaceLeaflet.js'></script>

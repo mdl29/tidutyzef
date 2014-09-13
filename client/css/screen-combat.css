@@ -1,0 +1,39 @@
+p, h4
+{
+	text-align: center;
+}
+
+#pour-centrage
+{
+	width: 100%;
+}
+
+#pierre
+{
+	width: auto;
+	height: 25%;
+	position: relative;
+	left:50%;
+	margin-left:-12%;
+	top: 10%;
+}
+
+#papier
+{
+	width: auto;
+	height: 25%;
+	position: relative;
+	left:50%;
+	margin-left:-12%;
+	top: 40%;
+}
+
+#ciseaux
+{
+	width: auto;
+	height: 25%;
+	position: relative;
+	left:50%;
+	margin-left:-12%;
+	top: 70%;
+}
