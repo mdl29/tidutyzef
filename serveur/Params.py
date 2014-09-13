@@ -1,6 +1,6 @@
 class Params:
     def __init__(self):
-        self.params = {"zones":[],"radius":10,"mapCenter":[0,0]}
+        self.params = {"zones":[],"radius":10,"mapCenter":[0,0],"time":[10,60]}
 
     def setParams (self,params):
         for _,val in enumerate(params):

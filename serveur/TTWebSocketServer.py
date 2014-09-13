@@ -7,6 +7,7 @@ from zone import *
 from Params import *
 from Player import *
 from battle import *
+import time
 
 class TTWebSocketServer(WebSocketServer):
     def __init__(self,debug = False):
@@ -17,13 +18,66 @@ class TTWebSocketServer(WebSocketServer):
         WebSocketServer.__init__(self,clientClass = Player)
         self.teams = {'tizef':[],'tidu':[],'admin':[]}
         self.params = Params()
-        self.threadCheckBattle = threading.Thread(target=self.checkBattle)
-        self.threadCheckBattle.daemon = True
-        self.threadCheckBattle.start()
+        self.gameStarted = False
 
-    def checkBattle(self):
-        self.keepAlive.set()
-        while self.keepAlive.isSet(): # keepAlive is already set in pyWebSocket
+    def endGame(self,cause):
+        out = {"object":"endGame","cause":cause}
+        self.send2All(out)
+        self.gameStarted = False
+
+    def startGame(self):
+        self.threadUpdate = threading.Thread(target=self.update)
+        self.threadUpdate.daemon = True
+        self.gameStarted = True
+        for client in self.client:
+            if client.status == "other":
+                continue
+            else:
+                client.status = "playing"
+        self.threadUpdate.start()
+
+    def update(self):
+        t1 = time.time()
+        while self.gameStarted or self.keepAlive.isSet():
+            if not self.teams["tidu"] or  not self.teams["tizef"]:
+                self.endGame("noEnoughPlayer")
+                break
+            """
+            time test
+            """
+            t = time.time() - t1
+            if t >= 20:
+                self.endGame("timeout")
+                break
+            """
+            test victory
+            """
+            tiduZone = 0
+            tizefZone = 0
+            for zone,_ in enumerate(self.params.getParams("zones")):
+                if not isinstance(zone,Zone):
+                    break
+                if zone.team == "tidu":
+                    tiduZone += 1
+                elif zone.team == "tizef":
+                    tizefZone += 1
+            tiduAlive = 0
+            tizefAlive = 0
+            for tidu in self.teams["tidu"]:
+                if tidu.status is not "kill":
+                    tiduAlive += 1
+            for tizef in self.teams["tizef"]:
+                if tizef.status is not "kill":
+                    tizefAlive += 1
+            if tiduAlive == 0 and tiduZone == 0:
+                self.endGame("tizefWin")
+                break
+            if tizefAlive == 0 and tizefZone == 0:
+                self.endGame("tiduWin")
+                break
+            """
+            team and zones test
+            """
             for index,value in enumerate(self.teams["tidu"]):
                 if value.status != "playing":
                     continue
@@ -44,7 +98,6 @@ class TTWebSocketServer(WebSocketServer):
                 for index,zone in enumerate(self.params.getParams(zones)):
                     if utils.distance(zone.team,client.team) <= self.params.getParams("radius"):
                         zone.addPlayerInRadius(client)
-            sleep(0.5)
 
     def delClient(self,client):
         for index, aClient in enumerate(self.teams[client.team]) :

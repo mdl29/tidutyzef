@@ -44,7 +44,7 @@ class Zone (threading.Thread):
 
     def getAppartenance(self):
         return self.team
-    
+
     def setTime2Kill(self,time):
         self.time2Kill = time
 
@@ -55,7 +55,7 @@ class Zone (threading.Thread):
         self.keepAlive.set()
 
         while self.keepAlive.isSet():
-            elapsedTime =  time.time() - self._time 
+            elapsedTime =  time.time() - self._time
 
             """
             this part is use for the regen
@@ -71,11 +71,11 @@ class Zone (threading.Thread):
                     self.playerInRadius.pop(val)
                     continue
 
-                time -= elapsedTime 
+                time -= elapsedTime
 
                 if time >= 0:
-                    client.send({"object":"endRegen"}) 
-                    
+                    client.send({"object":"endRegen"})
+
             """
             this part is use for ennemis
             """

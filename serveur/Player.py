@@ -46,7 +46,11 @@ class Player (TTClientConnection):
         fct()# this execute the fonction which correspond whith the dict
 
     def setBattleChoice(self,data):
-        if "choice" in  data and self.battleSupervisor:
+        try:
+            self.battleSupervisor
+        except NameError:
+            return
+        if "choice" in  data:
            self.battleSupervisor.play(self,data)
 
     def getAllUsers(self):
@@ -65,10 +69,7 @@ class Player (TTClientConnection):
         object = {"object":"startGame"}
         out = dict( list( object.items() ) + list( params.items() ) )
         self.parent.send2All(out)
-        for val in self.parent.client:
-            if val.status == "other":
-                continue
-            val.status = "playing"
+        self.parent.startGame()
 
     def getParams(self,data):
         if "params" in data:
@@ -117,10 +118,14 @@ class Player (TTClientConnection):
 
     def startBattle(self,against,sup):
         self.send({"object" :"startBattle", "against" : against.username})
-        self.status = 2
+        self.status = "fighting"
         self.battleSupervisor = sup
 
     def endBattle(self,msg):
+        if msg ["winner"] is not self.username and msg["winnner"] is not "any":
+            self.status = "kill"
+        else:
+            self.status = "playing"
         self.send(msg)
         self.send({"object":"endBattle"})
         del self.battleSupervisor
