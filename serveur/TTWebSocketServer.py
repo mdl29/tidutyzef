@@ -129,8 +129,7 @@ class TTWebSocketServer(WebSocketServer):
         self.teams[team].append(client)
 
     def setParams(self,data):
-        if username == "admin":
-            self.params.setParams(data)
+        self.params.setParams(data)
 
     def getParams(self,params):
         return self.params.getParams(params)

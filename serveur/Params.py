@@ -1,6 +1,6 @@
 class Params:
     def __init__(self):
-        self.params = {"zones":[],"radius":10,"mapCenter":[0,0],"time":[10,60]}
+        self.params = {"zones":[],"radius":10,"map":[0,0],"time":[10,60]}
 
     def setParams (self,params):
         for _,val in enumerate(params):
@@ -8,13 +8,14 @@ class Params:
                 for _,zone in enumerate(params["zones"]):
                    if pos in zone and team in zone:
                         self.params[val] = Zone()
-            elif self.params[val]:
-
-                out[val] = self.params[val]
+            if val == "map":
+                self.params["map"][0] = params["map"]["lat"]
+                self.params["map"][1] = params["map"]["lng"]
+            elif val in self.params:
+                self.params[val] = params[val]
 
     def getParams (self,params):
         out = {}
-
         if isinstance(params,str) or not params:
             if params == "all" or params == "" or not params:
                 params = []

@@ -79,9 +79,12 @@ class Player (TTClientConnection):
             self.send(out)
 
     def setParams (self,data):
-        if "params" in data:
-            if (self.parent.setParams(data["params"])):
-                self.send({object:"paramReceived"})
+        params = {}
+        for _,key in enumerate(data):
+            if key is not "object":
+                params[key] = data[key]
+        if (self.parent.setParams(params)):
+            self.send({object:"paramReceived"})
 
     def login (self,data):
         if "username" in data and "team" in data:          #set username
