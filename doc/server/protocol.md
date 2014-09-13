@@ -160,7 +160,27 @@ Serveur --> Client
 	"index":"3"
 }
 ```
+#Debut d'une battle
 
+Server --> Client
+
+```json
+{
+	"object":"startBattle"
+	"against":"toto"
+}
+```
+
+#Choix lors d'une battle
+
+Client --> Serveur
+
+```json
+{
+	"object":"choice"
+	"choice":"papier"
+}
+```
 
 # Erreur 0
 
