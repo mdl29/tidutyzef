@@ -81,9 +81,9 @@ function ScreenMap(){
 			
 		};
 		
-		this.startCountDown=function(){
+		this.startCountDown=function(time){
 		
-			var min=9,sec=60;
+			var min=time[0],sec=time[1];
 			
 			setInterval(function(){
 				sec--;
@@ -93,6 +93,25 @@ function ScreenMap(){
 				}
 				qs('#time').innerHTML=min+":"+sec;
 				},1000);
+		}
+		
+		this.setZone=function(zones){
+		
+			for(var i=0;i<zones.length;i++){
+			
+				switch(zones[i].team){
+					case 'tidu':
+						L.circle(zones[i].pos,zones[i].radius).setStyle('color':'red').addTo(map);
+						break;
+					case 'tizef':
+						L.circle(zones[i].pos,zones[i].radius).setStyle('color':'blue').addTo(map);
+						break;
+					case 'neutre':
+						L.circle(zones[i].pos,zones[i].radius).setStyle('color':'grey').addTo(map);
+						break
+					
+				}
+			}
 			
 		}
 }

@@ -58,8 +58,6 @@ Utiliser sur l'ecran d'attente pour voir la connection des joueurs
 }
 ```
 
-
-
 # Déconnexion
 
 Client --> Serveur 
@@ -80,7 +78,8 @@ Pour transmettre sa position GPS, par exemple [48.40618, -4.46730], envoyer le m
 {
     "object": "updatePos",
     "lat": 48.40618,
-    "lng":  -4.46730 
+    "lng":  -4.46730,
+    "status" : "playing"
 }
 ```
 
@@ -118,7 +117,7 @@ Les paramètres peuvent être map pour récupérer le centre de la carte, zones 
 ```json
 {
     "object": "getParams",
-    "params": ["map","zones","rayon"]
+    "params": ["map","zones","rayon","timer"]
 }
 ```
 #notification Start Régéneration.

@@ -17,7 +17,8 @@
 				console.log('startGame');
 				switch_screen.show( screen_map );
 				screen_map.showMap(rep.mapCenter);
-				screen_map.startCountDown();
+				screen_map.startCountDown(rep.time);
+				screen_map.setZone(rep.zones);
 				break;
 			case "updatePos":
 				screen_map.moveMarkers(rep.pos,rep.from,rep.team,rep.status);
@@ -26,6 +27,9 @@
 				switch_screen.show( screen_combat);
 				console.log(rep.against);
 				screen_combat.battle(rep.against);
+				break;
+			case "battle":
+				console.log(rep);
 				break;
 		}
     };
