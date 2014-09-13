@@ -3,4 +3,5 @@ function Zone(id,pos,rad,type){
  this.pos=pos;
  this.radius=rad;
  this.type=type;
+
 }

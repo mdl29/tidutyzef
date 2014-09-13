@@ -22,4 +22,15 @@
 	border-collapse: collapse;
 	height: 150px;
 	width:150px;
+	vertical-align: top;
+}
+
+#players-tidu
+{
+	text-align: right;
+}
+
+#players-tizef
+{
+	text-align: left;
 }

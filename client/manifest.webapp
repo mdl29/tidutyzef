@@ -1,9 +1,9 @@
 {
   "name": "Tidu vs tizef",
   "description": "Le jeu de capture de zones par geolocalisation Tidu contre Tizef",
-  "launch_path": "/client/index.html",
+  "launch_path": "/index.html",
   "icons": {
-    "128": "/client/img/icon-flat.png"
+    "128": "/img/icon_flat.png"
   },
   "developer": {
     "name": "LPH maison du libre",
@@ -11,9 +11,8 @@
   },
   "default_locale": "fr",
   "permissions": {
-    "geolocation":{
-			"description":"Acces a la geolocalisation, requis pour jouer"
-     }
-   }
-
+    "geolocation": {
+      "description": "Acces a la geolocalisation, requis pour jouer"
+    }
+  }
 }
