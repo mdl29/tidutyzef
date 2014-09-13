@@ -20,7 +20,7 @@
 				screen_map.startCountDown();
 				break;
 			case "updatePos":
-				screen_map.moveMarkers(rep.pos,rep.from,rep.team);
+				screen_map.moveMarkers(rep.pos,rep.from,rep.team,rep.status);
 				break;
 			case "startBattle":
 				switch_screen.show( screen_combat);

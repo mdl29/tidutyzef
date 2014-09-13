@@ -16,8 +16,13 @@ function ScreenMap(){
 			iconSize: [34,64],
 			iconAnchor:[25,0]
 		});
+		this.marker = L.icon({
+			iconUrl:'img/marqueur_mort.png',
+			iconSize:[34,64],
+			inconAnchor:[25,0]
+		});
 		
-		this.icons={"tidu":this.tidu,"tizef":this.tizef};
+		this.icons={'none':{"tidu":this.marker,"tizef":this.marker},'playing':{"tidu":this.tidu,"tizef":this.tizef},"2":{"tidu":this.marker,"tizef":this.marker}};
 		
 		this.open = function(){
 				Screen.prototype.open.call(this);
@@ -56,16 +61,16 @@ function ScreenMap(){
 			
 		};
 		
-		this.moveMarkers=function(pos,user,team){
+		this.moveMarkers=function(pos,user,team, status){
 			
 			if(!this.markers.hasOwnProperty(team)){
 				this.markers[team]={};
 			}
 			if(!this.markers.hasOwnProperty(user)){
-				this.markers[team][username] = L.marker(pos,{icon: this.icons[team]}).addTo(this.map).bindPopup(user +" de la team " + team);
+				this.markers[team][username] = L.marker(pos,{icon: this.icons[status][team]}).addTo(this.map).bindPopup(user +" de la team " + team);
 			}
 			else{	
-				this.markers[team][user].setLatLng(pos);
+				this.markers[team][user].setLatLng(pos).setIcon( this.icons[status][team]);
 			}
 			
 		};

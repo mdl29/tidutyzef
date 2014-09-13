@@ -1,13 +1,21 @@
 function Admin (){
+	
+	this.zonesTable=[];
+	var that=this;
 	this.defZone=function(){
 					var index=0;
+					
 					map.on('click', function(e) {
-						zones.push(new zone(index,[e.latlng.lat,e.latlng.lng],qs("#radius").value,qs('#team').value));
-						L.circle([e.latlng.lat,e.latlng.lng],qs("#radius").value).addTo(map);
-						console.log(zones);
+						that.zonesTable.push(new Zone(index,[e.latlng.lat,e.latlng.lng],qs("#radius").value,qs('#team').value));
+						console.log(that.zonesTable);
 						index++;
 					});
 				};
+	this.times=function(){
+		var time =qs("#timer").value;
+		var times =[time-1,60];
+		return times;
+	}
 	this.startGame=function(){
 		this.send({"object":"startGame"});
 	};
@@ -21,10 +29,12 @@ function Admin (){
 		this.openConnection(qs('#ip').value);
 		this.send(data);
 	};
-	this.sendMap=function(){
+	this.sendParams=function(){
 		var data={
 			 "object": "setParams",
-			"map": map.getCenter()
+			 "map": map.getCenter(),
+			 "zones":that.zonesTable,
+			 "time":this.times()
 		};
 		this.send(data);
 	}

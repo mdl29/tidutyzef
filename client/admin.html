@@ -5,6 +5,7 @@
 <meta charset="UTF-8"/>
 <script src='./JS/qs.js'></script>	
 <script src="./JS/wsLib.js"></script>
+<script src="./JS/zone.js"></script>
 <script src="./JS/Client.js"></script>
 <script src='./JS/admin.js'></script>
 <!-- Leaflet -->
@@ -42,10 +43,10 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a 
 <option value="tidu">Tidu</option>
 <option value="tizef">Tizef</option>
 <option value="neutre">Neutre</option>
-<option value="regen">Regen</option>
 </select>
-<input type="text" id="radius"value="10"><br>
-<button onclick="admin.sendMap()">Send parameters</button><br>
+Radius:<input type="text" id="radius"value="10">Timer:
+<input type="text" id="timer"value="10"><br>
+<button onclick="admin.sendParams()">Send parameters</button><br>
 <button onclick="admin.startGame()">Start game</button><br>
 <br><br>
 <span id="status"></span>
