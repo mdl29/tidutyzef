@@ -123,9 +123,9 @@
 	
 	switch_screen.show( screen_connection );
 	
-	window.onbeforeunload = function (){
-		client.close();
-		return "machin";
-		};
+	window.onbeforeunload = function(){
+		that.close();
+		return false;
+	};
 </script>
 </html>

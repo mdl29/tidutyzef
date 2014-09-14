@@ -40,6 +40,10 @@
 			case "battle":
 				console.log(rep);
 				break;
+			case "endGame":
+				this.close();
+				switch_screen.show(screen_connection);
+				break;
 		}
     };
     this._onmessage = function(e){ 
@@ -85,6 +89,7 @@
             ws.close();
         }
     };
+    
 }
 
 client = new Client();

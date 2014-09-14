@@ -6,6 +6,8 @@
 <script src='./JS/qs.js'></script>	
 <script src="./JS/wsLib.js"></script>
 <script src="./JS/zone.js"></script>
+<script src="./JS/screen.js"></script>
+<script src="./JS/screenMap.js"></script>
 <script src="./JS/Client.js"></script>
 <script src='./JS/admin.js'></script>
 <!-- Leaflet -->
@@ -15,17 +17,6 @@
 <body>
 <div id="map" class="map" style="height: 500px;"></div>
 <script type="text/javascript">
-var tidu = L.icon({
-iconUrl: 'img/tidu.png',
-iconSize: [50,50],
-iconAnchor:[25,0]
-});
-var tizef = L.icon({
-iconUrl: 'img/tizef.png',
-iconSize: [50,50],
-iconAnchor:[25,0]
-});
-var icons= {"tidu":tidu,"tizef":tizef};
 // create a map in the "map" div, set the view to a given place and zoom
 var map = L.map('map', {
 center: [48.370738, -4.596074],
