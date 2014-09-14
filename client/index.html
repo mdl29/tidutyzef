@@ -105,16 +105,17 @@
 		<img src='img/sciseaux.png' onclick="screen_combat.choice('ciseaux')" id='ciseaux'>
 		
 		</div>
+		<h1 id ="result"></h1>
 	</section>
 </body>
 <script type="text/javascript" src='miseEnPLaceLeaflet.js'></script>
 <script type="text/javascript">
-        var switch_screen = new SwitchScreen();
+    var switch_screen = new SwitchScreen();
 	var screen_wait= new ScreenWait();
 	var screen_connection= new ScreenConnection();
 	var screen_map= new ScreenMap();
 	var screen_combat= new ScreenCombat();
-	var player=new ClientJoueur();
+	var player= new ClientJoueur();
 	
 	screen_combat.close();
 	screen_map.close();

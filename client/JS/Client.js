@@ -16,16 +16,14 @@
 			case "startGame":
 				switch_screen.show( screen_map );
 				screen_map.showMap(rep.mapCenter);
-				screen_map.startCountDown([9,60]);
+				screen_map.startCountDown(rep.time);
 				screen_map.setZone(rep.zones);
 				break;
 			case "usersConnected":
 				if(rep.hasOwnProperty("tidu")){
-					console.log("tidu"+rep.tidu);
 					screen_wait.newTidu(rep.tidu);
 				}
 				if(rep.hasOwnProperty("tizef")){
-					console.log("tizef"+rep.tizef);
 					screen_wait.newTizef(rep.tizef);
 				}
 				break;
@@ -34,21 +32,23 @@
 				break;
 			case "startBattle":
 				switch_screen.show( screen_combat);
-				console.log(rep.against);
 				screen_combat.battle(rep.against);
 				break;
 			case "battle":
-				console.log(rep);
+				console.log('Result');
+				screen_combat.showResult(rep.winner);
 				break;
+			case "endBattle":
+				console.log('fin de la battle');
+				break
 			case "endGame":
-				this.close();
-				switch_screen.show(screen_connection);
+				screen_map.notif(rep.cause);
 				break;
 		}
     };
     this._onmessage = function(e){ 
         var rep = JSON.parse(e.data);
-        console.log(rep);
+        //console.log(rep);
         that.onMessage(rep);
     };
 

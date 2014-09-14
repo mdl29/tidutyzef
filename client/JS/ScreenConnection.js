@@ -23,6 +23,7 @@ function ScreenConnection(){
 				client.send(data);
 				
 				screen_map.getLocation();
+				player.name=user;
 				switch_screen.show( screen_wait );
 				
 			}

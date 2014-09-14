@@ -16,13 +16,26 @@ function ScreenMap(){
 			iconSize: [34,64],
 			iconAnchor:[25,0]
 		});
+		this.tizefMort = L.icon({
+			iconUrl: 'img/marqueur_tizef_mort.png',
+			iconSize: [34,64],
+			iconAnchor:[25,0]
+		});
+		this.tiduMort = L.icon({
+			iconUrl: 'img/marqueur_tizef_mort.png',
+			iconSize: [34,64],
+			iconAnchor:[25,0]
+		});
 		this.marker = L.icon({
 			iconUrl:'img/marqueur_mort.png',
 			iconSize:[34,64],
 			inconAnchor:[25,0]
 		});
 		
-		this.icons={'none':{"tidu":this.marker,"tizef":this.marker},'playing':{"tidu":this.tidu,"tizef":this.tizef},"2":{"tidu":this.marker,"tizef":this.marker}};
+		this.icons={'playing':{"tidu":this.tidu,"tizef":this.tizef},
+					"none":{"tidu":this.marker,"tizef":this.marker},
+					"fighting":{"tidu":this.marker,"tizef":this.marker},
+					"kill":{"tidu":this.tiduMort,"tizef":this.tizefMort}};
 		
 		this.open = function(){
 				Screen.prototype.open.call(this);
@@ -30,12 +43,15 @@ function ScreenMap(){
 					
 			}
 		this.showMap=function(center){
-				this.map = L.map('map').setView([48.3941056, -4.4994163], 18);
+			
+				console.log(center);
+				this.map = L.map('map').setView([0,0], 18);
 
 				// add an OpenStreetMap tile layer
 				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 					attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 				}).addTo(this.map);
+				this.map.setView(center,18);
 			};
 			
 		this.getLocation =function (){ 
@@ -112,6 +128,9 @@ function ScreenMap(){
 				}
 			}
 			
+		}
+		this.notif=function(cause){
+			qs('#notif').innerHTML=cause;
 		}
 }
 ScreenMap.prototype = new Screen;
