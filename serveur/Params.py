@@ -6,7 +6,7 @@ class Params:
         for _,val in enumerate(params):
             if val == "zones":
                 for _,zone in enumerate(params["zones"]):
-                   if pos in zone and team in zone:
+                   if "pos" in zone and "team" in zone:
                         self.params[val] = Zone()
             if val == "map":
                 self.params["map"][0] = params["map"]["lat"]

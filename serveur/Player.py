@@ -125,7 +125,9 @@ class Player (TTClientConnection):
         self.battleSupervisor = sup
 
     def endBattle(self,msg):
-        if msg ["winner"] is not self.username and msg["winnner"] is not "any":
+        if not "winner" in msg:
+            return
+        if msg ["winner"] is not self.username and msg["winner"] is not "any":
             self.status = "kill"
         else:
             self.status = "playing"
