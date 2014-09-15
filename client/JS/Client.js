@@ -15,9 +15,12 @@
 				break;
 			case "startGame":
 				switch_screen.show( screen_map );
-				screen_map.showMap(rep.mapCenter);
+				screen_map.showMap(rep.map);
 				screen_map.startCountDown(rep.time);
-				screen_map.setZone(rep.zones);
+				for(var i=0;i<rep.zones.length;i++){
+					screen_map.setZone(rep.zones.length,rep.zones);
+					console.log(rep.zones.length);
+				}
 				break;
 			case "usersConnected":
 				if(rep.hasOwnProperty("tidu")){
@@ -48,7 +51,7 @@
     };
     this._onmessage = function(e){ 
         var rep = JSON.parse(e.data);
-        //console.log(rep);
+        console.log(rep);
         that.onMessage(rep);
     };
 

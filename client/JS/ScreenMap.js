@@ -34,7 +34,7 @@ function ScreenMap(){
 		
 		this.icons={'playing':{"tidu":this.tidu,"tizef":this.tizef},
 					"none":{"tidu":this.marker,"tizef":this.marker},
-					"fighting":{"tidu":this.marker,"tizef":this.marker},
+					"fighting":{"tidu":this.tidu,"tizef":this.tizef},
 					"kill":{"tidu":this.tiduMort,"tizef":this.tizefMort}};
 		
 		this.open = function(){
@@ -110,25 +110,28 @@ function ScreenMap(){
 				},1000);
 		}
 		
-		this.setZone=function(zones){
-		
-			for(var i=0;i<zones.length;i++){
-			
-				switch(zones[i].team){
+		this.setZone=function(nbrOfZone,zones){
+		console.log('new');
+				switch(zones[nbrOfZone].type){
 					case 'tidu':
-						L.circle(zones[i].pos,zones[i].radius).setStyle({'color':'red'}).addTo(map);
+					console.log('newTiduZone');
+						L.circle(zones[nbrOfZone].pos,zones[nbrOfZone].radius).setStyle({'color':'red'}).addTo(map);
 						break;
 					case 'tizef':
-						L.circle(zones[i].pos,zones[i].radius).setStyle({'color':'blue'}).addTo(map);
+					console.log('newtizefZone');
+						L.circle(zones[nbrOfZone].pos,zones[nbrOfZone].radius).setStyle({'color':'blue'}).addTo(map);
 						break;
 					case 'neutre':
-						L.circle(zones[i].pos,zones[i].radius).setStyle({'color':'grey'}).addTo(map);
+					console.log('newNEutreZone');
+						L.circle(zones[nbrOfZone].pos,zones[nbrOfZone].radius).setStyle({'color':'grey'}).addTo(map);
 						break
-					
+					default :
+						console.log("newZone");
+						L.circle(zones[nbrOfZone].pos,zones[nbrOfZone].radius).addTo(map);
 				}
-			}
 			
 		}
+		
 		this.notif=function(cause){
 			qs('#notif').innerHTML=cause;
 		}
