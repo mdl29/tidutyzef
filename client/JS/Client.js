@@ -17,10 +17,9 @@
 				switch_screen.show( screen_map );
 				screen_map.showMap(rep.map);
 				screen_map.startCountDown(rep.time);
-				for(var i=0;i<rep.zones.length;i++){
-					screen_map.setZone(rep.zones.length,rep.zones);
-					console.log(rep.zones.length);
-				}
+				screen_map.setZone(rep.zones);
+				console.log(rep.zones);
+				
 				break;
 			case "usersConnected":
 				if(rep.hasOwnProperty("tidu")){

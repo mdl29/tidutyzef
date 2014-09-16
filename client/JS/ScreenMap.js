@@ -43,8 +43,6 @@ function ScreenMap(){
 					
 			}
 		this.showMap=function(center){
-			
-				console.log(center);
 				this.map = L.map('map').setView([0,0], 18);
 
 				// add an OpenStreetMap tile layer
@@ -108,33 +106,41 @@ function ScreenMap(){
 				}
 				qs('#time').innerHTML=min+":"+sec;
 				},1000);
+		};
+		
+		this.setZone=function(zones){
+		console.log('new');
+		for(var i=0;i<zones.length;i++){
+			var zone =JSON.parse(zones[i]);
+			that.zoneStyle(i,zone)
 		}
 		
-		this.setZone=function(nbrOfZone,zones){
-		console.log('new');
-			/*	switch(zones[nbrOfZone].type){
+		};
+		this.zoneStyle=function(index,zone){
+			console.log(zone[index]);
+			
+			switch(array.type){
 					case 'tidu':
 					console.log('newTiduZone');
-						L.circle(zones[nbrOfZone].pos,zones[nbrOfZone].radius).setStyle({'color':'red'}).addTo(map);
+						L.circle(array.pos,array.radius).setStyle({'color':'red'}).addTo(map);
 						break;
 					case 'tizef':
 					console.log('newtizefZone');
-						L.circle(zones[nbrOfZone].pos,zones[nbrOfZone].radius).setStyle({'color':'blue'}).addTo(map);
+						L.circle(array.pos,array.radius).setStyle({'color':'blue'}).addTo(map);
 						break;
 					case 'neutre':
 					console.log('newNEutreZone');
-						L.circle(zones[nbrOfZone].pos,zones[nbrOfZone].radius).setStyle({'color':'grey'}).addTo(map);
+						L.circle(array.pos,array.radius).setStyle({'color':'grey'}).addTo(map);
 						break
 					default :
 						console.log("newZone");
-						L.circle(zones[nbrOfZone].pos,zones[nbrOfZone].radius).addTo(map);
-				}
-		*/	
-		}
+						L.circle(array.pos,array.radius).addTo(map);
+			}
+		};
 		
 		this.notif=function(cause){
 			qs('#notif').innerHTML=cause;
-		}
+		};
 		this.winner=function(team){
 			
 			if(team==player.team){
@@ -159,6 +165,6 @@ function ScreenMap(){
 					alert("Veuiller vous deconnecter");	
 				}
 			}
-		}
+		};
 }
 ScreenMap.prototype = new Screen;
