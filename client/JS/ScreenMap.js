@@ -112,7 +112,7 @@ function ScreenMap(){
 		
 		this.setZone=function(nbrOfZone,zones){
 		console.log('new');
-				switch(zones[nbrOfZone].type){
+			/*	switch(zones[nbrOfZone].type){
 					case 'tidu':
 					console.log('newTiduZone');
 						L.circle(zones[nbrOfZone].pos,zones[nbrOfZone].radius).setStyle({'color':'red'}).addTo(map);
@@ -129,11 +129,36 @@ function ScreenMap(){
 						console.log("newZone");
 						L.circle(zones[nbrOfZone].pos,zones[nbrOfZone].radius).addTo(map);
 				}
-			
+		*/	
 		}
 		
 		this.notif=function(cause){
 			qs('#notif').innerHTML=cause;
+		}
+		this.winner=function(team){
+			
+			if(team==player.team){
+				alert("Les "+player.team+" ont gagnés :D");
+				var r=confirm("Rejouer");
+				if(r==true){
+					location.reload(true);
+					client.onClose();
+				}
+				else if(r==false){
+					alert("Veuiller vous deconnecter");	
+				}
+			}
+			if (team!=player.team){
+				alert("Les "+player.team+" ont perdus :'(");
+				var r=confirm("Rejouer");
+				if(r==true){
+					location.reload(true);
+					client.onClose();
+				}
+				else if(r==false){
+					alert("Veuiller vous deconnecter");	
+				}
+			}
 		}
 }
 ScreenMap.prototype = new Screen;

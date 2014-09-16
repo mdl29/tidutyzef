@@ -45,7 +45,19 @@
 				console.log('fin de la battle');
 				break
 			case "endGame":
-				screen_map.notif(rep.cause);
+				switch(rep.cause){
+					case "tiduWin":
+						screen_map.winner("tidu");
+						break;
+					case "tizefWin":
+						screen_map.winner("tizef");
+						break;
+					case "noEnoughPlayer":
+						alert("Il n'y a pas assez de joueurs \n veuillez resoudre le probleme ou contacter l'administrateur");
+						switch_screen.show(screen_connection);
+						that.onClose();
+						break;
+				}
 				break;
 		}
     };
@@ -60,7 +72,7 @@
 			switch_screen.show( screen_connection );
 			alert(e.desc);
 		}
-		this.close();
+		this.onClose();
     };
     
     this.onClose = function(){
