@@ -81,10 +81,10 @@ function ScreenMap(){
 				this.markers[team]={};
 			}
 			if(!this.markers.hasOwnProperty(user)){
-				this.markers[team][username] = L.marker(pos,{icon: this.icons[status][team]}).addTo(this.map).bindPopup(user +" de la team " + team);
+				this.markers[team][user] = L.marker(pos,{icon: this.icons[status][team]}).addTo(this.map).bindPopup(user +" de la team " + team);
 			}
 			else{	
-				this.markers[team][user].setLatLng(pos).setIcon( this.icons[status][team]);
+				this.markers[team][user].setIcon( this.icons[status][team]).setLatLng(pos);
 			}
 			
 		};
