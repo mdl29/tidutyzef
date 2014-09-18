@@ -111,30 +111,33 @@ function ScreenMap(){
 		this.setZone=function(zones){
 		console.log('new');
 		for(var i=0;i<zones.length;i++){
-			var zone =JSON.parse(zones[i]);
-			that.zoneStyle(i,zone)
+			var zone =JSON.stringify(zones[i]);
+			console.log(zone);
+			var zoneObj=JSON.parse(zone);
+			console.log(zoneObj);
+			that.zoneStyle(zoneObj);
 		}
 		
 		};
-		this.zoneStyle=function(index,zone){
-			console.log(zone[index]);
+		this.zoneStyle=function(zone){
+			console.log(zone);
 			
-			switch(array.type){
+			switch(zone.type){
 					case 'tidu':
 					console.log('newTiduZone');
-						L.circle(array.pos,array.radius).setStyle({'color':'red'}).addTo(map);
+						L.circle(zone.pos,zone.radius).setStyle({'color':'red'}).addTo(map);
 						break;
 					case 'tizef':
 					console.log('newtizefZone');
-						L.circle(array.pos,array.radius).setStyle({'color':'blue'}).addTo(map);
+						L.circle(zone.pos,zone.radius).setStyle({'color':'blue'}).addTo(map);
 						break;
 					case 'neutre':
 					console.log('newNEutreZone');
-						L.circle(array.pos,array.radius).setStyle({'color':'grey'}).addTo(map);
+						L.circle(zone.pos,zone.radius).setStyle({'color':'grey'}).addTo(map);
 						break
 					default :
 						console.log("newZone");
-						L.circle(array.pos,array.radius).addTo(map);
+						L.circle(zone.pos,zone.radius).addTo(map);
 			}
 		};
 		

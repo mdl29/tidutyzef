@@ -1,7 +1,13 @@
-function Zone(id,pos,rad,type){
- this.id=id;
- this.pos=pos;
- this.radius=rad;
- this.type=type;
-
+function Zone(){
+	
+	this.zoneCreate = function(id,pos,rad,type){
+			var data={	"id":id,
+						"pos":pos,
+						"radius":rad,
+						"type":type
+					};
+			return data;
+	}
 }
+
+

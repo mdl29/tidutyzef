@@ -6,9 +6,9 @@ function Admin (){
 					var index=0;
 					
 					map.on('click', function(e) {
-						that.zonesTable.push(new Zone(index,[e.latlng.lat,e.latlng.lng],qs("#radius").value,qs('#team').value));
+						that.zonesTable.push(zone.zoneCreate(index,[e.latlng.lat,e.latlng.lng],qs("#radius").value,qs('#team').value));
 						console.log(that.zonesTable);
-						switch(that.zonesTable[index].type){
+					switch(that.zonesTable[index].type){
 					case 'tidu':
 						L.circle(that.zonesTable[index].pos,that.zonesTable[index].radius,{color:'red'}).addTo(map);
 						break;
