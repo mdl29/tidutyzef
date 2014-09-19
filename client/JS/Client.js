@@ -17,6 +17,7 @@
 				switch_screen.show( screen_map );
 				screen_map.showMap(rep.map);
 				screen_map.startCountDown(rep.time);
+				console.log(rep.zones);
 				screen_map.setZone(rep.zones);
 				console.log(rep.zones);
 				

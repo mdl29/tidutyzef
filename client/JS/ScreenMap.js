@@ -109,11 +109,10 @@ function ScreenMap(){
 		};
 		
 		this.setZone=function(zones){
-		console.log('new');
+		console.log(zones);
 		for(var i=0;i<zones.length;i++){
-			var zone =JSON.stringify(zones[i]);
-			console.log(zone);
-			var zoneObj=JSON.parse(zone);
+			//var zone =JSON.stringify("{"+zones[i]+"}");
+			var zoneObj=Object.create(zones[i]);
 			console.log(zoneObj);
 			that.zoneStyle(zoneObj);
 		}
