@@ -1,10 +1,9 @@
 function Admin (){
-	
 	this.zonesTable=[];
 	var that=this;
 	this.defZone=function(){
 					var index=0;
-					
+
 					map.on('click', function(e) {
 						that.zonesTable.push(zone.zoneCreate(index,[e.latlng.lat,e.latlng.lng],qs("#radius").value,qs('#team').value));
 						console.log(that.zonesTable);
@@ -18,7 +17,6 @@ function Admin (){
 					case 'neutre':
 						L.circle(that.zonesTable[index].pos,that.zonesTable[index].radius).setStyle({color:'grey'}).addTo(map);
 						break
-					
 				}
 						index++;
 					});
@@ -42,7 +40,6 @@ function Admin (){
 		this.send(data);
 	};
 	this.sendParams=function(){
-		
 		var data={
 			 "object": "setParams",
 			 "map": map.getCenter(),

@@ -35,13 +35,13 @@ class TTClientConnection(WebSocketClient):
 
     def send(self,msg):
         WebSocketClient.send(self,json.dumps(msg))
-        d(self.debug,"send :",msg)
-      
+        d(self.debug,"send :",msg,"to :",self.username,"of the team",self.team)
+
     def onReceive(self,msg):
         """
         unparse the JSON
         """
-        d(self.debug,"receive :",msg)
+        d(self.debug,"receive :",msg,"from :", self.username,"of the team",self.team)
         try:
             data = json.loads(msg)
             return data

@@ -118,6 +118,7 @@ class Player (TTClientConnection):
     def updatePos(self,data):
         self.pos = (data["lat"],data["lng"])
         self.parent.send2All({"object":"updatePos","from":self.username,"pos": self.pos,"team":self.team,"status":self.status})
+        self.parent.checkBattle(self)
 
     def startBattle(self,against,sup):
         self.send({"object" :"startBattle", "against" : against.username})

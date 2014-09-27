@@ -3,7 +3,6 @@
     var webSocket = false;
     var ws = new wsLib();
 	var that=this;
-    
     this.onMessage = function(rep){
 		console.log(rep.object);
         switch (rep.object){
@@ -20,7 +19,6 @@
 				console.log(rep.zones);
 				screen_map.setZone(rep.zones);
 				console.log(rep.zones);
-				
 				break;
 			case "usersConnected":
 				if(rep.hasOwnProperty("tidu")){
@@ -53,7 +51,7 @@
 						screen_map.winner("tizef");
 						break;
 					case "noEnoughPlayer":
-						alert("Il n'y a pas assez de joueurs \n veuillez resoudre le probleme ou contacter l'administrateur");
+						alert("Il n'y a pas assez de joueurs \n veuillez résoudre le probleme ou contacter l'administrateur");
 						switch_screen.show(screen_connection);
 						that.onClose();
 						break;

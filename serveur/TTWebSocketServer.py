@@ -19,6 +19,8 @@ class TTWebSocketServer(WebSocketServer):
         self.teams = {'tizef':[],'tidu':[],'admin':[]}
         self.params = Params()
         self.gameStarted = False
+        self.canStartBattle = threading.Event()
+        self.canStartBattle.set()
 
     def endGame(self,cause):
         out = {"object":"endGame","cause":cause}
@@ -78,21 +80,8 @@ class TTWebSocketServer(WebSocketServer):
                 self.endGame("tiduWin")
                 break
             """
-            team and zones test
+            zones test
             """
-            for index,value in enumerate(self.teams["tidu"]):
-                if value.status != "playing":
-                    continue
-                a = len(self.client) - 1 - index
-                for index2,value2 in enumerate(self.teams["tizef"]):
-                    d(self.debug,"test :", value.username, "of the team tidu","and",value2.username, "of the team tizef")
-                    if value2.status != "playing":
-                        continue
-                    if utils.distance(value.pos,value2.pos) <= self.params.getParams("radius"):
-                        d(self.debug,"beginning of a battle between :", value.username, "of the team tidu","and",value2.username, "of the team tizef")
-                        tmpBattle = Battle(value2,value)
-                        value.startBattle(value2,tmpBattle)
-                        value2.startBattle(value,tmpBattle)
 
             for index,client in enumerate(self.client):
                 if client.status is not "playing" or client.status is not "kill":
@@ -100,6 +89,27 @@ class TTWebSocketServer(WebSocketServer):
                 for index,zone in enumerate(self.params.getParams(zones)):
                     if utils.distance(zone.team,client.team) <= self.params.getParams("radius"):
                         zone.addPlayerInRadius(client)
+
+    def checkBattle(self,player):
+        self.canStartBattle.wait()
+        self.canStartBattle.clear()
+
+        if player.status != "playing":
+            return
+        if player.team == "tizef":
+            team = "tizef"
+        elif player.team == "tidu":
+            team = "tidu"
+        for index2,value2 in enumerate(self.teams[team]):
+            if value2.status != "playing":
+                continue
+            d(self.debug,"test battle :", player.username, "of the team tidu","and",value2.username, "of the team tizef")
+            if utils.distance(player.pos,value2.pos) <= self.params.getParams("radius"):
+                d(self.debug,"beginning of a battle between :", player.username, "of the team tidu","and",value2.username, "of the team tizef")
+                tmpBattle = Battle(value2,player)
+                player.startBattle(value2,tmpBattle)
+                value2.startBattle(player,tmpBattle)
+        self.canStartBattle.clear()
 
     def delClient(self,client):
         for index, aClient in enumerate(self.teams[client.team]) :
@@ -109,7 +119,6 @@ class TTWebSocketServer(WebSocketServer):
             if aClient == client:
                 self.client.pop(index)
         print("del the client : " + client.username)
-
     def send2team(self,data,team):
         for index, client in enumerate(self.teams[team]) :
             try:

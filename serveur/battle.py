@@ -20,6 +20,8 @@ class Battle:
 
                 elif sortie == 2:
                     winner = self.clients[1].username
+                else:
+                    winner = None
                 if winner:
                     out = {"object":"battle","winner":winner}
                     self.clients[0].endBattle(out)
