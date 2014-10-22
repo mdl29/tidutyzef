@@ -8,13 +8,19 @@
 	width:280px;
 	position:relative;
 	left:50%;
-	margin-left:-92px;
+	margin-left:-140px;
+}
+
+#username
+{
+	position:relative;
+	left:50%;
+	margin-left:-92.5px;
 }
 
 #formulaire_team
 {
 	position:relative;
-	margin-left:65px;
 }
 
 #formulaire_tidu
@@ -32,20 +38,20 @@
 #formulaire_connexion
 {
 	position:relative;
-	margin-left:45px;
+	left:50%;
+	margin-left:-45px;
 }
 
 #formulaire_others
 {
-	width:300px;
+	width:205px;
 	position:relative;
 	left:50%;
-	margin-left:-150px;
+	margin-left:-102.5px;
 }
 #formulaire_modIP
 {
 	position:relative;
-	margin-left:10px;
 }
 
 #link_form_regle
@@ -56,13 +62,12 @@
 #formulaire_regle
 {
 	position:relative;
-	margin-left:70px;
 }
 
 #modifIP
 {
 	position:relative;
-	margin-left:60px;
+	
 }
 
 #separator {
