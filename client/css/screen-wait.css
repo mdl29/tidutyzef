@@ -41,25 +41,26 @@
 	margin-left: -200px;
 }
 
-.player-list
+#tableau
 {
-	border: 1px solid black;
-	border-collapse: collapse;
-	height: 150px;
-	width:150px;
-	vertical-align: top;
+	border-collapse: none;
+	width: 330px;
+	left: 50%;
+	margin-left: -165px;
 }
 
 #players-tidu
 {
-	text-align: right;
+	border: 1px solid black;
+	text-align: center;
 	height:0px;
 	width: 40%;
 }
 
 #players-tizef
 {
-	text-align: left;
+	border: 1px solid black;
+	text-align: center;
 	height:0px;
 	width: 40%;
 }
