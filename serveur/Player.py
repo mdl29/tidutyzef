@@ -87,6 +87,28 @@ class Player (TTClientConnection):
             self.send({object:"paramReceived"})
 
     def login (self,data):
+        params = self.parent.getParams("all")
+        object = {"object":"startGame"}
+        out = dict( list( object.items() ) + list( params.items() ) )
+        self.parent.send2All(out)
+        self.parent.startGame()
+
+    def getParams(self,data):
+        if "params" in data:
+            params = self.parent.getParams(data["params"])
+            object = {"object":"params"}
+            out = dict( list( object.items() ) + list( params.items() ) )
+            self.send(out)
+
+    def setParams (self,data):
+        params = {}
+        for _,key in enumerate(data):
+            if key is not "object":
+                params[key] = data[key]
+        if (self.parent.setParams(params)):
+            self.send({object:"paramReceived"})
+
+    def login (self,data):
         if "username" in data and "team" in data:          #set username
             if not self.username:
                 error = self.parent.addUser2Team(data["username"],data["team"],self)
@@ -135,3 +157,8 @@ class Player (TTClientConnection):
         self.send(msg)
         self.send({"object":"endBattle"})
         del self.battleSupervisor
+
+    def onConnectionClose(self):
+        self.send({"object" :"logout","user1 ":self.username})
+        self.parent.send2All({"object" :"connection","user":self.username,"status":"logout"})
+        super()
