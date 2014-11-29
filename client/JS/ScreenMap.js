@@ -1,13 +1,18 @@
 function ScreenMap(){
 		this.section = qs("#screen_map");
-		
-		var that =this;
+		this.myMarker;
+		var that = this;
 		this.map;
 		
 		this.markers={};
 		
 		this.tidu = L.icon({
 			iconUrl: 'img/marqueur_tidu.png',
+			iconSize: [34,64],
+			iconAnchor:[25,0]
+		});
+		this.lambdaPlayer = L.icon({
+			iconUrl: 'img/curseur.png',
 			iconSize: [34,64],
 			iconAnchor:[25,0]
 		});
@@ -73,6 +78,13 @@ function ScreenMap(){
 			};
 			client.send(data);
 			
+			if(!myMarker){
+				myMarker = L.marker([lat,lon],{icon: this.lambdaPlayer}).addTo(this.map);
+			}
+			else{
+				this.myMarker.setIcon(this.lambdaPlayer).setLatLng([lat,lon]);
+			}
+			
 		};
 		
 		this.moveMarkers=function(pos,user,team, status){
@@ -121,7 +133,7 @@ function ScreenMap(){
 		this.zoneStyle=function(zone){
 			console.log(zone);
 			
-			switch(zone.type){
+			switch(zone.team){
 					case 'tidu':
 					console.log('newTiduZone');
 						L.circle(zone.pos,zone.radius).setStyle({'color':'red'}).addTo(map);

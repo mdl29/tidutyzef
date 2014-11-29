@@ -7,7 +7,7 @@ function Admin (){
 					map.on('click', function(e) {
 						that.zonesTable.push(zone.zoneCreate(index,[e.latlng.lat,e.latlng.lng],qs("#radius").value,qs('#team').value));
 						console.log(that.zonesTable);
-					switch(that.zonesTable[index].type){
+					switch(that.zonesTable[index].team){
 					case 'tidu':
 						L.circle(that.zonesTable[index].pos,that.zonesTable[index].radius,{color:'red'}).addTo(map);
 						break;
