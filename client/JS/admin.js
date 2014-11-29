@@ -34,10 +34,10 @@ function Admin (){
 						"object": "login",
 						"username": "admin",
 						"team": "admin"
-						};
+						},
+                _that_ = this;
 		console.log(qs('#ip').value);
-		this.openConnection(qs('#ip').value);
-		this.send(data);
+		this.openConnection(qs('#ip').value, function(){ _that_.send(data); });
 	};
 	this.sendParams=function(){
 		var data={

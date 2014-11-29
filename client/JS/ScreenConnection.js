@@ -31,10 +31,11 @@ function ScreenConnection(){
 		};
 		this.startCo=function(){
 			var user = $("#username").val();
-			var team = $("input[type='radio'][name='team']:checked").val();
+			var team = $("input[type='radio'][name='team']:checked").val(),
+			_that_ = this;
 			
 			if (user.length <= 10){
-				client.openConnection(qs("#IP").value);
+				client.openConnection(qs("#IP").value, _that_.connectSuccess);
 			}
 			else
 			{
