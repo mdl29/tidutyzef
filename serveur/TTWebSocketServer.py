@@ -17,7 +17,7 @@ class TTWebSocketServer(WebSocketServer):
             self.debug = False
         WebSocketServer.__init__(self,clientClass = Player)
         self.teams = {'tizef':[],'tidu':[],'admin':[]}
-        self.params = Params()
+        self.params = Params(self)
         self.gameStarted = False
         self.canStartBattle = threading.Event()
         self.canStartBattle.set()
