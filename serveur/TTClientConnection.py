@@ -28,6 +28,11 @@ class TTClientConnection(WebSocketClient):
         init the connectiion
         """
         self.debug = parent.debug
+        
+        # Used for debuging purpose
+        self.username = "NOT_LOGGED"
+        self.team = "NOT_LOGGED"
+        
         WebSocketClient.__init__(self, parent, sock, addr)
 
     def sendError(self,error): # errors codes are defined in the global scope
