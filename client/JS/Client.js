@@ -79,20 +79,18 @@
         webSocket = false;
     };
     
-    this.openConnection = function (ip){
+    this.openConnection = function (ip, callback){ // Callback is an optionnal argument
+        var _that_ = this,
+        callback = ( typeof callback == "undefined" ) ? function(){} : callback; // Default callback function do nothing
+        
         if(!webSocket){
             ws.openSocket(ip,
-                this.onConnection,
+                function(){ webSocket = true; callback(); },
                 this.onClose,
                 this._onmessage,
                 this.onError );
         }
     };
-    
-    this.onConnection = function(){
-        webSocket = true;
-        screen_connection.connectSuccess();
-    }
 
     this.send = function (data){
         if(webSocket && ! ws.isClosed()){
