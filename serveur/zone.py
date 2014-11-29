@@ -1,5 +1,4 @@
 import threading, utils
-from time import sleep
 import time
 
 class Zone (threading.Thread):
@@ -15,18 +14,13 @@ class Zone (threading.Thread):
         self.isStarted = False
         self.ennemyInRadius = {"tidu":[], "tizef":[]}
         self.killedInRadius = {}
-        self.time2Kill = {'tidu':10,'tizef':10}
+        self.time2Kill = {"tidu" : 10, "tizef" : 10}
         self.maxTime2Kill = 10
-        try:
-            self.id
-        except NameError:
-            return
-        else:
-            self.id = id
-            id = id + 1
+        self.id = Zone.id
+        Zone.id = Zone.id + 1
 
-            self.keepAlive = threading.Event()
-            self.start()
+        self.keepAlive = threading.Event()
+        self.start()
 
     def __str__(self):
         return {"id": self.id,"pos":self.pos, "team" : self.team,"time2chgTeam" : self.time2Kill}
@@ -54,17 +48,18 @@ class Zone (threading.Thread):
         self.time2Kill = time
 
     def getTime2Kill(self):
-        return self.time
+        return self._time
 
     def run(self):
         self.keepAlive.set()
 
+        import time
         while self.keepAlive.isSet():
-            elapsedTime =  time.time() - self._time
+            elapsedTime = time.time() - self._time
             """
             this part is use for the regen
             """
-            for time,client in enumerate(self.killedInRadius):
+            for timae,client in enumerate(self.killedInRadius):
                 if utils.distance(self.pos,client.pos) > self.radius:
                     self.killedInRadius.pop(client)
                     client.send({"object":"endRegen","regen":"false"})
@@ -91,7 +86,7 @@ class Zone (threading.Thread):
                 else:
                     self.__init__(self.pos,team,self.radius,self.parent)
 
-                if key == self.team:
+                if team == self.team:
                     continue
                 for val in self.ennemyInRadius[team]:
                     if val.isAlive:
