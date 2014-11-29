@@ -1,10 +1,10 @@
 function Zone(){
 	
-	this.zoneCreate = function(ids,posi,radi,types){
+	this.zoneCreate = function(ids,posi,radi,team){
 			var data={	'id':ids,
 						'pos':posi,
 						'radius':radi,
-						'type':types
+						'team':team
 					};
 			return data;
 	}

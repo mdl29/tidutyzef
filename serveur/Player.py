@@ -159,6 +159,6 @@ class Player (TTClientConnection):
         del self.battleSupervisor
 
     def onConnectionClose(self):
-        self.send({"object" :"logout","user1 ":self.username})
+        self.send({"object" :"logout","user":self.username})
         self.parent.send2All({"object" :"connection","user":self.username,"status":"logout"})
         super()
