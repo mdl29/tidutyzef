@@ -16,7 +16,7 @@ function Admin (){
 						break;
 					case 'neutre':
 						L.circle(that.zonesTable[index].pos,that.zonesTable[index].radius).setStyle({color:'grey'}).addTo(map);
-						break
+						break;
 				}
 						index++;
 					});
