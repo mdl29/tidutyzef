@@ -78,8 +78,8 @@ function ScreenMap(){
 			};
 			client.send(data);
 			
-			if(!myMarker){
-				myMarker = L.marker([lat,lon],{icon: this.lambdaPlayer}).addTo(this.map);
+			if(!this.myMarker){
+				this.myMarker = L.marker([lat,lon],{icon: this.lambdaPlayer}).addTo(this.map);
 			}
 			else{
 				this.myMarker.setIcon(this.lambdaPlayer).setLatLng([lat,lon]);
@@ -120,11 +120,16 @@ function ScreenMap(){
 				},1000);
 		};
 		
+        this.setRadius = function(rad){
+            this.zoneRadius = rad;
+        };
+        
 		this.setZone=function(zones){
 		console.log(zones);
 		for(var i=0;i<zones.length;i++){
 			//var zone =JSON.stringify("{"+zones[i]+"}");
 			var zoneObj=Object.create(zones[i]);
+            zoneObj.radius = ( "zoneRadius" in this) ? this.zoneRadius : 10;
 			console.log(zoneObj);
 			that.zoneStyle(zoneObj);
 		}
@@ -136,19 +141,19 @@ function ScreenMap(){
 			switch(zone.team){
 					case 'tidu':
 					console.log('newTiduZone');
-						L.circle(zone.pos,zone.radius).setStyle({'color':'red'}).addTo(map);
+						L.circle(zone.pos,zone.radius).setStyle({'color':'red'}).addTo(that.map);
 						break;
 					case 'tizef':
 					console.log('newtizefZone');
-						L.circle(zone.pos,zone.radius).setStyle({'color':'blue'}).addTo(map);
+						L.circle(zone.pos,zone.radius).setStyle({'color':'blue'}).addTo(that.map);
 						break;
 					case 'neutre':
 					console.log('newNEutreZone');
-						L.circle(zone.pos,zone.radius).setStyle({'color':'grey'}).addTo(map);
+						L.circle(zone.pos,zone.radius).setStyle({'color':'grey'}).addTo(that.map);
 						break
 					default :
 						console.log("newZone");
-						L.circle(zone.pos,zone.radius).addTo(map);
+						L.circle(zone.pos,zone.radius).addTo(that.map);
 			}
 		};
 		

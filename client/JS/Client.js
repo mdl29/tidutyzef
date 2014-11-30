@@ -17,6 +17,7 @@
 				screen_map.showMap(rep.map);
 				screen_map.startCountDown(rep.time);
 				console.log(rep.zones);
+                screen_map.setRadius( ("radius" in rep) ? rep.radius : 10 );
 				screen_map.setZone(rep.zones);
 				console.log(rep.zones);
 				break;
