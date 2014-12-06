@@ -86,13 +86,6 @@ class Player (TTClientConnection):
         if (self.parent.setParams(params)):
             self.send({object:"paramReceived"})
 
-    def login (self,data):
-        params = self.parent.getParams("all")
-        object = {"object":"startGame"}
-        out = dict( list( object.items() ) + list( params.items() ) )
-        self.parent.send2All(out)
-        self.parent.startGame()
-
     def getParams(self,data):
         if "params" in data:
             params = self.parent.getParams(data["params"])
