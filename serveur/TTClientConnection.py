@@ -29,10 +29,6 @@ class TTClientConnection(WebSocketClient):
         """
         self.debug = parent.debug
         
-        # Used for debuging purpose
-        self.username = "NOT_LOGGED"
-        self.team = "NOT_LOGGED"
-        
         WebSocketClient.__init__(self, parent, sock, addr)
 
     def sendError(self,error): # errors codes are defined in the global scope
@@ -40,13 +36,13 @@ class TTClientConnection(WebSocketClient):
 
     def send(self,msg):
         WebSocketClient.send(self,json.dumps(msg))
-        d(self.debug,"send :",msg,"to :",self.username,"of the team",self.team)
+        d(self.debug,"send :",msg,"to :",self.addr)
 
     def onReceive(self,msg):
         """
         unparse the JSON
         """
-        d(self.debug,"receive :",msg,"from :", self.username,"of the team",self.team)
+        d(self.debug,"receive :",msg,"from :", self.addr)
         try:
             data = json.loads(msg)
             return data
@@ -57,8 +53,8 @@ class TTClientConnection(WebSocketClient):
         """
         connection closing handler
         """
-        self.send({"object" :"logout","user1 ":self.username})
-        self.parent.send2All({"object" :"connection","user":self.username,"status":"logout"})
+        self.send({"object" :"logout","user1 ":self.username}) # TODO do not use username in this class !!!
+        self.parent.send2All({"object" :"connection","user":self.username,"status":"logout"}) # TODO do not use username in this class !!!
         for client in self.parent.client:
             if client==self: 
                 self.parent.delClient(self)

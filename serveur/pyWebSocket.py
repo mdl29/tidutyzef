@@ -82,6 +82,10 @@ class WebSocketClient(threading.Thread):
         self.__handshake()
         self.start()
         
+    @property
+    def addr(self):
+        return self.__addr
+        
     def __handshake(self):
         """
         handshake the client
