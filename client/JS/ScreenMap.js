@@ -109,13 +109,14 @@ function ScreenMap(){
 		
 		this.startCountDown=function(time){
 		
-			var min=time[0],sec=time[1];
+			var min = time/60 ,sec = time%60;
 			setInterval(function(){
-				sec--;
+
 				if(sec==0){
 					min--;
 					sec=60;
 				}
+				sec--;
 				qs('#time').innerHTML=min+":"+sec;
 				},1000);
 		};

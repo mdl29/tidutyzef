@@ -22,6 +22,9 @@ class Player (TTClientConnection):
 
     def onReceive(self,msg):
         data = TTClientConnection.onReceive(self,msg)
+        if not data:
+            return
+
         if not self.username and not "username" in data:
             self.sendError(usernameNotSet)
             return
