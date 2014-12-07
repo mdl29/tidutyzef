@@ -21,10 +21,10 @@ function Admin (){
 						index++;
 					});
 				};
-	this.times=function(){
+	this.time=function(){
 		var time =qs("#timer").value;
-		var times =[time-1,60];
-		return times;
+		time = time*60;
+		return time;
 	}
 	this.startGame=function(){
 		this.send({"object":"startGame"});
@@ -44,7 +44,7 @@ function Admin (){
 			 "object": "setParams",
 			 "map": map.getCenter(),
 			 "zones":that.zonesTable,
-			 "time":this.times()
+			 "time":this.time()
 		};
 		this.send(data);
 	}
