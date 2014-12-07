@@ -20,16 +20,23 @@ class Params:
             elif val in self.params:
                 self.params[val] = params[val]
 
-    def getParams (self,params):
+    def getParam (self,param):
+        if param == "zones":
+        # We don't want to return Zone object, so we will get a simplified version of these objects
+            return self.getAllZones()
+        elif param in self.params:
+            return self.params[param]
+        else:
+            raise Exception("param {} don't exist".format(param))
+
+    def getParams (self,params='all'):
         out = {}
-        
-        if isinstance(params,str) or not params:
-            if params == "all" or params == "" or not params:
-                out = self.params
-                
-                # We don't want to return Zone object, so we will get a simplified version of these objects
-                out["zones"] = self.getAllZones()
-                
+        if isinstance(params,str):
+            if params == "all":
+                for _,key in enumerate(self.params):
+                    out[key] = self.getParam(key)
+            else:
+                out = self.getParam(params)
         return out
 
     def getAllZones(self):
