@@ -69,6 +69,8 @@ function ScreenMap(){
 			that.updatePos(lat,lon);
 			player.pos=[lat,lon];
 		};
+        
+        this.logCount=0;
 		
 		this.updatePos=function(lat,lon){
 			
@@ -76,6 +78,12 @@ function ScreenMap(){
 				'lat':lat,
 				'lng':lon
 			};
+            
+            
+            this.logCount++;
+            if(this.logCount>8){ this.logCount=0; s("#notif").innerHTML=""; }
+            qs("#notif").innerHTML+="Position : "+lat+" , "+lon+"<br>";
+            
 			client.send(data);
 			
 			if(!this.myMarker){
@@ -187,3 +195,4 @@ function ScreenMap(){
 		};
 }
 ScreenMap.prototype = new Screen;
+alert('A jour 1');

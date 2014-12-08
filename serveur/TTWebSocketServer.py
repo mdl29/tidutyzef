@@ -49,7 +49,6 @@ class TTWebSocketServer(WebSocketServer):
             """
             t = time.time() - t1
             timeout = self.params.getParams("time")
-            timeout = timeout[0]*60 + timeout[1]
             if t >= timeout:
                 self.endGame("timeout")
                 break

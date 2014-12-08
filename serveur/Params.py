@@ -2,7 +2,7 @@ from zone import *
 
 class Params:
     def __init__(self,parent):
-        self.params = {"zones":[],"radius":10,"map":[0,0],"time":[10,60]}
+        self.params = {"zones":[],"radius":10,"map":[0,0],"time":600}
         self.parent = parent
 
     def setParams (self,params):
@@ -13,22 +13,31 @@ class Params:
             if val == "zones":
                 for _,zone in enumerate(params["zones"]):
                     if "pos" in zone and "team" in zone:
-                        self.params["zones"].append( Zone(zone["pos"],zone["team"],self.params["radius"], self.parent) )
+                        self.params["zones"].append(Zone(zone["pos"],zone["team"],self.params["radius"], self.parent))
             elif val == "map":
                 self.params["map"][0] = params["map"]["lat"]
                 self.params["map"][1] = params["map"]["lng"]
             elif val in self.params:
                 self.params[val] = params[val]
 
-    def getParams (self,paramName):
-        paramsForJSON = {}
-        for k,v in self.params.items():
-            if k == "zones":
-                paramsForJSON[k]=self.getAllZones()
+    def getParam (self,param):
+        if param == "zones":
+        # We don't want to return Zone object, so we will get a simplified version of these objects
+            return self.getAllZones()
+        elif param in self.params:
+            return self.params[param]
+        else:
+            raise Exception("param {} don't exist".format(param))
+
+    def getParams (self,params='all'):
+        out = {}
+        if isinstance(params,str):
+            if params == "all":
+                for _,key in enumerate(self.params):
+                    out[key] = self.getParam(key)
             else:
-                paramsForJSON[k]=v
-            
-        return paramsForJSON[paramName] if (paramName in paramsForJSON) else paramsForJSON
+                out = self.getParam(params)
+        return out
 
     def getAllZones(self):
         out = []
