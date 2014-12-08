@@ -22,7 +22,7 @@ class Zone (threading.Thread):
         self.keepAlive = threading.Event()
         self.start()
 
-    def __str__(self):
+    def getDict(self):
         return {"id": self.id,"pos":self.pos, "team" : self.team,"time2chgTeam" : self.time2Kill}
 
     def addPlayerInRadius(self,client):

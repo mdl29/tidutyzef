@@ -20,21 +20,19 @@ class Params:
             elif val in self.params:
                 self.params[val] = params[val]
 
-    def getParams (self,params):
-        out = {}
-        
-        if isinstance(params,str) or not params:
-            if params == "all" or params == "" or not params:
-                out = self.params
-                
-                # We don't want to return Zone object, so we will get a simplified version of these objects
-                out["zones"] = self.getAllZones()
-                
-        return out
+    def getParams (self,paramName):
+        paramsForJSON = {}
+        for k,v in self.params.items():
+            if k == "zones":
+                paramsForJSON[k]=self.getAllZones()
+            else:
+                paramsForJSON[k]=v
+            
+        return paramsForJSON[paramName] if (paramName in paramsForJSON) else paramsForJSON
 
     def getAllZones(self):
         out = []
         for zone in self.params["zones"]:
-            out.append(zone.__str__())
+            out.append(zone.getDict())
         return out
 
