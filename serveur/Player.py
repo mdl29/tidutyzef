@@ -4,7 +4,6 @@ import json
 
 class Player (TTClientConnection):
     def __init__(self, parent, sock, addr):
-        TTClientConnection.__init__(self,parent, sock, addr)
 
         self.pos = [0,0] # (latitude,longitude)
         self.username=""
@@ -14,6 +13,8 @@ class Player (TTClientConnection):
                         #fighting
                         #kill =  the player is kill and it's looking for a regen zone
                         #other =  not playing e.g admin
+        TTClientConnection.__init__(self,parent, sock, addr)
+    
     def setStatus(self,status):
         self.status = status
 
