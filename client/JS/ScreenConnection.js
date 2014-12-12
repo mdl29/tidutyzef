@@ -30,17 +30,17 @@ function ScreenConnection(){
 			}
 		};
 		this.startCo=function(){
+
 			var user = $("#username").val();
 			var team = $("input[type='radio'][name='team']:checked").val(),
-			_that_ = this;
-			
-			if (user.length <= 255){
+			    _that_ = this;
+			if (user.length > 0){
+
 				client.openConnection(qs("#IP").value, _that_.connectSuccess);
 			}
 			else
 			{
-				alert("pseudo trop long");
-				user = null;
+				alert("pseudo incorrect");
 			}
 		};
 }

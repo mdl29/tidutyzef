@@ -79,9 +79,8 @@ function ScreenMap(){
 				'lng':lon
 			};
             
-            
             this.logCount++;
-            if(this.logCount>8){ this.logCount=0; s("#notif").innerHTML=""; }
+            if(this.logCount>8){ this.logCount=0; qs("#notif").innerHTML=""; }
             qs("#notif").innerHTML+="Position : "+lat+" , "+lon+"<br>";
             
 			client.send(data);
