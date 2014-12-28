@@ -44,7 +44,7 @@ function ScreenMap(){
 		
 		this.open = function(){
 				Screen.prototype.open.call(this);
-				//this.getLocation();
+				this.getLocation();
 					
 			}
 		this.showMap=function(center){
@@ -79,10 +79,10 @@ function ScreenMap(){
 				'lng':lon
 			};
             
-            this.logCount++;
+            /*this.logCount++;
             if(this.logCount>8){ this.logCount=0; qs("#notif").innerHTML=""; }
             qs("#notif").innerHTML+="Position : "+lat+" , "+lon+"<br>";
-            
+            */
 			client.send(data);
 			
 			if(!this.myMarker){

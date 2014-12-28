@@ -28,6 +28,8 @@ class TTWebSocketServer(WebSocketServer):
         self.gameStarted = False
 
     def startGame(self):
+        if self.gameStarted:
+            return -1
         self.threadUpdate = threading.Thread(target=self.update)
         self.threadUpdate.daemon = True
         self.gameStarted = True
@@ -104,7 +106,10 @@ class TTWebSocketServer(WebSocketServer):
                 continue
             d(self.debug,"test battle :", player.username, "of the team tidu","and",value2.username, "of the team tizef")
             if utils.distance(player.pos,value2.pos) <= self.params.getParams("radius"):
-                d(self.debug,"beginning of a battle between :", player.username, "of the team tidu","and",value2.username, "of the team tizef")
+                d(self.debug,"beginning of a battle between :",
+                    player.username, "of the team tidu",
+                    "and",value2.username, "of the team tizef")
+
                 tmpBattle = Battle(value2,player)
                 player.startBattle(value2,tmpBattle)
                 value2.startBattle(player,tmpBattle)
@@ -127,7 +132,8 @@ class TTWebSocketServer(WebSocketServer):
                 self.client.pop(index)
     """
     check if any user in your team have your pseudo and if your team exist
-    return 0 if there isn't any error, 1 if team doesn't exist and 2 if the username already exist in your team
+    return 0 if there isn't any error, 1 if team doesn't exist and 2 if the username already
+    exist in your team
     """
     def addUser2Team(self,username,team,client):
         if not team in self.teams:
