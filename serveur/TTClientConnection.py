@@ -58,6 +58,5 @@ class TTClientConnection(WebSocketClient):
         """
         connection closing handler
         """
-        for client in self.parent.client:
-            if client==self: 
-                self.parent.delClient(self)
+        d(self.debug,"remove self {}".format(self))
+        self.parent.remove(self)

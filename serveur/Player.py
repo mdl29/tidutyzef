@@ -14,7 +14,7 @@ class Player (TTClientConnection):
                         #kill =  the player is kill and it's looking for a regen zone
                         #other =  not playing e.g admin
         TTClientConnection.__init__(self,parent, sock, addr)
-    
+
     def setStatus(self,status):
         self.status = status
 
@@ -158,4 +158,4 @@ class Player (TTClientConnection):
     def onConnectionClose(self):
         self.send({"object" :"logout","user":self.username})
         self.parent.send2All({"object" :"connection","user":self.username,"status":"logout"})
-        super()
+        super().onConnectionClose()

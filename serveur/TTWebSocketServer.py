@@ -110,14 +110,15 @@ class TTWebSocketServer(WebSocketServer):
                 value2.startBattle(player,tmpBattle)
         self.canStartBattle.clear()
 
-    def delClient(self,client):
+    def remove(self,client):
         for index, aClient in enumerate(self.teams[client.team]) :
             if aClient == client:
                 self.teams[client.team].pop(index)
         for index, aClient in enumerate(self.client) :
             if aClient == client:
                 self.client.pop(index)
-        print("del the client : " + client.username)
+        d(self.debug,"del the client : " + client.username)
+
     def send2team(self,data,team):
         for index, client in enumerate(self.teams[team]) :
             try:
