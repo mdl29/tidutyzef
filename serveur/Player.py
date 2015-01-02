@@ -1,10 +1,11 @@
-from TTClientConnection import *
+from TTWsHandler import *
 from utils import *
 import json
+from Game import Game
 
-class Player (TTClientConnection):
-    def __init__(self, parent, sock, addr):
-
+class Player (TTWsHandler):
+    def __init__(self,*args):
+        self.ID=0
         self.pos = [0,0] # (latitude,longitude)
         self.username=""
         self.team=""
@@ -13,7 +14,10 @@ class Player (TTClientConnection):
                         #fighting
                         #kill =  the player is kill and it's looking for a regen zone
                         #other =  not playing e.g admin
-        TTClientConnection.__init__(self,parent, sock, addr)
+        TTWsHandler.__init__(self,*args)
+
+    def open(self):
+        pass
 
     def setStatus(self,status):
         self.status = status
@@ -21,11 +25,7 @@ class Player (TTClientConnection):
     def __str__(self):
         return "username :" + self.username +" team :" + self.team
 
-    def onReceive(self,msg):
-        data = TTClientConnection.onReceive(self,msg)
-        if not data:
-            return
-
+    def onMessage(self,data):
         if not self.username and not "username" in data:
             self.sendError(usernameNotSet)
             return
@@ -35,10 +35,8 @@ class Player (TTClientConnection):
         """
         try:
             fct = {"login" : lambda : self.login(data),
-                    "logout" : lambda : self.onConnectionClose(),
+                    "logout" : lambda : self.close(),
                     "updatePos" : lambda : self.updatePos(data),
-                    "msg" : lambda : self.msg(data),
-                    "setParams" : lambda : self.setParams(data),
                     "getParams" : lambda : self.getParams(data),
                     "startGame" : lambda : self.startGame(),
                     "getAllUsers" : lambda : self.getAllUsers(),
@@ -59,25 +57,20 @@ class Player (TTClientConnection):
 
     def getAllUsers(self):
         out = {"object":"usersConnected"}
-        for player in self.parent.client:
-            if player.team and player.username:
-                if not player.team in out:
-                    out[player.team] = []
-                out[player.team].append(player.username)
+        for player in Game().players:
+            if not player.team in out:
+                out[player.team] = []
+            out[player.team].append(player.username)
         self.send(out)
 
     def startGame(self):
         if self.team != "admin":
             return
-        params = self.parent.getParams("all")
-        object = {"object":"startGame"}
-        out = dict( list( object.items() ) + list( params.items() ) )
-        self.parent.send2All(out)
-        self.parent.startGame()
+        Game().startGame()
 
     def getParams(self,data):
         if "params" in data:
-            params = self.parent.getParams(data["params"])
+            params = Game().getParams(data["params"])
             object = {"object":"params"}
             out = dict( list( object.items() ) + list( params.items() ) )
             self.send(out)
@@ -87,57 +80,33 @@ class Player (TTClientConnection):
         for _,key in enumerate(data):
             if key is not "object":
                 params[key] = data[key]
-        if (self.parent.setParams(params)):
-            self.send({object:"paramReceived"})
-
-    def getParams(self,data):
-        if "params" in data:
-            params = self.parent.getParams(data["params"])
-            object = {"object":"params"}
-            out = dict( list( object.items() ) + list( params.items() ) )
-            self.send(out)
-
-    def setParams (self,data):
-        params = {}
-        for _,key in enumerate(data):
-            if key is not "object":
-                params[key] = data[key]
-        if (self.parent.setParams(params)):
+        if (Game().setParams(params)):
             self.send({object:"paramReceived"})
 
     def login (self,data):
         if "username" in data and "team" in data:          #set username
             if not self.username:
-                error = self.parent.addUser2Team(data["username"],data["team"],self)
-                if error:
-                    if error == 1:
-                        self.sendError(teamError)
-                    if error == 2:
-                        self.sendError(usernameAlreadyUse)
-                else:
-                    if data["username"] == "admin":
-                        self.status = "other"
-                    self.username = data["username"]
-                    self.team = data["team"]
-                    self.parent.send2All({"object" : "newUser","username":self.username,"team":self.team})
-                    self.send({"object" :"loged"})
+                if not Game().checkUsername(data['username'],data['team']):
+                    error(usernameAlreadyUse)
+                    return
+
+                self.username = data["username"]
+                self.team = data["team"]
+
+                if True:#try:
+                    self.ID = Game().addPlayer(self)
+                else:#except Exception as ex:
+                    d(self.debug, ex.args)
+
+                Game().send2All({"object" : "newUser","username":self.username,"team":self.team})
+                self.send({"object" :"logged"})
             else:
                 self.sendError(usernameAlreadySet)
 
-    def msg (self,data):
-        if "msg" in data:
-            if "to" in data:
-                for dest in data["to"]:
-                    for client in self.parent.client:
-                        if client.username==dest:
-                            client.send({"object" : "msg", "from":self.username,"msg":data["msg"],"private":True})
-            else:
-                self.parent.send2All({"object" : "msg", "from":self.username,"msg":data["msg"],"private":False})
-
     def updatePos(self,data):
         self.pos = (data["lat"],data["lng"])
-        self.parent.send2All({"object":"updatePos","from":self.username,"pos": self.pos,"team":self.team,"status":self.status})
-        self.parent.checkBattle(self)
+        Game().send2All({"object":"updatePos","from":self.username,"pos": self.pos,"team":self.team,"status":self.status})
+        Game().addPlayerToBattle(self)
 
     def startBattle(self,against,sup):
         self.send({"object" :"startBattle", "against" : against.username})
@@ -155,7 +124,6 @@ class Player (TTClientConnection):
         self.send({"object":"endBattle"})
         del self.battleSupervisor
 
-    def onConnectionClose(self):
-        self.send({"object" :"logout","user":self.username})
-        self.parent.send2All({"object" :"connection","user":self.username,"status":"logout"})
-        super().onConnectionClose()
+    def on_close(self):
+        Game().send2All({"object" :"connection","user":self.username,"status":"logout"})
+        Game().removePlayer(self.ID)

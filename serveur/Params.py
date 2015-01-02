@@ -1,9 +1,8 @@
 from zone import *
 
 class Params:
-    def __init__(self,parent):
+    def __init__(self):
         self.params = {"zones":[],"radius":10,"map":[0,0],"time":600}
-        self.parent = parent
 
     def setParams (self,params):
         if "radius" in params:
@@ -13,7 +12,7 @@ class Params:
             if val == "zones":
                 for _,zone in enumerate(params["zones"]):
                     if "pos" in zone and "team" in zone:
-                        self.params["zones"].append(Zone(zone["pos"],zone["team"],self.params["radius"], self.parent))
+                        self.params["zones"].append(Zone(zone["pos"],zone["team"],self.params["radius"]))
             elif val == "map":
                 self.params["map"][0] = params["map"]["lat"]
                 self.params["map"][1] = params["map"]["lng"]
