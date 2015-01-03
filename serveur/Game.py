@@ -124,8 +124,6 @@ class Game:
         object = {"object":"startGame"}
         out = dict( list( object.items() ) + list( params.items() ) )
         self.send2All(out)
-        for _,player in self.players.items():
-            player.status="playing"
         self.threadUpdate = threading.Thread(target=self.update())
         self.threadUpdate.daemon = True
         self.threadUpdate.start()
