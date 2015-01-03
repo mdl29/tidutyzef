@@ -9,5 +9,3 @@ function Zone(){
 			return data;
 	}
 }
-
-
