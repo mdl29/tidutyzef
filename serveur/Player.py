@@ -57,7 +57,7 @@ class Player (TTWsHandler):
 
     def getAllUsers(self):
         out = {"object":"usersConnected"}
-        for player in Game().players:
+        for _,player in Game().players.items():
             if not player.team in out:
                 out[player.team] = []
             out[player.team].append(player.username)

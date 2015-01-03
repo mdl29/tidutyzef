@@ -33,10 +33,9 @@ class Game:
 
 
     def send2All(self,msg):
-        print(self.players)
-        for player,c in self.players:
-            print(c, player)
-#            player.send(msg)
+        print(type(self.players))
+        for _,player in self.players.items():
+            player.send(msg)
 
     def send2Team(self,msg,team):
         tidu = True if team=="tidu" else False
