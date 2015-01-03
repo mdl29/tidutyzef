@@ -124,6 +124,9 @@ function ScreenMap(){
 				sec--;
 				qs('#time').innerHTML=min+":"+sec;
 				},1000);
+			if(min==0&&sec==0){
+				this.winner('nul');
+			}
 		};
 		
         this.setRadius = function(rad){
@@ -189,6 +192,9 @@ function ScreenMap(){
 				else if(r==false){
 					alert("Veuiller vous deconnecter");	
 				}
+			}
+			if(team=='nul'){
+				alert('fin du timer');
 			}
 		};
 }
