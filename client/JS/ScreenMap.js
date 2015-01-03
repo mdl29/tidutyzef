@@ -84,10 +84,10 @@ function ScreenMap(){
 			client.send(data);
 			
 			if(!this.myMarker){
-				this.myMarker = L.marker([lat,lon],{icon: this.lambdaPlayer}).addTo(this.map);
+				this.myMarker = L.marker([lat,lon],{icon: this.kill}).addTo(this.map);
 			}
 			else{
-				this.myMarker.setIcon(this.lambdaPlayer).setLatLng([lat,lon]);
+				this.myMarker.setIcon(this.kill).setLatLng([lat,lon]);
 			}
 			
 		};
@@ -97,7 +97,7 @@ function ScreenMap(){
 			if(!this.markers.hasOwnProperty(team)){
 				this.markers[team]={};
 			}
-			if(!this.markers.hasOwnProperty(user)){
+			if(!this.markers[team].hasOwnProperty(user)){
 				this.markers[team][user] = L.marker(pos,{icon: this.icons[status][team]}).addTo(this.map).bindPopup(user +" de la team " + team);
 			}
 			else{	
