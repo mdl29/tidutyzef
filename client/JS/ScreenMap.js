@@ -79,10 +79,8 @@ function ScreenMap(){
 				'lng':lon
 			};
             
-            /*this.logCount++;
-            if(this.logCount>8){ this.logCount=0; qs("#notif").innerHTML=""; }
-            qs("#notif").innerHTML+="Position : "+lat+" , "+lon+"<br>";
-            */
+            this.notif("Position updated ("+lat+", "+lon+")");
+			
 			client.send(data);
 			
 			if(!this.myMarker){
