@@ -195,4 +195,4 @@ function ScreenMap(){
 		};
 }
 ScreenMap.prototype = new Screen;
-alert('A jour 1');
+
