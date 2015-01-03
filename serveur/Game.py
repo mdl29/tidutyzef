@@ -109,7 +109,7 @@ class Game:
         self.send2All(out)
 
     def checkUsername(self,username,team):
-        for _,player in self.players:
+        for _,player in self.players.items():
             if player.username == username and player.team == team:
                 return False
         return True
@@ -150,7 +150,8 @@ class Game:
                 tiduAlive += 1
         for tizef in self.teams["tizef"]:
             if tizef.status is not "kill":
-                tizefAlive += 1
+                tize        d(ID)
+fAlive += 1
         if tiduAlive == 0 and tiduZone == 0:
             self.endGame("tizefWin")
             return False
