@@ -84,10 +84,10 @@ function ScreenMap(){
 			client.send(data);
 			
 			if(!this.myMarker){
-				this.myMarker = L.marker([lat,lon],{icon: this.lambdaPlayer}).addTo(this.map);
+				this.myMarker = L.marker([lat,lon],{icon: this.kill}).addTo(this.map);
 			}
 			else{
-				this.myMarker.setIcon(this.lambdaPlayer).setLatLng([lat,lon]);
+				this.myMarker.setIcon(this.kill).setLatLng([lat,lon]);
 			}
 			
 		};
