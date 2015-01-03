@@ -102,6 +102,11 @@ class Game:
     def startGame(self):
         if self.gameStarted:
             return
+        
+        # updating players status
+        for _,player in self.players.items():
+            player.setStatus("playing")
+		
         self.gameStarted = True
         params = self.getParams("all")
         object = {"object":"startGame"}
