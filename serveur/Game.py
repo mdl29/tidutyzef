@@ -1,5 +1,6 @@
 import Params
 import time
+import threading
 from utils import *
 from Battle import *
 
@@ -9,6 +10,7 @@ class Game:
     """
     __shared_state = {}#for singleton
     __register = False
+
     def __init__(self):
         self.__dict__ = self.__shared_state#for singleton
         if not self.__register:
@@ -24,6 +26,8 @@ class Game:
         self.admin = None
         self.params = Params.Params()
         self.gameStarted = False
+
+
 
     def endGame(self,cause):
         out = {"object":"endGame","cause":cause}
@@ -84,11 +88,19 @@ class Game:
             zone.update()
 
     def update(self):
-        if len(self.tocheck) is not 0:
-            for player in self.toCheck:
-                self.checkBattle(player)
-                self.toCheck.remove(player)
-            checkZones()
+        self.tStart = time.time()
+        while self.gameStarted:
+            if len(self.players) < 2:
+                self.endGame("noEnoughPlayer")
+                break
+
+            if len(self.toCheck) is not 0:
+                toCheck2 = set(self.toCheck)
+                for player in toCheck2:
+                    self.checkBattle(player)
+                    self.toCheck.remove(player)
+                self.checkVictory()
+                self.checkZones()
 
     def setParams(self,data):
         self.params.setParams(data)
@@ -108,23 +120,21 @@ class Game:
         out = dict( list( object.items() ) + list( params.items() ) )
         self.send2All(out)
 
+        self.threadUpdate = threading.Thread(target=self.update())
+        self.threadUpdate.daemon = True
+        self.threadUpdate.start()
+
     def checkUsername(self,username,team):
         for _,player in self.players.items():
             if player.username == username and player.team == team:
                 return False
         return True
 
-    def update(self):
-        t1 = time.time()
-        while self.gameStarted or self.keepAlive.isSet():
-            if not self.teams["tidu"] or  not self.teams["tizef"]:
-                self.endGame("noEnoughPlayer")
-                break
-    def checkTimeout():
+    def checkTimeout(self):
         """
         timeout test
         """
-        t = time.time() - t1
+        t = time.time() - self.tStart
         timeout = self.params.getParams("time")
         if t >= timeout:
             self.endGame("timeout")
@@ -143,14 +153,16 @@ class Game:
                 tiduZone += 1
             elif zone.team == "tizef":
                 tizefZone += 1
+
         tiduAlive = 0
         tizefAlive = 0
-        for tidu in self.teams["tidu"]:
-            if tidu.status is not "kill":
-                tiduAlive += 1
-        for tizef in self.teams["tizef"]:
-            if tizef.status is not "kill":
-                tizefAlive += 1
+        for id,player in self.players.items():
+            if player.status is not "kill":
+                if id < 0:
+                    tiduAlive += 1
+                if id > 0:
+                    tizefAlive += 1
+
         if tiduAlive == 0 and tiduZone == 0:
             self.endGame("tizefWin")
             return False
@@ -158,6 +170,7 @@ class Game:
             self.endGame("tiduWin")
             return False
 
+    def e():
             """
             zones test
             """

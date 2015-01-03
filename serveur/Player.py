@@ -87,7 +87,7 @@ class Player (TTWsHandler):
         if "username" in data and "team" in data:          #set username
             if not self.username:
                 if not Game().checkUsername(data['username'],data['team']):
-                    error(usernameAlreadyUse)
+                    self.error(usernameAlreadyUse)
                     return
 
                 self.username = data["username"]
