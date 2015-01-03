@@ -7,7 +7,6 @@ class Game:
     """
     The main game Class, it's a singleton class
     """
-
     __shared_state = {}#for singleton
     __register = False
     def __init__(self):
@@ -33,7 +32,6 @@ class Game:
 
 
     def send2All(self,msg):
-        print(type(self.players))
         for _,player in self.players.items():
             player.send(msg)
 
@@ -58,7 +56,6 @@ class Game:
             print(self.lowerID)
         else:
             raise Exception("Team {} don't exist !".format(player.team))
-        print(ID)
         return ID
 
     def removePlayer(self,ID):

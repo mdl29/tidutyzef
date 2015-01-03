@@ -27,7 +27,10 @@ class TTWsHandler(websocket.WebSocketHandler):
         self.send({"object":"error","errorCode":error[0],"desc":error[1]})
 
     def send(self,msg):
-        self.write_message(msg)
+        try:
+            self.write_message(msg)
+        except websocket.WebSocketClosedError:
+            self.close()
         d(self.debug,"send :",msg,"to : ",self.request.host,"on",self.request.path)
 
     def open(self):
