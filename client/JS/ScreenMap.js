@@ -97,7 +97,7 @@ function ScreenMap(){
 			if(!this.markers.hasOwnProperty(team)){
 				this.markers[team]={};
 			}
-			if(!this.markers.hasOwnProperty(user)){
+			if(!this.markers[team].hasOwnProperty(user)){
 				this.markers[team][user] = L.marker(pos,{icon: this.icons[status][team]}).addTo(this.map).bindPopup(user +" de la team " + team);
 			}
 			else{	
