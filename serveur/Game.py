@@ -1,7 +1,7 @@
 import Params
 import time
 import threading
-from utils import *
+import utils
 from Battle import *
 
 class Game:
@@ -119,7 +119,8 @@ class Game:
         object = {"object":"startGame"}
         out = dict( list( object.items() ) + list( params.items() ) )
         self.send2All(out)
-
+        for _,player in self.players.items():
+            player.status="playing"
         self.threadUpdate = threading.Thread(target=self.update())
         self.threadUpdate.daemon = True
         self.threadUpdate.start()
@@ -187,19 +188,24 @@ class Game:
         if player.status != "playing":
             return
         if player.team == "tizef":
-            team = "tizef"
-        elif player.team == "tidu":
-            team = "tidu"
-        for index2,value2 in enumerate(self.teams[team]):
-            if value2.status != "playing":
-                continue
-            d(self.debug,"test battle :", player.username, "of the team tidu",
-                    "and",value2.username, "of the team tizef")
-            if utils.distance(player.pos,value2.pos) <= self.params.getParams("radius"):
-                d(self.debug,"beginning of a battle between :",
-                    player.username, "of the team tidu",
-                    "and",value2.username, "of the team tizef")
+            aTeam = "tizef"
+            team = [ player for id,player in self.players.items() if id < 0 ]
 
-                tmpBattle = Battle(value2,player)
-                player.startBattle(value2,tmpBattle)
-                value2.startBattle(player,tmpBattle)
+        elif player.team == "tidu":
+            aTeam = "tidu"
+            team = [ player for id,player in self.players.items() if id > 0 ]
+        else:
+            print(player)
+        for player2 in team:
+            if player2.status != "playing":
+                continue
+            d(True,"test battle :", player.username, "of the team tidu",
+                    "and",player2.username, "of the team tizef")
+            if utils.distance(player.pos,player2.pos) <= self.params.getParams("radius"):
+                d(True,"beginning of a battle between :",
+                    player.username, "of the team tidu",
+                    "and",player2.username, "of the team tizef")
+
+                tmpBattle = Battle(player2,player)
+                player.startBattle(player2,tmpBattle)
+                player2.startBattle(player,tmpBattle)
