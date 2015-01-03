@@ -150,8 +150,7 @@ class Game:
                 tiduAlive += 1
         for tizef in self.teams["tizef"]:
             if tizef.status is not "kill":
-                tize        d(ID)
-fAlive += 1
+                tizefAlive += 1
         if tiduAlive == 0 and tiduZone == 0:
             self.endGame("tizefWin")
             return False
