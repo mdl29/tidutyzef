@@ -2,6 +2,7 @@ import Params
 import time
 import threading
 import utils
+from zone import *
 from Battle import *
 
 class Game:
