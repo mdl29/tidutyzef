@@ -17,6 +17,6 @@ def distance(origin, destination):
 debug = False
 
 def d(debug,*args):
-    if debug == True and isinstance(debug,bool):
+    if debug is True or debug is False:
         print(*args)
 

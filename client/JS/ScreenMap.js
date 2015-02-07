@@ -79,17 +79,15 @@ function ScreenMap(){
 				'lng':lon
 			};
             
-            /*this.logCount++;
-            if(this.logCount>8){ this.logCount=0; qs("#notif").innerHTML=""; }
-            qs("#notif").innerHTML+="Position : "+lat+" , "+lon+"<br>";
-            */
+            this.notif("Position updated ("+lat+", "+lon+")");
+			
 			client.send(data);
 			
 			if(!this.myMarker){
-				this.myMarker = L.marker([lat,lon],{icon: this.lambdaPlayer}).addTo(this.map);
+				this.myMarker = L.marker([lat,lon],{icon: this.kill}).addTo(this.map);
 			}
 			else{
-				this.myMarker.setIcon(this.lambdaPlayer).setLatLng([lat,lon]);
+				this.myMarker.setIcon(this.kill).setLatLng([lat,lon]);
 			}
 			
 		};
@@ -99,11 +97,11 @@ function ScreenMap(){
 			if(!this.markers.hasOwnProperty(team)){
 				this.markers[team]={};
 			}
-			if(!this.markers.hasOwnProperty(user)){
+			if(!this.markers[team].hasOwnProperty(user)){
 				this.markers[team][user] = L.marker(pos,{icon: this.icons[status][team]}).addTo(this.map).bindPopup(user +" de la team " + team);
 			}
 			else{	
-				this.markers[team][user].setIcon( this.icons[status][team]).setLatLng(pos);
+				this.markers[team][user].setLatLng(pos);
 			}
 			
 		};
@@ -126,6 +124,9 @@ function ScreenMap(){
 				sec--;
 				qs('#time').innerHTML=min+":"+sec;
 				},1000);
+			if(min==0&&sec==0){
+				this.winner('nul');
+			}
 		};
 		
         this.setRadius = function(rad){
@@ -192,7 +193,10 @@ function ScreenMap(){
 					alert("Veuiller vous deconnecter");	
 				}
 			}
+			if(team=='nul'){
+				alert('fin du timer');
+			}
 		};
 }
 ScreenMap.prototype = new Screen;
-alert('A jour 1');
+

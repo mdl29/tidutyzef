@@ -4,7 +4,7 @@ function wsLib(){
         this.onopen=onOpen;
         this.onmessage=onMessage;
         this.onclose=onClose;
-		this.ws = new WebSocket(serveur, "protocolOne");
+		this.ws = new WebSocket(serveur);
         
 		this.ws.onopen = function(e){
 			console.log("WebSocket opened, event :");

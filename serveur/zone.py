@@ -3,13 +3,12 @@ import time
 
 class Zone (threading.Thread):
     id = 0
-    def __init__(self,pos,team,radius,parent) :
+    def __init__(self,pos,team,radius):
         threading.Thread.__init__(self)
         self.daemon = True
 
         self._time = time.time()
         self.pos = pos
-        self.parent = parent
         self.team = team
         self.isStarted = False
         self.ennemyInRadius = {"tidu":[], "tizef":[]}
@@ -84,7 +83,7 @@ class Zone (threading.Thread):
                     else:
                         self.time2Kill [team]= min(self.time2Kill [team]+ elapsedTime ,self.maxTime2Kill)
                 else:
-                    self.__init__(self.pos,team,self.radius,self.parent)
+                    self.__init__(self.pos,team,self.radius)
 
                 if team == self.team:
                     continue

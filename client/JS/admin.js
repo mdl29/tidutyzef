@@ -30,14 +30,8 @@ function Admin (){
 		this.send({"object":"startGame"});
 	};
 	this.open=function (){
-		var data ={
-						"object": "login",
-						"username": "admin",
-						"team": "admin"
-						},
-                _that_ = this;
 		console.log(qs('#ip').value);
-		this.openConnection(qs('#ip').value, function(){ _that_.send(data); });
+		this.openConnection(qs('#ip').value, function(){ console.log("Admin connected"); } );
 	};
 	this.sendParams=function(){
 		var data={

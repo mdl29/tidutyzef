@@ -69,9 +69,9 @@
     this.onError = function(e){
 		if(e.errorCode==2){
 			switch_screen.show( screen_connection );
-			alert(e.desc);
+		    this.onClose();
 		}
-		this.onClose();
+		alert(e.desc);
     };
     
     this.onClose = function(){
