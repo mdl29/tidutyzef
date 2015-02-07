@@ -2,6 +2,8 @@
 #-*- coding:utf-8 -*-
 
 from tornado import websocket, web, ioloop
+import tornado.options
+tornado.options.parse_command_line()
 from Player import *
 from Admin import *
 from Game import *

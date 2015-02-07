@@ -75,7 +75,8 @@ class Game:
             self.admin = admin
 
     def unsetAdmin(self):
-        del self.admin
+        if self.admin:
+            del self.admin
 
     def getPlayerByID(self,id):
         if id in self.players:
@@ -114,11 +115,11 @@ class Game:
     def startGame(self):
         if self.gameStarted:
             return
-        
+
         # updating players status
         for _,player in self.players.items():
             player.setStatus("playing")
-		
+
         self.gameStarted = True
         params = self.getParams("all")
         object = {"object":"startGame"}
@@ -174,7 +175,7 @@ class Game:
             self.endGame("tiduWin")
             return False
 
-    def e():
+    def checkZones():
             """
             zones test
             """
