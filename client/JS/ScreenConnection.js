@@ -11,7 +11,7 @@ function ScreenConnection(){
 
 				player.user = user;
 				player.team = team;
-				
+				player.status = "playing";
 				
 				var data ={
 							"object": "login",
@@ -21,7 +21,6 @@ function ScreenConnection(){
 				client.send(data);
 				
 				screen_map.getLocation();
-				player.name=user;
 				switch_screen.show( screen_wait );
 				
 			}

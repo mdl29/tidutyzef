@@ -30,6 +30,7 @@
 				}
 				break;
 			case "updatePos":
+                if(player.user==rep.from){ player.status = rep.status; }
 				screen_map.moveMarkers(rep.pos,rep.from,rep.team,rep.status);
 				break;
 			case "startBattle":

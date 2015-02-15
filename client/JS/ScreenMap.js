@@ -84,10 +84,10 @@ function ScreenMap(){
 			client.send(data);
 			
 			if(!this.myMarker){
-				this.myMarker = L.marker([lat,lon],{icon:  this.icons[status][team]} ).addTo(this.map);
+				this.myMarker = L.marker([lat,lon],{icon:  this.icons[player.status][player.team]} ).addTo(this.map);
 			}
 			else{
-				this.myMarker.setIcon( this.icons[status][team] ).setLatLng([lat,lon]);
+				this.myMarker.setIcon( this.icons[player.status][player.team] ).setLatLng([lat,lon]);
 			}
 			
 		};
