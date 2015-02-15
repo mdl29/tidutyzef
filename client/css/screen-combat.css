@@ -5,35 +5,39 @@ p, h4
 
 #pour-centrage
 {
-	width: 100%;
+position : relative;
+	width: 165px;
+	height: 165px;
+	left:-82.5px;
+	margin-left:50%;
 }
 
 #pierre
 {
-	width: auto;
-	height: 25%;
-	position: relative;
-	left:50%;
-	margin-left:-12%;
-	top: 10%;
+	width: 80px;
+	height: 80px;
+	position : relative;
+	left:0px;
+	top:0px;
+
 }
 
 #papier
 {
-	width: auto;
-	height: 25%;
-	position: relative;
-	left:50%;
-	margin-left:-12%;
-	top: 40%;
+	width: 80px;
+	height: 80px;
+	position : relative;
+	left:0px;
+	top:0px;
+
 }
 
 #ciseaux
 {
-	width: auto;
-	height: 25%;
-	position: relative;
-	left:50%;
-	margin-left:-12%;
-	top: 70%;
+	width: 80px;
+	height: 80px;
+	position : relative;
+	left:40px;
+	top:5px;
+
 }

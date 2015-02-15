@@ -102,15 +102,14 @@
 	</section>
 	
 	<section id='screen_combat'>
-		<p>Combat contre <span id='pseudo'>qqn</span> en cours</p>
+		<p>Combat contre <span id='pseudo'>un adversaire</span> en cours</p>
 		<h4>Faites votre choix:</h4>
-		
-		<div id='pour-centrage' width='100%'>
-		<img src='img/pierre.png' onclick="screen_combat.choice('pierre')" id='pierre'>
-		<img src='img/feuille.png' onclick="screen_combat.choice('papier')" id='papier'>
-		<img src='img/sciseaux.png' onclick="screen_combat.choice('ciseaux')" id='ciseaux'>
-		
+		<div id='pour-centrage'>
+					<button onclick="screen_combat.choice('pierre')" id='pierre'><img src='img/pierre.png' height='64px' width='64px'></button>
+					<button onclick="screen_combat.choice('papier')" id='papier'><img src='img/feuille.png' height='64px' width='64px'></button>
+					<button onclick="screen_combat.choice('ciseaux')" id='ciseaux'><img src='img/ciseaux.png' height='64px' width='64px'></button>
 		</div>
+
 		<h1 id ="result"></h1>
 	</section>
 </body>
