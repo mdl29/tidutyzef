@@ -97,12 +97,13 @@
 		<div id='map' class='map'></div>
 		<div id='notif' width='100%'></div>
 		<img id='gps' src="img/gps.svg" onclick="screen_map.gpsCenter()">
+		<img id='cadre' src='img/cadre_timer.png'>
 		<div id='time' style="width" ></div>
 		<div id="winner"></div>
 	</section>
 	
 	<section id='screen_combat'>
-		<p>Combat contre <span id='pseudo'>un adversaire</span> en cours</p>
+		<p>Combat contre <u><span id='pseudo'>quelqu'un</span></u> en cours</p>
 		<h4>Faites votre choix:</h4>
 		<div id='pour-centrage'>
 					<button onclick="screen_combat.choice('pierre')" id='pierre'><img src='img/pierre.png' height='64px' width='64px'></button>

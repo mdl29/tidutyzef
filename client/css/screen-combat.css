@@ -16,7 +16,7 @@ position : relative;
 {
 	width: 80px;
 	height: 80px;
-	position : relative;
+	position : absolute;
 	left:0px;
 	top:0px;
 
@@ -26,8 +26,8 @@ position : relative;
 {
 	width: 80px;
 	height: 80px;
-	position : relative;
-	left:0px;
+	position : absolute;
+	left:85px;
 	top:0px;
 
 }
@@ -36,8 +36,8 @@ position : relative;
 {
 	width: 80px;
 	height: 80px;
-	position : relative;
+	position : absolute;
 	left:40px;
-	top:5px;
+	top:85px;
 
 }
