@@ -193,12 +193,13 @@ class Game:
         if player.status != "playing":
             return
         if player.team == "tizef":
-            aTeam = "tizef"
-            team = [ player for id,player in self.players.items() if id < 0 ]
-
-        elif player.team == "tidu":
             aTeam = "tidu"
             team = [ player for id,player in self.players.items() if id > 0 ]
+
+        elif player.team == "tidu":
+            aTeam = "tizef"
+            team = [ player for id,player in self.players.items() if id < 0 ]
+            
         else:
             print(player)
         for player2 in team:
