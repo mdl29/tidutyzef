@@ -58,7 +58,7 @@ function ScreenMap(){
 			};
 			
 		this.getLocation =function (){ 
-			if(navigator.geolocation && 'noGPSUpdate' in window && !window.noGPSUpdate){
+			if(navigator.geolocation){
 				navigator.geolocation.watchPosition(that.showPosition);
 			}
 		};
