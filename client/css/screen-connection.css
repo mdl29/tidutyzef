@@ -1,84 +1,77 @@
-#screen_connection
-{
-	background:#d2d2d2;
+@media all{
+	#screen_connection {
+		background:#d2d2d2;
+	}
+
+	#formulaire {
+		width:280px;
+		position:relative;
+		left:50%;
+		margin-left:-140px;
+		}
+
+	#username {
+		position:relative;
+		left:50%;
+		margin-left:-92.5px;
+		}
+
+	#formulaire_team {
+		position:relative;
+		}
+
+	#formulaire_tidu {
+		position:relative;
+		margin-left:-5px;
+		}
+
+	#formulaire_tizef {
+		position:relative;
+		margin-left:55px;
+		}
+
+	#formulaire_connexion {
+		position:relative;
+		left:50%;
+		margin-left:-45px;
+		}
+
+	#formulaire_others {
+		width:205px;
+		position:relative;
+		left:50%;
+		margin-left:-102.5px;
+		}
+		
+	#formulaire_modIP {
+		position:relative;
+		}
+
+	#link_form_regle {
+		text-decoration : none;
+		}
+
+	#formulaire_regle {
+		position:relative;
+		}
+
+	#modifIP {
+		position:relative;
+		left : 10px;
+		}
+
+	#separator {
+		margin-left: 10%;
+		margin-right: 10%;
+		box-shadow: 0px 1px 1px #808080 inset, 0px 2px 2px 0px #FFF inset;
+		border-radius: 10px;
+		border: medium none;
+		height: 4px;
+		}
+
+	#centrage_screen_co{
+		margin-top: 5px;
+		}
+
 }
 
-#formulaire
-{
-	width:280px;
-	position:relative;
-	left:50%;
-	margin-left:-140px;
-}
-
-#username
-{
-	position:relative;
-	left:50%;
-	margin-left:-92.5px;
-}
-
-#formulaire_team
-{
-	position:relative;
-}
-
-#formulaire_tidu
-{
-	position:relative;
-	margin-left:-5px;
-}
-
-#formulaire_tizef
-{
-	position:relative;
-	margin-left:55px;
-}
-
-#formulaire_connexion
-{
-	position:relative;
-	left:50%;
-	margin-left:-45px;
-}
-
-#formulaire_others
-{
-	width:205px;
-	position:relative;
-	left:50%;
-	margin-left:-102.5px;
-}
-#formulaire_modIP
-{
-	position:relative;
-}
-
-#link_form_regle
-{
-	text-decoration : none;
-}
-
-#formulaire_regle
-{
-	position:relative;
-}
-
-#modifIP
-{
-	position:relative;
-	left : 10px;
-}
-
-#separator {
-    margin-left: 10%;
-    margin-right: 10%;
-    box-shadow: 0px 1px 1px #808080 inset, 0px 2px 2px 0px #FFF inset;
-    border-radius: 10px;
-    border: medium none;
-    height: 4px;
-}
-
-#centrage_screen_co{
-	margin-top: 5px;
-}

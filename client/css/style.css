@@ -1,48 +1,58 @@
-body, html, section
-{
-	width: 100%;
-	height: 100%;
-	margin-left: 0px;
-	margin-top: 0px;
-	background: #d2d2d2;
+@media all {
+	body, html, section {
+		width: 100%;
+		height: 100%;
+		margin-left: 0px;
+		margin-top: 0px;
+		background: #d2d2d2;
+		}
+
+	.title {
+		width:128px;
+		height:96px;
+		position:relative;
+		left:50%;
+		margin-left:-64px
+		}
+
+	.one {
+		color:#0000ff;
+		position:relative;
+		left:44px;
+		top:20px;
+		}
+
+	.two {
+		color:#000000;
+		position:relative;
+		left:54px;
+		top:20px;
+		}
+
+	.three {
+		color:#ff0000;
+		position:relative;
+		left:40px;
+		top:20px;
+		}
+
+	.logo {
+		position:relative;
+		left:50%;
+		margin-left:-64px;
+		}
 }
 
-.title
-{
-	width:128px;
-	height:96px;
-	position:relative;
-	left:50%;
-	margin-left:-64px
+@media all and (max-width : 720px){
+	section {
+		width: 720px;
+		height:1280px;
+	}
 }
 
-.one
-{
-	color:#0000ff;
-	position:relative;
-	left:44px;
-	top:20px;
-}
-
-.two
-{
-	color:#000000;
-	position:relative;
-	left:54px;
-	top:20px;
-}
-
-.three
-{
-	color:#ff0000;
-	position:relative;
-	left:40px;
-	top:20px;
-}
-
-.logo
-{
-	position:relative;
-	left:50%;
-	margin-left:-64px;
+@media all and (max-width : 480px){
+	section {
+		width: 480px;
+		height:800px;
+	}
 }
