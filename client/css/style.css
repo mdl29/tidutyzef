@@ -1,4 +1,3 @@
-@media all {
 	body, html, section {
 		width: 100%;
 		height: 100%;
@@ -41,18 +40,3 @@
 		left:50%;
 		margin-left:-64px;
 		}
-}
-
-@media all and (max-width : 720px){
-	section {
-		width: 720px;
-		height:1280px;
-	}
-}
-
-@media all and (max-width : 480px){
-	section {
-		width: 480px;
-		height:800px;
-	}
-}
