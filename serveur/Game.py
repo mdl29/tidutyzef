@@ -27,7 +27,7 @@ class Game:
         self.admin = None
         self.params = Params.Params()
         self.gameStarted = False
-
+        self.positionUpdatedCond = threading.Condition()
 
 
     def endGame(self,cause):
@@ -85,13 +85,31 @@ class Game:
         else:
             raise Exception("Player's ID {} don't exist".format(id))
 
-    def checkZones(self):
-        for zone in self.zones:
-            zone.update()
+    #def checkZones(self):
+    #    for zone in self.zones:
+    #        zone.update()
+
+    def playerPositionUpdated(self):
+        """
+            Notify Game thread that a position has been updated.
+        """
+        d(True, "Position updated")
+        self.positionUpdatedCond.acquire()
+        self.positionUpdatedCond.notify()
+        self.positionUpdatedCond.release()
 
     def update(self):
         self.tStart = time.time()
+         
         while self.gameStarted:
+            d(True, "while game started")
+            
+            #-- wait for position update
+            self.positionUpdatedCond.acquire()
+            self.positionUpdatedCond.wait()
+            self.positionUpdatedCond.release()
+            
+            
             if len(self.players) < 2:
                 self.endGame("noEnoughPlayer")
                 break
@@ -126,7 +144,7 @@ class Game:
         object = {"object":"startGame"}
         out = dict( list( object.items() ) + list( params.items() ) )
         self.send2All(out)
-        self.threadUpdate = threading.Thread(target=self.update())
+        self.threadUpdate = threading.Thread(target=self.update)
         self.threadUpdate.daemon = True
         self.threadUpdate.start()
 
@@ -176,42 +194,58 @@ class Game:
             self.endGame("tiduWin")
             return False
 
-    def checkZones():
+    def checkZones(self):
             """
             zones test
             """
+            pass
+     #       for index,client in enumerate(self.client):
+     #           if client.status is not "playing" or client.status is not "kill":
+     #               continue
+     #           for index,zone in enumerate(self.params.getParams(zones)):
+     #               if utils.distance(zone.team,client.team) <= self.params.getParams("radius"):
+     #                   zone.addPlayerInRadius(client)
 
-            for index,client in enumerate(self.client):
-                if client.status is not "playing" or client.status is not "kill":
-                    continue
-                for index,zone in enumerate(self.params.getParams(zones)):
-                    if utils.distance(zone.team,client.team) <= self.params.getParams("radius"):
-                        zone.addPlayerInRadius(client)
-
+    def getPlayersInTeam(self, teamName):
+        """
+        Return all players in a specified team
+        """
+        out = [];
+        for k,player in self.players.items():
+            if player.team == teamName:
+                out.append(player)
+        return out
 
     def checkBattle(self,player):
+        d(True, "P1: ", player.status, " P2: ", player.status)
         if player.status != "playing":
             return
+        
         if player.team == "tizef":
             aTeam = "tidu"
-            team = [ player for id,player in self.players.items() if id > 0 ]
+            team = self.getPlayersInTeam("tidu")
 
         elif player.team == "tidu":
             aTeam = "tizef"
-            team = [ player for id,player in self.players.items() if id < 0 ]
+            team = self.getPlayersInTeam("tizef")
             
         else:
             print(player)
         for player2 in team:
+            d(True, "player.name: ", player2.username, " player.status: ", player2.status)
             if player2.status != "playing":
                 continue
-            d(True,"test battle :", player.username, "of the team tidu",
-                    "and",player2.username, "of the team tizef")
+            d(True,"test battle :", player.username, "of the team ", player.team,
+                    "and",player2.username, "of the team ", player2.team)
+            d(True, "Positions : P1:", player.pos, " P2:", player2.pos)
+            d(True, "Distance : ", utils.distance(player.pos,player2.pos), " -- Radius:", self.params.getParams("radius"))
             if utils.distance(player.pos,player2.pos) <= self.params.getParams("radius"):
                 d(True,"beginning of a battle between :",
-                    player.username, "of the team tidu",
-                    "and",player2.username, "of the team tizef")
+                    player.username, "of the team ", player.team,
+                    "and",player2.username, "of the team ", player2.team)
 
+                d(True, "P1: ", player.status, " P2: ", player2.status)
+                
                 tmpBattle = Battle(player2,player)
                 player.startBattle(player2,tmpBattle)
                 player2.startBattle(player,tmpBattle)
