@@ -11,7 +11,7 @@
     width: 50px;
     height: 25px;
     position: absolute;
-    z-index: 2;
+    z-index: 3;
     top:8px;
     right:6px;
     border-radius:5px;
@@ -74,4 +74,27 @@
   width: 100%;
   height: 0px;
   background-color: yellow;
+  
+  -moz-transition: height 0.5s ease-in;
+}
+
+.barre_onglet{
+    animation-name: animation_barre-hide;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+
+    animation-play-state: play;
+}
+
+@keyframes animation_barre-show {
+  from { transform:translateY(0px);}
+  to   { transform: translateY(-75px);}
+}
+
+@keyframes animation_barre-hide {
+  from { transform:translateY(-75px);}
+  to   { transform: translateY(0px);}
 }

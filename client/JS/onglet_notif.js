@@ -1,15 +1,18 @@
 var show = 0;
 
 function notifShow(){
+  $('.barre_onglet').css('animation-timing-function','ease-out');
+  $('.barre_onglet').css('animation-name','animation_barre-show');
+  $('#zone-notif').css('transition-timing-function','ease-out');
   $('#zone-notif').css('height','75px');
-  $('#label').css('bottom','78px');
-  $('.barre_onglet').css('bottom','75px');
+  
 }
 
 function notifHide(){
+  $('.barre_onglet').css('animation-timing-function','ease-in');
+  $('.barre_onglet').css('animation-name','animation_barre-hide');
+  $('#zone-notif').css('transition-timing-function','ease-in');
   $('#zone-notif').css('height','0px');
-  $('#label').css('bottom','3px');
-  $('.barre_onglet').css('bottom','0px');
 }
 
 function check(){
@@ -22,3 +25,4 @@ function check(){
     notifHide();
   }
 }
+
