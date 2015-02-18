@@ -1,30 +1,43 @@
 function ScreenCombat(){
 		this.section = qs("#screen_combat");
 
+		var selection = false;
+		var enemy;
+
 		this.battle=function(against){
-			qs('#pseudo').innerHTML=against;
+			enemy=against;
+			selection=false;
+			qs('#pseudo').innerHTML=enemy;
 		}
 
 		this.choice =function(choice){
-			var data ={"object":"choice",
-						'choice':choice
-			};
-			client.send(data);
+			if(selection == false){
+				var data ={"object":"choice",
+							'choice':choice
+				};
+				client.send(data);
+				console.log(data);
+				$("#pour-centrage").hide();
+				qs('#choice').innerHTML="Vous avez choisi "+choice;
+				selection=true;
+			}
 		}
 
 		this.showResult = function(win){
-			$("#pour-centrage").hide();
 			console.log(player.name);
             if(win=="any"){
                 alert("pas de gagnant, veuillez rejouer");
+                switch_screen.show( screen_combat);
+                this.battle(enemy);
+                $("#pour-centrage").show();
             }
-			if(win==player.name){
+			else if(win==player.name){
 				qs('#result').innerHTML="Vous avez gagné";
-				setTimeout(function(){switch_screen.show(screen_map)},1);
+				setTimeout(function(){switch_screen.show(screen_map)},9000);
 			}
 			else{
 				qs('#result').innerHTML="Vous avez perdu";
-				setTimeout(function(){switch_screen.show(screen_map)},1);
+				setTimeout(function(){switch_screen.show(screen_map)},9000);
 			}
 		}
 }
