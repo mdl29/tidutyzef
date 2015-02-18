@@ -17,6 +17,7 @@
     <script src='./JS/ScreenConnection.js' type="text/javascript"></script>
     <script src='./JS/Client.js' type="text/javascript"></script>
     <script src='./JS/clientJoueur.js' type="text/javascript"></script>
+    <script src='./JS/onglet_notif.js' type="text/javascript"></script>
 
     <!--Leaflet-->
 	<link rel="stylesheet" href="./lib/leaflet/leaflet.css" />
@@ -90,13 +91,12 @@
 	
 	<section id='screen_map'>
 		
-		<!--Hide/Show notif system-->
-		<input type='radio' id='show' name='HiSh_group'>
-		<input type='radio' id='hide' name='HiSh_group' checked>
-		<label id='label-hide' for="hide" class="hide"></label>
-		<label id='label-show' for="show" class="show"></label>
+		<div id="zone-notif"></div>
+		<img src='img/onglet.png' id='onglet' class ='barre_onglet'/>
+		<img src='img/bras_onglet.png' id='bras_onglet' class='barre_onglet'/>
+		<label id='label' onclick='check()'>notif</label>
+		
 		<div id='map' class='map'></div>
-		<div id='notif' width='100%'></div>
 		<img id='gps' src="img/gps.svg" onclick="screen_map.gpsCenter()">
 		<img id='cadre' src='img/cadre_timer.png'>
 		<div id='time' style="width" ></div>
