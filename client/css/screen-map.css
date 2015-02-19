@@ -74,7 +74,9 @@
   width: 100%;
   height: 0px;
   background-color: rgba(0, 0, 0, 0.3);
-  overflow-y : scroll;
+  display: block;
+  overflow-y: auto;
+  overflow : -moz-scrollbars-vertical;
   
   transition: height 0.5s ease-in;
   -moz-transition: height 0.5s ease-in;
