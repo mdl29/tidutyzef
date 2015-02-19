@@ -2,6 +2,7 @@ function ScreenMap(){
 		this.section = qs("#screen_map");
 		this.myMarker;
 		var that = this;
+		var notif = [];
 		this.map;
 		
 		this.markers={};
@@ -49,6 +50,7 @@ function ScreenMap(){
 			}
 		this.showMap=function(center){
 				this.map = L.map('map').setView([0,0], 18);
+				this.notif("Vous êtes "+player.user);
 
 				// add an OpenStreetMap tile layer
 				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
@@ -79,7 +81,6 @@ function ScreenMap(){
 				'lng':lon
 			};
             
-            this.notif("Position updated ("+lat+", "+lon+")");
 			
 			client.send(data);
 			
@@ -109,6 +110,7 @@ function ScreenMap(){
 		this.gpsCenter =function(){
 			
 			this.map.setView(player.pos);
+			this.notif("Your position: "+lat+", "+lon);
 			
 		};
 		
@@ -157,7 +159,7 @@ function ScreenMap(){
 						L.circle(zone.pos,zone.radius).setStyle({'color':'blue'}).addTo(that.map);
 						break;
 					case 'neutre':
-					console.log('newNEutreZone');
+					console.log('newNeutreZone');
 						L.circle(zone.pos,zone.radius).setStyle({'color':'grey'}).addTo(that.map);
 						break
 					default :
@@ -167,7 +169,8 @@ function ScreenMap(){
 		};
 		
 		this.notif=function(cause){
-			qs('#notif').innerHTML=cause;
+			notif.push(cause);
+			qs('#zone-notif').innerHTML=notif.join("<br/>");
 		};
 		this.winner=function(team){
 			

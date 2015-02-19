@@ -24,14 +24,14 @@ function ScreenCombat(){
 		}
 
 		this.showResult = function(win){
-			console.log(player.name);
+			console.log(win);
             if(win=="any"){
                 alert("pas de gagnant, veuillez rejouer");
                 switch_screen.show( screen_combat);
                 this.battle(enemy);
                 $("#pour-centrage").show();
             }
-			else if(win==player.name){
+			else if(win==player.user){
 				qs('#result').innerHTML="Vous avez gagné";
 				setTimeout(function(){switch_screen.show(screen_map)},9000);
 			}
