@@ -10,32 +10,32 @@ function ScreenMap(){
 		this.tidu = L.icon({
 			iconUrl: 'img/marqueur_tidu.png',
 			iconSize: [34,64],
-			//iconAnchor:[25,0]
+			iconAnchor:[25,0]
 		});
 		this.lambdaPlayer = L.icon({
 			iconUrl: 'img/curseur.png',
 			iconSize: [34,64],
-			//iconAnchor:[25,0]
+			iconAnchor:[25,0]
 		});
 		this.tizef = L.icon({
 			iconUrl: 'img/marqueur_tizef.png',
 			iconSize: [34,64],
-			//iconAnchor:[25,0]
+			iconAnchor:[25,0]
 		});
 		this.tizefMort = L.icon({
 			iconUrl: 'img/marqueur_tizef_mort.png',
 			iconSize: [34,64],
-			//iconAnchor:[25,0]
+			iconAnchor:[25,0]
 		});
 		this.tiduMort = L.icon({
-			iconUrl: 'img/marqueur_tidu_mort.png',
+			iconUrl: 'img/marqueur_tizef_mort.png',
 			iconSize: [34,64],
-			//iconAnchor:[25,0]
+			iconAnchor:[25,0]
 		});
 		this.marker = L.icon({
 			iconUrl:'img/marqueur_mort.png',
 			iconSize:[34,64],
-			//inconAnchor:[25,0]
+			inconAnchor:[25,0]
 		});
 		
 		this.icons={'playing':{"tidu":this.tidu,"tizef":this.tizef},
@@ -51,6 +51,11 @@ function ScreenMap(){
 		this.showMap=function(center){
 				this.map = L.map('map').setView([0,0], 18);
 				this.notif("Vous êtes "+player.user);
+				this.notif("ceci est un test");
+				this.notif("ceci est un autre test");
+				this.notif("sinon, vous, ça va? la famille, les amis les voisins,... ?");
+				this.notif("ceci est encore un test");
+				this.notif("ceci est un dernier test");
 
 				// add an OpenStreetMap tile layer
 				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {

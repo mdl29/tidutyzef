@@ -10,32 +10,32 @@ function ScreenMap(){
 		this.tidu = L.icon({
 			iconUrl: 'img/marqueur_tidu.png',
 			iconSize: [34,64],
-			//iconAnchor:[25,0]
+			iconAnchor:[25,0]
 		});
 		this.lambdaPlayer = L.icon({
 			iconUrl: 'img/curseur.png',
 			iconSize: [34,64],
-			//iconAnchor:[25,0]
+			iconAnchor:[25,0]
 		});
 		this.tizef = L.icon({
 			iconUrl: 'img/marqueur_tizef.png',
 			iconSize: [34,64],
-			//iconAnchor:[25,0]
+			iconAnchor:[25,0]
 		});
 		this.tizefMort = L.icon({
 			iconUrl: 'img/marqueur_tizef_mort.png',
 			iconSize: [34,64],
-			//iconAnchor:[25,0]
+			iconAnchor:[25,0]
 		});
 		this.tiduMort = L.icon({
-			iconUrl: 'img/marqueur_tidu_mort.png',
+			iconUrl: 'img/marqueur_tizef_mort.png',
 			iconSize: [34,64],
-			//iconAnchor:[25,0]
+			iconAnchor:[25,0]
 		});
 		this.marker = L.icon({
 			iconUrl:'img/marqueur_mort.png',
 			iconSize:[34,64],
-			//inconAnchor:[25,0]
+			inconAnchor:[25,0]
 		});
 		
 		this.icons={'playing':{"tidu":this.tidu,"tizef":this.tizef},
@@ -169,7 +169,7 @@ function ScreenMap(){
 		};
 		
 		this.notif=function(cause){
-			notif. unshift(cause);
+			notif.push(cause);
 			qs('#zone-notif').innerHTML=notif.join("<br/>");
 		};
 		this.winner=function(team){
