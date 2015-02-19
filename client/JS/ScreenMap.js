@@ -51,6 +51,11 @@ function ScreenMap(){
 		this.showMap=function(center){
 				this.map = L.map('map').setView([0,0], 18);
 				this.notif("Vous êtes "+player.user);
+				this.notif("ceci est un test");
+				this.notif("ceci est un autre test");
+				this.notif("sinon, vous, ça va? la famille, les amis les voisins,... ?");
+				this.notif("ceci est encore un test");
+				this.notif("ceci est un dernier test");
 
 				// add an OpenStreetMap tile layer
 				L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
