@@ -34,10 +34,12 @@ function ScreenCombat(){
 			else if(win==player.user){
 				qs('#result').innerHTML="Vous avez gagné";
 				setTimeout(function(){switch_screen.show(screen_map)},9000);
+				screen_map.notif(win+" a gagné contre "+enemy);
 			}
 			else{
 				qs('#result').innerHTML="Vous avez perdu";
 				setTimeout(function(){switch_screen.show(screen_map)},9000);
+				screen_map.notif(enemy+" a perdu contre "+win);
 			}
 		}
 }
