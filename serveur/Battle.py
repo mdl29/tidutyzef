@@ -13,24 +13,29 @@ class Battle:
                 self.choice[0] = data["choice"]
             elif client is self.clients[1]:
                 self.choice[1] = data["choice"]
+
             if self.choice[0] and self.choice[1]:
                 sortie = self.analyse(self.choice[0], self.choice[1])
                 if sortie == 1:
                     winner = self.clients[0].username
-
+                    self.clients[1].setStatus("kill")
                 elif sortie == 2:
                     winner = self.clients[1].username
+                    self.clients[0].setStatus("kill")
                 else:
                     winner = None
+
                 if winner:
                     out = {"object":"battle","winner":winner}
                     self.clients[0].endBattle(out)
                     self.clients[1].endBattle(out)
                 else:
+                    # when there is any winner the battle continue
                     winner = "any"
                     out = {"object":"battle","winner":winner}
                     self.clients[0].send(out)
                     self.clients[1].send(out)
+                    self.choice = ["",""]
 
     def analyse(self,choix1, choix2):
         if "papier" in choix1:
