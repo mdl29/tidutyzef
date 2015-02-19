@@ -169,7 +169,7 @@ function ScreenMap(){
 		};
 		
 		this.notif=function(cause){
-			notif.push(cause);
+			notif. unshift(cause);
 			qs('#zone-notif').innerHTML=notif.join("<br/>");
 		};
 		this.winner=function(team){
