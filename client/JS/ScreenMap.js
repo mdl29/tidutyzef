@@ -198,6 +198,7 @@ function ScreenMap(){
 			}
 			if(team=='nul'){
 				alert('fin du timer');
+				this.notif('Fin du GAME <br> Timed out')
 			}
 		};
 }
