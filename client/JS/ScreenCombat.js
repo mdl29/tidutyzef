@@ -30,6 +30,7 @@ function ScreenCombat(){
                 switch_screen.show( screen_combat);
                 this.battle(enemy);
                 $("#pour-centrage").show();
+                qs('#choice').innerHTML="Veuillez reselectionner quelque chose";
             }
 			else if(win==player.user){
 				qs('#result').innerHTML="Vous avez gagné";
