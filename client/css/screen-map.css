@@ -74,8 +74,11 @@
   width: 100%;
   height: 0px;
   background-color: rgba(0, 0, 0, 0.3);
+  overflow-y : scroll;
   
+  transition: height 0.5s ease-in;
   -moz-transition: height 0.5s ease-in;
+  -webkit-transition: height 0.5s ease-in;
 }
 
 .barre_onglet{
@@ -90,11 +93,11 @@
 }
 
 @keyframes animation_barre-show {
-  from { transform:translateY(0px);}
-  to   { transform: translateY(-75px);}
+  from { transform:translateY(0px); -moz-transform:translateY(0px); -webkit-transform:translateY(0px);}
+  to   { transform: translateY(-75px); -moz-transform: translateY(-75px); -webkit-transform: translateY(-75px);}
 }
 
 @keyframes animation_barre-hide {
-  from { transform:translateY(-75px);}
-  to   { transform: translateY(0px);}
+  from { transform:translateY(-75px); -moz-transform: translateY(-75px); -webkit-transform: translateY(-75px);}
+  to   { transform: translateY(0px); -moz-transform:translateY(0px); -webkit-transform:translateY(0px);}
 }
