@@ -79,8 +79,7 @@ Pour transmettre sa position GPS, par exemple [48.40618, -4.46730], envoyer le m
 ```json
 {
     "object": "updatePos",
-    "lat": 48.40618,
-    "lng":  -4.46730,
+    "pos": (48.370652522533, -4.5949385672784),
     "status" : "playing"
 }
 ```
@@ -88,7 +87,7 @@ Pour transmettre sa position GPS, par exemple [48.40618, -4.46730], envoyer le m
 # Réception des positions des autres joueurs
 
 Serveur --> Client 
-Le serveur va également transmettre la position des autres joueurs, par exemple si titi de l'équipe tidu est à le position [48.40618, -4.46730] ([lat, longitude]), le serveur va vous envoyer le message suivant :
+Le serveur va également transmettre la position des autres joueurs, par exemple si titi de l'équipe tidu est à la position [48.40618, -4.46730] ([lat, longitude]), le serveur va vous envoyer le message suivant :
 
 ```json
 {
@@ -101,17 +100,18 @@ Le serveur va également transmettre la position des autres joueurs, par exemple
 #Envoi des données defini par l'administrateur
 
 Admin --> Serveur
-L'admin defini la localisation de la map ainsi que les zones sur cette map avec les positions latitudes et longitudes ainsi que le le rayon des zones en metres ensuite gerer par leaflet directement.
+L'admin défini la localisation de la map ainsi que les zones sur cette map avec les positions latitudes et longitudes ainsi que le rayon des zones en mètres ensuite geré par leaflet directement ainsi que le temps du timer.
 
 ```json
 {
     "object": "setParams",
-    "map": [48.40618, -4.46730],
-    "zone":[ { id=0, pos=[2], radius="20", type="tidu"}, { id=1, pos=[2], radius="10", type="tizef"}, { id=2, pos=[2], radius="10", type="neutre"}],
-    "time":[9,60]
+    "map": {"lat":48.408365900017856,"lng":-4.480619430541992},
+    "zone":[ { id=0, pos=[], radius="10", type="tidu"}, { id=1, pos=[], radius="10", type="tizef"}, { id=2, pos=[], radius="10", type="neutre"}],
+    "time":600
 }
 ```
-#Récupération des données defini par l'administrateur
+
+#Récupération des données defini par l'administrateur(non uttilisé)
 
 Serveur --> client  
 Les joueurs doivent pouvoir, normalement, récupérer les options que l'administrateur a envoyé.Pour cela, l'objet getParams est là. les paramètres à récupérer sont transmis dans un tableau par le champ params.
@@ -123,6 +123,19 @@ Les paramètres peuvent être map pour récupérer le centre de la carte, zones 
     "params": ["map","zones","rayon","timer"]
 }
 ```
+
+#Début de la partie
+
+Serveur --> client
+Les joueurs recuperent le signal de lancement de partie ansi que les différents paramétres.
+
+```json
+{
+    'object': 'startGame',
+    'map': [48.408365900017856, -4.480619430541992],
+    "zones": [{'team': 'tidu', 'id': 0, 'pos': [48.408807461106136, -4.480319023132324],'time2chgTeam': {'tizef': 10, 'tidu': 10}},{'team': 'tizef', 'id': 1, 'pos': [48.40333753077148, -4.492807388305664],'time2chgTeam': {'tizef': 10, 'tidu': 10}},{'team': 'neutre', 'id': 2, 'pos': [48.40949116103341, -4.479374885559082],'time2chgTeam': {'tizef': 10, 'tidu': 10}}, {'team': 'neutre', 'id': 3, 'pos': [48.40949116103341, -4.479374885559082], 'time2chgTeam': {'tizef': 10, 'tidu': 10}}], 'time': 60000, 'radius': 10
+} 
+
 #notification Start Régéneration.
 
 Serveur --> Client  
@@ -185,6 +198,29 @@ Client --> Serveur
 }
 ```
 
+#Fin d'une battle
+
+Serveur-->Client
+```json
+{
+    'object': 'battle',
+    'winner': 'tata'
+}
+```
+```json
+{
+    'object':"endBattle"
+}
+```
+
+#Fin du jeu
+
+Serveur-->Client
+
+{
+    'object': 'endGame',
+    'cause': ''
+}
 # Erreur 0
 
 Serveur --> Client
