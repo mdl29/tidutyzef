@@ -19,6 +19,7 @@
 				console.log(rep.zones);
                 screen_map.setRadius( ("radius" in rep) ? rep.radius : 10 );
 				screen_map.setZone(rep.zones);
+				window.navigator.vibrate(500);
 				console.log(rep.zones);
 				break;
 			case "usersConnected":
@@ -36,6 +37,7 @@
 			case "startBattle":
 				switch_screen.show( screen_combat);
 				screen_combat.battle(rep.against);
+				window.navigator.vibrate(1000);
 				break;
 			case "battle":
 				console.log('Result');
@@ -46,6 +48,7 @@
 				break
 			case "endGame":
 				switch(rep.cause){
+					window.navigator.vibrate([1000,500,1000,500,1000]);
 					case "tiduWin":
 						screen_map.winner("tidu");
 						break;
