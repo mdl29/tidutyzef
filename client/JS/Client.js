@@ -47,8 +47,8 @@
 				console.log('fin de la battle');
 				break
 			case "endGame":
+				window.navigator.vibrate([1000,500,1000,500,1000]);
 				switch(rep.cause){
-					window.navigator.vibrate([1000,500,1000,500,1000]);
 					case "tiduWin":
 						screen_map.winner("tidu");
 						break;
