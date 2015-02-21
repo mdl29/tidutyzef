@@ -134,7 +134,7 @@ class Game:
     def startGame(self):
         if self.gameStarted:
             return
-        self.timer = threading.Timer(self.params.getParams("time"), self.endGameWithTime)
+        self.timer = threading.Timer(30, self.endGameWithTime)
         # updating players status
         for _,player in self.players.items():
             player.setStatus("playing")
