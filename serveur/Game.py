@@ -187,10 +187,10 @@ class Game:
                 if id > 0:
                     tizefAlive += 1
 
-        if tiduAlive == 0 or tiduZone == 0:
+        if tiduAlive == 0 and tiduZone == 0:
             self.endGame("tizefWin")
             return False
-        if tizefAlive == 0 or tizefZone == 0:
+        if tizefAlive == 0 and tizefZone == 0:
             self.endGame("tiduWin")
             return False
 
