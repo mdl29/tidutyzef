@@ -40,7 +40,8 @@ function Admin (){
 			 "object": "setParams",
 			 "map": map.getCenter(),
 			 "zones":that.zonesTable,
-			 "time":this.time()
+			 "time":this.time()/*,
+			 "radius":qs("#radius").value*/
 		};
 		this.send(data);
 	}
