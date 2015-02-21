@@ -50,10 +50,10 @@
 				window.navigator.vibrate([1000,500,1000,500,1000]);
 				switch(rep.cause){
 					case "tiduWin":
-						screen_map.winner("tidu");
+						screen_map.winner("tizef");
 						break;
 					case "tizefWin":
-						screen_map.winner("tizef");
+						screen_map.winner("tidu");
 						break;
 					case "noEnoughPlayer":
 						alert("Il n'y a pas assez de joueurs \n veuillez résoudre le probleme ou contacter l'administrateur");
