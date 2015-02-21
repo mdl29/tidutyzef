@@ -137,6 +137,7 @@ class Game:
         if self.gameStarted:
             return
         self.timer = threading.Timer(30, self.endGameWithTime)
+        self.timer.start()
         # updating players status
         for _,player in self.players.items():
             player.setStatus("playing")
@@ -152,8 +153,8 @@ class Game:
         self.threadUpdate.start()
     
     def endGameWithTime(self):
-      self.endGame("temps écoulé")
-      d(True, "endGame executé")
+        d(True, "endGame executé")
+        self.endGame("temps écoulé")
 
     def checkUsername(self,username,team):
         for _,player in self.players.items():
