@@ -134,7 +134,7 @@ class Game:
     def startGame(self):
         if self.gameStarted:
             return
-
+	self.timer = threading.Timer(self.params.getParams("time"), endGameWithTime)
         # updating players status
         for _,player in self.players.items():
             player.setStatus("playing")
@@ -147,6 +147,9 @@ class Game:
         self.threadUpdate = threading.Thread(target=self.update)
         self.threadUpdate.daemon = True
         self.threadUpdate.start()
+    
+    def endGameWithTime(self):
+      endGame("temps écoulé")
 
     def checkUsername(self,username,team):
         for _,player in self.players.items():
@@ -187,6 +190,7 @@ class Game:
                 if id > 0:
                     tizefAlive += 1
 
+        d(True, "nb Tidu Vivant : ", tiduAlive, "nb Tizef Vivant : ", tizefAlive)
         if tiduAlive == 0 and tiduZone == 0:
             self.endGame("tizefWin")
             return False
