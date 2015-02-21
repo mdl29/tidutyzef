@@ -33,7 +33,9 @@ class Game:
     def endGame(self,cause):
         out = {"object":"endGame","cause":cause}
         self.send2All(out)
+        d(True, "OUT SEND TO ALL")
         self.gameStarted = False
+        d(True, "GAME STARTED FALSE")
 
 
     def send2All(self,msg):
@@ -138,6 +140,7 @@ class Game:
         # updating players status
         for _,player in self.players.items():
             player.setStatus("playing")
+            
 
         self.gameStarted = True
         params = self.getParams("all")
@@ -150,6 +153,7 @@ class Game:
     
     def endGameWithTime(self):
       self.endGame("temps écoulé")
+       d(True, "endGame executé")
 
     def checkUsername(self,username,team):
         for _,player in self.players.items():
