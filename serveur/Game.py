@@ -153,7 +153,7 @@ class Game:
     
     def endGameWithTime(self):
       self.endGame("temps écoulé")
-       d(True, "endGame executé")
+      d(True, "endGame executé")
 
     def checkUsername(self,username,team):
         for _,player in self.players.items():
