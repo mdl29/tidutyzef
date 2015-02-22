@@ -1,6 +1,7 @@
 var show = 0;
 
 function notifShow(){
+  $('#alerte-notif').css('display','none');
   $('.barre_onglet').css('animation-timing-function','ease-out');
   $('.barre_onglet').css('animation-name','animation_barre-show');
   $('#zone-notif').css('transition-timing-function','ease-out');

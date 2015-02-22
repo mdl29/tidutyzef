@@ -170,8 +170,12 @@ function ScreenMap(){
 		
 		this.notif=function(cause){
 			notif. unshift(cause);
+			if($('#zone-notif').css('height') == '0px'){
+				$('#alerte-notif').css('display','block');
+			}
 			qs('#zone-notif').innerHTML=notif.join("<br/>");
 		};
+		
 		this.winner=function(team){
 			
 			if(team==player.team){
