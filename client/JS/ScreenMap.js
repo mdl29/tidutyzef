@@ -170,11 +170,18 @@ function ScreenMap(){
 		
 		this.notif=function(cause){
 			notif. unshift(cause);
+			navigator.vibrate(200);
 			if($('#zone-notif').css('height') == '0px'){
 				$('#alerte-notif').css('display','block');
 			}
 			qs('#zone-notif').innerHTML=notif.join("<br/>");
 		};
+
+		this.sendChat=function(){
+			var r = prompt('Votre message:');
+			var data = {"object":"chat","content":r};
+			client.send(data);
+		}
 		
 		this.winner=function(team){
 			
@@ -189,7 +196,11 @@ function ScreenMap(){
 					alert("Veuiller vous deconnecter");	
 				}
 			}
-			if (team!=player.team){
+			if(team=='nul'){
+				alert('fin du timer');
+				this.notif('Fin du GAME <br> Timed out')
+			}
+			else if (team!=player.team){
 				alert("Les "+player.team+" ont perdus :'(");
 				var r=confirm("Rejouer");
 				if(r==true){
@@ -200,10 +211,7 @@ function ScreenMap(){
 					alert("Veuiller vous deconnecter");	
 				}
 			}
-			if(team=='nul'){
-				alert('fin du timer');
-				this.notif('Fin du GAME <br> Timed out')
-			}
+			
 		};
 }
 ScreenMap.prototype = new Screen;

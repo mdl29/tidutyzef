@@ -34,6 +34,9 @@
                 if(player.user==rep.from){ player.status = rep.status; }
 				screen_map.moveMarkers(rep.pos,rep.from,rep.team,rep.status);
 				break;
+			case "chat":
+				screen_map.notif( rep.from+" : "+rep.content);
+				break
 			case "startBattle":
 				switch_screen.show( screen_combat);
 				screen_combat.battle(rep.against);
@@ -59,6 +62,9 @@
 						alert("Il n'y a pas assez de joueurs \n veuillez résoudre le probleme ou contacter l'administrateur");
 						switch_screen.show(screen_connection);
 						that.onClose();
+						break;
+					case "timeOut":
+						screen_map.winner("nul");
 						break;
 				}
 				break;
