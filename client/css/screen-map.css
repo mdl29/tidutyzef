@@ -37,6 +37,15 @@
   height:20px;
 }
 
+#chat{
+  z-index: 3;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 3px;
+  top:65px;
+}
+
 #screen_map
 {
 	height:100%;
