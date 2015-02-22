@@ -1,7 +1,95 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0 0 100 100">
-	<line x1="20" y1="2" x2="20" y2="15" stroke-width="5" stroke="black" />
-	<line x1="2" y1="20" x2="15" y2="20" stroke-width="5" stroke="black" />
-	<line x1="20" y1="25" x2="20" y2="38" stroke-width="5" stroke="black" />
-	<line x1="25" y1="20" x2="38" y2="20" stroke-width="5" stroke="black" />
-	<circle cx="20" cy="20" r="13" stroke-width="5" fill="none" stroke="black" />
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="32px"
+   height="32px"
+   id="svg3143"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="Nouveau document 8">
+  <defs
+     id="defs3145" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7.9180417"
+     inkscape:cx="16.552742"
+     inkscape:cy="27.347377"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     inkscape:grid-bbox="true"
+     inkscape:document-units="px"
+     inkscape:window-width="528"
+     inkscape:window-height="414"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata3148">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer">
+    <line
+       style="stroke:#000000;stroke-width:4.44380379"
+       x1="15.946303"
+       y1="0.12165257"
+       x2="15.946303"
+       y2="11.675541"
+       id="line3112" />
+    <line
+       style="stroke:#000000;stroke-width:4.44380379"
+       x1="-0.051387463"
+       y1="16.119347"
+       x2="11.502501"
+       y2="16.119347"
+       id="line3114" />
+    <line
+       style="stroke:#000000;stroke-width:4.44380379"
+       x1="15.946303"
+       y1="20.56315"
+       x2="15.946303"
+       y2="32.117039"
+       id="line3116" />
+    <line
+       style="stroke:#000000;stroke-width:4.44380379"
+       x1="20.390112"
+       y1="16.119347"
+       x2="31.944"
+       y2="16.119347"
+       id="line3118" />
+    <circle
+       transform="matrix(0.88876069,0,0,0.88876069,-1.8289088,-1.6558685)"
+       style="fill:none;stroke:#000000;stroke-width:5"
+       sodipodi:ry="13"
+       sodipodi:rx="13"
+       sodipodi:cy="20"
+       sodipodi:cx="20"
+       cx="20"
+       cy="20"
+       r="13"
+       id="circle3120" />
+  </g>
 </svg>

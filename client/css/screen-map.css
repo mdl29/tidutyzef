@@ -27,23 +27,33 @@
     
 }
 
-#gps
-{
+#widgets{
+  z-index: 2;
+  background-color: rgba(0,0,0,0.5);
   position: absolute;
   right: 2px;
-  top:40px;
+  top: 40px;
+  width: 40px;
+  height: auto;
+}
+
+#gps
+{
+  position: relative;
+  left: 4px;
+  top:3px;
   z-index: 3;
-  width:20px;
-  height:20px;
+  width:32px;
+  height:32px;
 }
 
 #chat{
   z-index: 3;
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  right: 3px;
-  top:65px;
+  width: 32px;
+  height: 32px;
+  position: relative;
+  left: 4px;
+  top:2px;
 }
 
 #screen_map
