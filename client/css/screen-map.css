@@ -29,12 +29,12 @@
 
 #gps
 {
-	position: absolute;
-	right: 0px;
-	top:35px;
-	z-index: 3;
-	width:40px;
-	height:40px;
+  position: absolute;
+  right: 2px;
+  top:40px;
+  z-index: 3;
+  width:20px;
+  height:20px;
 }
 
 #screen_map
