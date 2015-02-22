@@ -1,4 +1,5 @@
 var show = 0;
+var showWid = 1;
 
 function notifShow(){
   $('#alerte-notif').css('display','none');
@@ -27,3 +28,21 @@ function check(){
   }
 }
 
+function widgetsShow(){
+  $('#widgets').css('top','35px');  
+}
+
+function widgetsHide(){
+  $('#widgets').css('top','-70px');
+}
+
+function checkWid(){
+  if (showWid == 0){
+    showWid = 1;
+    widgetsShow();
+  }
+  else {
+    showWid = 0;
+    widgetsHide();
+  }
+}
