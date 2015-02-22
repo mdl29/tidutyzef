@@ -136,7 +136,7 @@ class Game:
     def startGame(self):
         if self.gameStarted:
             return
-        self.timer = threading.Timer(30, self.endGameWithTime)
+        self.timer = threading.Timer(self.params.getParams("time"), self.endGameWithTime)
         self.timer.start()
         # updating players status
         for _,player in self.players.items():
@@ -154,7 +154,7 @@ class Game:
     
     def endGameWithTime(self):
         d(True, "endGame executé")
-        self.endGame("temps écoulé")
+        self.endGame("timeOut")
 
     def checkUsername(self,username,team):
         for _,player in self.players.items():

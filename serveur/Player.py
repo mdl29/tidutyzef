@@ -38,6 +38,7 @@ class Player (TTWsHandler):
             fct = {"login" : lambda : self.login(data),
                     "logout" : lambda : self.close(),
                     "updatePos" : lambda : self.updatePos(data),
+                    "chat": lambda : self.sendMsg(data),
                     "getParams" : lambda : self.getParams(data),
                     "startGame" : lambda : self.startGame(),
                     "getAllUsers" : lambda : self.getAllUsers(),
@@ -110,6 +111,9 @@ class Player (TTWsHandler):
         Game().send2All({"object":"updatePos","from":self.username,"pos": self.pos,"team":self.team,"status":self.status})
         Game().addPlayerToBattle(self)
         Game().playerPositionUpdated()
+
+    def sendMsg(self,data):
+        Game().send2All({"object":"chat","from":self.username,"content":data["content"]})
 
     def startBattle(self,against,sup):
         self.send({"object" :"startBattle", "against" : against.username})
