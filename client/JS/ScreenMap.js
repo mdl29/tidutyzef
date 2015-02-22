@@ -124,7 +124,11 @@ function ScreenMap(){
 					sec=60;
 				}
 				sec--;
-				qs('#time').innerHTML=min+":"+sec;
+				if (sec <= 9){
+					qs('#time').innerHTML=min+":0"+sec;
+				}else{
+					qs('#time').innerHTML=min+":"+sec;
+				}
 				},1000);
 			if(min==0&&sec==0){
 				this.winner('nul');

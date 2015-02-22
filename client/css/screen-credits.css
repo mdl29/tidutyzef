@@ -1,0 +1,20 @@
+.text-a-centrer{
+	position: relative;
+	text-align: center;
+}
+
+#logo-MDL{
+	position:relative;
+	margin-left: 50%;
+	left:-100px;
+}
+
+#dev-list{
+	position: relative;
+	width:180px;
+	height:250px;
+	margin-left: 50%;
+	left:-90px;
+	overflow-y: auto;
+	overflow : -moz-scrollbars-vertical;
+}
