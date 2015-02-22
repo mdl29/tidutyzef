@@ -212,7 +212,7 @@ function ScreenMap(){
 					client.onClose();
 				}
 				else if(r==false){
-					alert("Veuiller vous deconnecter");	
+					switch_screen.show(screen_credits)	
 				}
 			}
 			
