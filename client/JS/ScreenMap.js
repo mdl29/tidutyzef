@@ -115,15 +115,18 @@ function ScreenMap(){
 		};
 		
 		this.startCountDown=function(time){
-		
-			var min = time/60 ,sec = time%60;
+			
+			var date = new Date();
+
 			setInterval(function(){
 
-				if(sec==0){
-					min--;
-					sec=60;
-				}
-				sec--;
+				var actualDate = new Date();
+
+				timer = time + ((date.getTime() - actualDate.getTime())/1000);
+				
+				var min = Math.round(timer / 60)-1;
+				var sec = Math.round(timer % 60);
+				qs('#time').innerHTML = min +" : "+sec;
 				if (sec <= 9){
 					qs('#time').innerHTML=min+":0"+sec;
 				}else{
