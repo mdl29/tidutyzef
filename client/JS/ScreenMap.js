@@ -197,12 +197,20 @@ function ScreenMap(){
 					client.onClose();
 				}
 				else if(r==false){
-					alert("Veuiller vous deconnecter");	
+					switch_screen.show(screen_credits)	
 				}
 			}
 			if(team=='nul'){
 				alert('fin du timer');
 				this.notif('Fin du GAME <br> Timed out')
+				var r=confirm("Rejouer");
+				if(r==true){
+					location.reload(true);
+					client.onClose();
+				}
+				else if(r==false){
+					switch_screen.show(screen_credits)	
+				}
 			}
 			else if (team!=player.team){
 				alert("Les "+player.team+" ont perdus :'(");

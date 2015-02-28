@@ -58,7 +58,7 @@ class Zone (threading.Thread):
             """
             this part is use for the regen
             """
-            for timae,client in enumerate(self.killedInRadius):
+            for time,client in enumerate(self.killedInRadius):
                 if utils.distance(self.pos,client.pos) > self.radius:
                     self.killedInRadius.pop(client)
                     client.send({"object":"endRegen","regen":"false"})
