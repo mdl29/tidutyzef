@@ -87,6 +87,10 @@ class Game:
         else:
             raise Exception("Player's ID {} don't exist".format(id))
 
+    #def checkZones(self):
+    #    for zone in self.zones:
+    #        zone.update()
+
     def playerPositionUpdated(self):
         """
             Notify Game thread that a position has been updated.
@@ -203,12 +207,13 @@ class Game:
             """
             zones test
             """
-            for index,client in enumerate(self.client):
-                if client.status is not "playing" or client.status is not "kill":
-                    continue
-                for index,zone in enumerate(self.params.getParams(zones)):
-                    if utils.distance(zone.team,client.team) <= self.params.getParams("radius"):
-                        zone.addPlayerInRadius(client)
+            pass
+     #       for index,client in enumerate(self.client):
+     #           if client.status is not "playing" or client.status is not "kill":
+     #               continue
+     #           for index,zone in enumerate(self.params.getParams(zones)):
+     #               if utils.distance(zone.team,client.team) <= self.params.getParams("radius"):
+     #                   zone.addPlayerInRadius(client)
 
     def getPlayersInTeam(self, teamName):
         """
