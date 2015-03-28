@@ -143,13 +143,14 @@ function ScreenMap(){
         };
 
 		this.setZone=function(zones){
-		console.log(zones);
-		for(var i=0;i<zones.length;i++){
-			//var zone =JSON.stringify("{"+zones[i]+"}");
-			var zoneObj=Object.create(zones[i]);
-            zoneObj.radius = ( "zoneRadius" in this) ? this.zoneRadius : 10;
-			console.log(zoneObj);
-			that.zoneStyle(zoneObj);
+			console.log(zones);
+			alert(zones);
+			for(var i=0;i<zones.length;i++){
+				//var zone =JSON.stringify("{"+zones[i]+"}");
+				var zoneObj=Object.create(zones[i]);
+	            zoneObj.radius = ( "zoneRadius" in this) ? this.zoneRadius : 10;
+				console.log(zoneObj);
+				that.zoneStyle(zoneObj);
 		}
 
 		};
