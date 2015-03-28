@@ -22,7 +22,7 @@
     <!--Leaflet-->
 	<link rel="stylesheet" href="./lib/leaflet/leaflet.css" />
     <script src="./lib/leaflet/leaflet-src.js"></script>
-    
+
     <!--CSS-->
     <link rel="stylesheet" href="css/style.css" />
 	<link rel="stylesheet" href="css/screen-connection.css" />
@@ -30,7 +30,7 @@
 	<link rel="stylesheet" href="css/screen-wait.css" />
 	<link rel="stylesheet" href="css/screen-combat.css" />
 	<link rel="stylesheet" href="css/screen-credits.css" />
-    
+
 </head>
 
 <body>
@@ -51,7 +51,7 @@
 		<br>
 		<label id="formulaire_tidu"><input type='radio' name="team" value="tidu" checked=true />Tidu</label>
 		<label id="formulaire_tizef"><input type='radio' name="team" value="tizef" />Tizef</label>
-		</p> 
+		</p>
 		<input type='button' value='Connection' onclick='screen_connection.startCo()' id="formulaire_connexion">
 		</div>
 		<hr id="separator">
@@ -67,17 +67,17 @@
 		</div>
 		</div>
 	</section>
-	
+
 	<section id='screen_wait'>
 		<div class="title">
 			<span class='one'>TIDU</span><br>
 		    <span class='two'>VS</span><br>
 			<span class='three'>TIZEF</span>
 		</div>
-		
+
 		<img id="loading_logo" class="logo" src="img/icon_flat.png"><br>
 		<h4>En attente du début de la partie...</h4>
-		
+
 		<table id="tableau">
 		    <tr id="tableau_titres">
 		        <th id='tiduUser'>Tidu</th>
@@ -89,15 +89,15 @@
 		    </tr>
 		</table>
 	</section>
-	
+
 	<section id='screen_map'>
-		
+
 		<div id="zone-notif"></div>
 		<img src='img/onglet.png' id='onglet' class ='barre_onglet'/>
 		<img src='img/alerte-notif.png' id='alerte-notif' />
 		<img src='img/bras_onglet.png' id='bras_onglet' class='barre_onglet'/>
 		<label id='label' onclick='check()' class='barre_onglet'>notif</label>
-		
+
 		<div id='map' class='map'></div>
 
 		<div id="widgets">
@@ -110,7 +110,7 @@
 		<div id='time' style="width" ></div>
 		<div id="winner"></div>
 	</section>
-	
+
 	<section id='screen_combat'>
 		<p>Combat contre <u><span id='pseudo'>quelqu'un</span></u> en cours</p>
 		<h4 id ='choice'>Faites votre choix:</h4>
@@ -134,13 +134,12 @@
 				<li>LeonisCuriosity</li>
 				<li>Benvii</li>
 				<li>Baptiste Nicolas</li>
-				<li>citon_qui_roule</li>
+				<li>citron_qui_roule</li>
 				<li>sullyvan24</li>
 				<li>R3Dcraft</li>
 				<li>wolf29f</li>
 				<li>PowerFullKnight</li>
 				<li>sabro29</li>
-				<li>MicroJoe</li>
 			</ul>
 		</div>
 	</section>
@@ -153,14 +152,14 @@
 	var screen_map= new ScreenMap();
 	var screen_combat= new ScreenCombat();
 	var player= new ClientJoueur();
-	
+
 	screen_combat.close();
 	screen_map.close();
 	screen_wait.close();
 	screen_connection.close();
-	
+
 	switch_screen.show( screen_connection );
-	
+
 	window.onbeforeunload = function(){
 		this.close();
 		return false;

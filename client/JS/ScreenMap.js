@@ -4,9 +4,9 @@ function ScreenMap(){
 		var that = this;
 		var notif = [];
 		this.map;
-		
+
 		this.markers={};
-		
+
 		this.tidu = L.icon({
 			iconUrl: 'img/marqueur_tidu.png',
 			iconSize: [34,64],
@@ -37,16 +37,16 @@ function ScreenMap(){
 			iconSize:[34,64],
 			//inconAnchor:[25,0]
 		});
-		
+
 		this.icons={'playing':{"tidu":this.tidu,"tizef":this.tizef},
 					"none":{"tidu":this.marker,"tizef":this.marker},
 					"fighting":{"tidu":this.tidu,"tizef":this.tizef},
 					"kill":{"tidu":this.tiduMort,"tizef":this.tizefMort}};
-		
+
 		this.open = function(){
 				Screen.prototype.open.call(this);
 				this.getLocation();
-					
+
 			}
 		this.showMap=function(center){
 				this.map = L.map('map').setView([0,0], 18);
@@ -58,90 +58,90 @@ function ScreenMap(){
 				    }).addTo(this.map);
 				this.map.setView(center,18);
 			};
-			
-		this.getLocation =function (){ 
+
+		this.getLocation =function (){
 			if(navigator.geolocation){
 				navigator.geolocation.watchPosition(that.showPosition);
 			}
 		};
-		
-		this.showPosition = function (position){ 
+
+		this.showPosition = function (position){
 			lat=position.coords.latitude;
 			lon=position.coords.longitude;
 			that.updatePos(lat,lon);
 			player.pos=[lat,lon];
 		};
-        
+
         this.logCount=0;
-		
+
 		this.updatePos=function(lat,lon){
-			
+
 			var data ={'object':"updatePos",
 				'lat':lat,
 				'lng':lon
 			};
-            
-			
+
+
 			client.send(data);
-			
+
 			if(!this.myMarker){
 				this.myMarker = L.marker([lat,lon],{icon:  this.icons[player.status][player.team]} ).addTo(this.map);
 			}
 			else{
 				this.myMarker.setIcon( this.icons[player.status][player.team] ).setLatLng([lat,lon]);
 			}
-			
+
 		};
-		
+
 		this.moveMarkers=function(pos,user,team, status){
-			
+
 			if(!this.markers.hasOwnProperty(team)){
 				this.markers[team]={};
 			}
 			if(!this.markers[team].hasOwnProperty(user)){
 				this.markers[team][user] = L.marker(pos,{icon: this.icons[status][team]}).addTo(this.map).bindPopup(user +" de la team " + team);
 			}
-			else{	
+			else{
 				this.markers[team][user].setLatLng(pos);
 			}
-			
+
 		};
-		
+
 		this.gpsCenter =function(){
-			
+
 			this.map.setView(player.pos);
 			this.notif("Your position: "+lat+", "+lon);
-			
+
 		};
-		
+
 		this.startCountDown=function(time){
-			
+
 			var date = new Date();
 
 			setInterval(function(){
 
-				var actualDate = new Date();
+					var actualDate = new Date();
 
-				timer = time + ((date.getTime() - actualDate.getTime())/1000);
-				
-				var min = Math.round(timer / 60)-1;
-				var sec = Math.round(timer % 60);
-				qs('#time').innerHTML = min +" : "+sec;
-				if (sec <= 9){
-					qs('#time').innerHTML=min+":0"+sec;
-				}else{
-					qs('#time').innerHTML=min+":"+sec;
-				}
+					timer = time + ((date.getTime() - actualDate.getTime())/1000);
+
+					var min = Math.round(timer / 60)-1;
+					var sec = Math.round(timer % 60);
+					qs('#time').innerHTML = min +" : "+sec;
+					if (sec <= 9){
+						qs('#time').innerHTML=min+":0"+sec;
+					}else{
+						qs('#time').innerHTML=min+":"+sec;
+					}
+					if(min==0&&sec==0){
+						this.winner('nul');
+					}
 				},1000);
-			if(min==0&&sec==0){
-				this.winner('nul');
-			}
 		};
-		
+
         this.setRadius = function(rad){
             this.zoneRadius = rad;
         };
-        
+
 		this.setZone=function(zones){
 		console.log(zones);
 		for(var i=0;i<zones.length;i++){
@@ -151,11 +151,11 @@ function ScreenMap(){
 			console.log(zoneObj);
 			that.zoneStyle(zoneObj);
 		}
-		
+
 		};
 		this.zoneStyle=function(zone){
 			console.log(zone);
-			
+
 			switch(zone.team){
 					case 'tidu':
 					console.log('newTiduZone');
@@ -174,7 +174,7 @@ function ScreenMap(){
 						L.circle(zone.pos,zone.radius).addTo(that.map);
 			}
 		};
-		
+
 		this.notif=function(cause){
 			notif. unshift(cause);
 			navigator.vibrate(200);
@@ -189,9 +189,9 @@ function ScreenMap(){
 			var data = {"object":"chat","content":r};
 			client.send(data);
 		}
-		
+
 		this.winner=function(team){
-			
+
 			if(team==player.team){
 				alert("Les "+player.team+" ont gagnés :D");
 				var r=confirm("Rejouer");
@@ -200,7 +200,7 @@ function ScreenMap(){
 					client.onClose();
 				}
 				else if(r==false){
-					switch_screen.show(screen_credits)	
+					switch_screen.show(screen_credits)
 				}
 			}
 			if(team=='nul'){
@@ -212,7 +212,7 @@ function ScreenMap(){
 					client.onClose();
 				}
 				else if(r==false){
-					switch_screen.show(screen_credits)	
+					switch_screen.show(screen_credits)
 				}
 			}
 			else if (team!=player.team){
@@ -223,11 +223,10 @@ function ScreenMap(){
 					client.onClose();
 				}
 				else if(r==false){
-					switch_screen.show(screen_credits)	
+					switch_screen.show(screen_credits)
 				}
 			}
-			
+
 		};
 }
 ScreenMap.prototype = new Screen;
-
