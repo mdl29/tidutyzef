@@ -91,7 +91,7 @@ class Zone (threading.Thread):
                 if team == self.team:
                     continue
                 for player in self.ennemyInRadius[team]:
-                    if !val.isAlive: # joueur plus en vie
+                    if not val.isAlive: # joueur plus en vie
                         self.ennemyInRadius[team].remove(player)
                         print("Player (", player.username,"), not alive, removed")
                         continue
