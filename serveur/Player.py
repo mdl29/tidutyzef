@@ -26,7 +26,7 @@ class Player (TTWsHandler):
         return "username :" + self.username +" team :" + self.team
 
     def onMessage(self,data):
-        d(True, "Player.onMessage")
+        #d(True, "Player.onMessage")
         if not self.username and not "username" in data:
             self.sendError(usernameNotSet)
             return
@@ -106,7 +106,7 @@ class Player (TTWsHandler):
                 self.sendError(usernameAlreadySet)
 
     def updatePos(self,data):
-        d(True, "Player.updatePos")
+        #d(True, "Player.updatePos")
         self.pos = (data["lat"],data["lng"])
         Game().send2All({"object":"updatePos","from":self.username,"pos": self.pos,"team":self.team,"status":self.status})
         Game().addPlayerToBattle(self)

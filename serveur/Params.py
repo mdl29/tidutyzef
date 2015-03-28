@@ -43,4 +43,6 @@ class Params:
         for zone in self.params["zones"]:
             out.append(zone.getDict())
         return out
-
+        
+    def getAllZonesObj(self):
+        return self.params["zones"]

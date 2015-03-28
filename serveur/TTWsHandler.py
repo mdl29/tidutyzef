@@ -31,7 +31,7 @@ class TTWsHandler(websocket.WebSocketHandler):
             self.write_message(msg)
         except websocket.WebSocketClosedError:
             self.close()
-        d(self.debug,"send :",msg,"to : ",self.request.host,"on",self.request.path)
+        #d(self.debug,"send :",msg,"to : ",self.request.host,"on",self.request.path)
 
     def open(self):
         raise NotImplementedError
