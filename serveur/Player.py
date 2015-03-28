@@ -132,5 +132,6 @@ class Player (TTWsHandler):
         del self.battleSupervisor
 
     def on_close(self):
-        Game().send2All({"object" :"connection","user":self.username,"status":"logout"})
+        d(self.debug, "on_close : ", self.username)
         Game().removePlayer(self.ID)
+        Game().send2All({"object" :"connection","user":self.username,"status":"logout"})
