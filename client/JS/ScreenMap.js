@@ -144,7 +144,6 @@ function ScreenMap(){
 
 		this.setZone=function(zones){
 			console.log(zones);
-			alert(zones);
 			for(var i=0;i<zones.length;i++){
 				//var zone =JSON.stringify("{"+zones[i]+"}");
 				var zoneObj=Object.create(zones[i]);
