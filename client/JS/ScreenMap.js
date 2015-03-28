@@ -124,8 +124,8 @@ function ScreenMap(){
 
 					timer = time + ((date.getTime() - actualDate.getTime())/1000);
 
-					var min = Math.round(timer / 60)-1;
-					var sec = Math.round(timer % 60);
+					var min = Math.floor(timer / 60)-1;
+					var sec = Math.floor(timer % 60);
 					qs('#time').innerHTML = min +" : "+sec;
 					if (sec <= 9){
 						qs('#time').innerHTML=min+":0"+sec;
@@ -187,8 +187,10 @@ function ScreenMap(){
 
 		this.sendChat=function(){
 			var r = prompt('Votre message:');
-			var data = {"object":"chat","content":r};
-			client.send(data);
+			if(r!=""){}
+				var data = {"object":"chat","content":r};
+				client.send(data);
+			}
 		}
 
 		this.winner=function(team){
