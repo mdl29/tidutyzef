@@ -186,7 +186,7 @@ function ScreenMap(){
 
 		this.sendChat=function(){
 			var r = prompt('Votre message:');
-			if(r!=""){}
+			if(r!=""){
 				var data = {"object":"chat","content":r};
 				client.send(data);
 			}
