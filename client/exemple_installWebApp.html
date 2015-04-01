@@ -16,7 +16,7 @@
     
     function installMe(){
         if( "mozApps" in navigator ){
-            var install = navigator.mozApps.install('https://github.com/mdl29/tidutyzef/tree/8b507782f7417c13000b2c752803e151ac8a8ce2/client/manifest.webapp');
+            var install = navigator.mozApps.install('../manifest.webapp');
             install.onsuccess = function(){
                 alert("Appli bien installée");
             };
