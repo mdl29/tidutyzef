@@ -97,28 +97,30 @@ class Game:
         self.positionUpdatedCond.release()
 
     def update(self):
-        self.tStart = time.time()
          
         while self.gameStarted:
             d(True, "while game started")
-            
+            if len(self.players) < 2:
+                self.endGame("noEnoughPlayer")
+                break
+
+
             #-- wait for position update
             self.positionUpdatedCond.acquire()
             self.positionUpdatedCond.wait()
             self.positionUpdatedCond.release()
             
-            
-            if len(self.players) < 2:
-                self.endGame("noEnoughPlayer")
-                break
-
             if len(self.toCheck) is not 0:
                 toCheck2 = set(self.toCheck)
                 for player in toCheck2:
+                    if player.status is not "playing" and player.status is not "kill":
+                        d(True, "!!!! player status : ", player.status)
+                        continue
+                    
                     self.checkBattle(player)
+                    self.checkZones(player)
                     self.toCheck.remove(player)
                 self.checkVictory()
-                self.checkZones()
 
     def setParams(self,data):
         self.params.setParams(data)
@@ -199,25 +201,15 @@ class Game:
             self.endGame("tiduWin")
             return False
 
-    def checkZones(self):
+    def checkZones(self,player):
             """
             zones test
             """
             d(True, "checkZones")
-            for player in self.players.values():
-                d(True, "Player ", player.username)
-                if player.status is not "playing" and player.status is not "kill":
-                    d(True, "!!!! player status : ", player.status)
-                    continue
-                d(True, "Ok c'est presque bon ...")
-                d(True, "Nb zones", len(self.params.getAllZonesObj()) )
-                for zone in self.params.getAllZonesObj():
-                    d(True, "Zone.id ", zone.id)
-                    dist = utils.distance(zone.pos,player.pos)
-                    d(True, "zone.pos :", zone.pos)
-                    d(True, "Distance : ", dist)
-                    if utils.distance(zone.pos,player.pos) <= self.params.getParams("radius"):
-                        zone.addPlayerInRadius(player)
+            d(True, "Player ", player.username)
+            for zone in self.params.getAllZonesObj():
+                if utils.distance(zone.pos,player.pos) < zone.radius:
+                    zone.addPlayerInRadius(player)
 
     def getPlayersInTeam(self, teamName):
         """
