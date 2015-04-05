@@ -1,6 +1,6 @@
 import socket, threading, hashlib, base64, select
 
-SOCKET_PORT = 9876
+SOCKET_PORT = 443
 
 class WebSocketServer(threading.Thread):
     """
