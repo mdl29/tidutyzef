@@ -9,7 +9,7 @@ from Admin import *
 from Game import *
 import sys
 
-SOCKET_PORT = 8443
+SOCKET_PORT = 8080
 
 if __name__=="__main__":
     game=Game()
