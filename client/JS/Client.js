@@ -59,7 +59,7 @@
 						screen_map.winner("tidu");
 						break;
 					case "noEnoughPlayer":
-						alert("Il n'y a pas assez de joueurs \n veuillez résoudre le probleme ou contacter l'administrateur");
+						alert("Il n'y a pas assez de joueurs \n veuillez résoudre le problème ou contacter l'administrateur");
 						switch_screen.show(screen_connection);
 						that.onClose();
 						break;

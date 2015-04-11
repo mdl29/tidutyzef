@@ -195,7 +195,7 @@ function ScreenMap(){
 		this.winner=function(team){
 
 			if(team==player.team){
-				alert("Les "+player.team+" ont gagnés :D");
+				alert("Les "+player.team+" ont gagné :D");
 				var r=confirm("Rejouer");
 				if(r==true){
 					location.reload(true);
@@ -218,7 +218,7 @@ function ScreenMap(){
 				}
 			}
 			else if (team!=player.team){
-				alert("Les "+player.team+" ont perdus :'(");
+				alert("Les "+player.team+" ont perdu :'(");
 				var r=confirm("Rejouer");
 				if(r==true){
 					location.reload(true);

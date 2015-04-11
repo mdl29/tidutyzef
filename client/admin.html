@@ -29,17 +29,17 @@ zoom: 15,
 L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
 </script>
 <label>URL du ws : <input type="text" id="ip" value="ws://proxy.mdl29.net/admin"></label>
-<button onclick="admin.open()">Open connexion</button><br>
+<button onclick="admin.open()">Connexion</button><br>
 <button onclick="admin.defZone()">Selectionner zone </button>
 <select id="team">
 <option value="tidu">Tidu</option>
 <option value="tizef">Tizef</option>
 <option value="neutre">Neutre</option>
 </select>
-Radius:<input type="text" id="radius" value="10">Timer:
+Rayon:<input type="text" id="radius" value="10">Temps:
 <input type="text" id="timer" value="10"><br>
-<button onclick="admin.sendParams()">Send parameters</button><br>
-<button onclick="admin.startGame()">Start game</button><br>
+<button onclick="admin.sendParams()">Envoyer paramètres</button><br>
+<button onclick="admin.startGame()">Démarrer le jeu</button><br>
 <script type="text/javascript">
 	var zone=new Zone();
 </script>
