@@ -225,7 +225,7 @@ Serveur-->Client
 
 Serveur --> Client
 *usernameNotSet* -> un username doit etre transmis ainsi que la team
-
+a
 # Erreur 1
 
 Serveur --> Client

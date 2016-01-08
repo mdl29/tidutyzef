@@ -1,20 +1,25 @@
 #!/usr/bin/python3
-#-*- coding:utf-8 -*-
+"""
+Start the game server
+"""
 
-from tornado import websocket, web, ioloop
+from tornado import web, ioloop
 import tornado.options
-tornado.options.parse_command_line()
-from Player import *
-from Admin import *
-from Game import *
-import sys
+
+from playerws import PlayerWs
+from adminws import AdminWs
+from game import Game
 
 SOCKET_PORT = 8080
 
-if __name__=="__main__":
-    game=Game()
-    app=web.Application([
-        (r'/', Player),
-        (r'/admin',Admin)])
-    app.listen(SOCKET_PORT)
-    ioloop.IOLoop.instance().start()
+if __name__ == "__main__":
+    tornado.options.parse_command_line()
+
+
+    web.Application([(r'/', PlayerWs),
+                     (r'/admin', AdminWs)]
+                   ).listen(SOCKET_PORT)
+    try:
+        ioloop.IOLoop.instance().start()
+    except KeyboardInterrupt:
+        Game().stop()

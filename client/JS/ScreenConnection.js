@@ -1,6 +1,6 @@
 function ScreenConnection(){
 		this.section = qs("#screen_connection");
-		qs('#ipchoice').value = "ws://"+location.host+":8080";
+		qs('#ipchoice').value = "ws://127.0.0.1:8080";
 		qs('#modifIP').style.display = "none";
 		this.modifIP=function(){
 			qs('#modifIP').style.display = "block";
